@@ -2,8 +2,19 @@
 
 import { useState } from 'react';
 import { useApp } from '@/context/AppContext';
-import { topicTrees } from '@/data/topic-trees';
 import { TopicNode as TopicNodeType, TopicStatus } from '@/types';
+import roadmapData from '@/data/roadmap.json';
+
+// Flatten all tasks from roadmapData and attach week/day
+const allRoadmapTasks = roadmapData.weeks.flatMap(w => 
+  w.days.flatMap(d => 
+    Object.values(d.tasks).flat().map((t: any) => ({
+      ...t,
+      week_id: w.week_id,
+      day_id: d.day_id
+    }))
+  )
+);
 
 const statusColors: Record<TopicStatus, string> = {
   locked: 'var(--text-muted)',
@@ -27,7 +38,19 @@ const treeTabs = [
 
 export default function RoadmapPage() {
   const [activeTab, setActiveTab] = useState<'backend' | 'ml' | 'dsa'>('backend');
-  const { state } = useApp();
+  const { state, toggleSubtask } = useApp();
+
+  const getRealDate = (weekId: number, dayId: number) => {
+    if (!state.settings?.start_date) return null;
+    try {
+      const startDate = new Date(state.settings.start_date);
+      const daysOffset = (weekId - 1) * 7 + (dayId - 1);
+      const date = new Date(startDate.getTime() + daysOffset * 24 * 60 * 60 * 1000);
+      return date.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+    } catch {
+      return null;
+    }
+  };
 
   const tree = topicTrees[activeTab];
   const completedCount = countCompleted(tree, state.completed_topics);
@@ -98,19 +121,30 @@ export default function RoadmapPage() {
 
       {/* Tree */}
       <div className="card fade-in fade-in-delay-1" style={{ padding: 24 }}>
-        <TreeNodeComponent node={tree} depth={0} completedTopics={state.completed_topics} />
+        <TreeNodeComponent 
+          node={tree} 
+          depth={0} 
+          completedTopics={state.completed_topics} 
+          getRealDate={getRealDate}
+          toggleSubtask={toggleSubtask}
+          taskProgress={state.task_progress}
+        />
       </div>
     </div>
   );
 }
 
-function TreeNodeComponent({ node, depth, completedTopics }: {
+function TreeNodeComponent({ node, depth, completedTopics, getRealDate, toggleSubtask, taskProgress }: {
   node: TopicNodeType;
   depth: number;
   completedTopics: string[];
+  getRealDate: (w: number, d: number) => string | null;
+  toggleSubtask: (taskId: string, subtaskId: string) => void;
+  taskProgress: any;
 }) {
   const [expanded, setExpanded] = useState(depth < 1);
   const hasChildren = node.children && node.children.length > 0;
+  const hasTasks = node.linked_tasks && node.linked_tasks.length > 0;
   const isComplete = completedTopics.includes(node.id);
   const effectiveStatus: TopicStatus = isComplete ? 'completed' : node.status;
 
@@ -118,7 +152,7 @@ function TreeNodeComponent({ node, depth, completedTopics }: {
     <div style={{ marginLeft: depth > 0 ? 0 : 0 }}>
       <div
         className="tree-node"
-        onClick={() => hasChildren && setExpanded(!expanded)}
+        onClick={() => (hasChildren || hasTasks) && setExpanded(!expanded)}
         style={{
           display: 'flex',
           alignItems: 'center',
@@ -126,10 +160,11 @@ function TreeNodeComponent({ node, depth, completedTopics }: {
           borderLeft: depth > 0 ? `2px solid ${statusColors[effectiveStatus]}20` : 'none',
           marginLeft: depth > 0 ? 16 : 0,
           paddingLeft: depth > 0 ? 16 : 12,
+          cursor: (hasChildren || hasTasks) ? 'pointer' : 'default'
         }}
       >
         {/* Expand indicator */}
-        {hasChildren && (
+        {(hasChildren || hasTasks) && (
           <span style={{
             fontSize: 10,
             color: 'var(--text-muted)',
@@ -141,7 +176,7 @@ function TreeNodeComponent({ node, depth, completedTopics }: {
             ▶
           </span>
         )}
-        {!hasChildren && <span style={{ width: 16 }} />}
+        {!(hasChildren || hasTasks) && <span style={{ width: 16 }} />}
 
         {/* Status icon */}
         <span style={{ fontSize: 14 }}>{statusIcons[effectiveStatus]}</span>
@@ -179,17 +214,83 @@ function TreeNodeComponent({ node, depth, completedTopics }: {
         }} />
       </div>
 
-      {/* Children */}
-      {expanded && hasChildren && (
+      {/* Children or Tasks */}
+      {expanded && (
         <div style={{ marginTop: 2 }}>
-          {node.children!.map(child => (
+          {hasChildren && node.children!.map(child => (
             <TreeNodeComponent
               key={child.id}
               node={child}
               depth={depth + 1}
               completedTopics={completedTopics}
+              getRealDate={getRealDate}
+              toggleSubtask={toggleSubtask}
+              taskProgress={taskProgress}
             />
           ))}
+          
+          {!hasChildren && hasTasks && (
+            <div style={{ paddingLeft: depth > 0 ? 32 : 16, marginTop: 8, marginBottom: 16, display: 'flex', flexDirection: 'column', gap: 12 }}>
+              {node.linked_tasks!.map(linkedId => {
+                // Strip the trailing '1' to match new roadmap generator IDs
+                const matchId = linkedId.replace(/1$/, '');
+                const task = allRoadmapTasks.find(t => t.id === matchId);
+                
+                if (!task) return null;
+                
+                const dateStr = getRealDate(task.week_id, task.day_id) || `Week ${task.week_id}, Day ${task.day_id}`;
+                const progress = taskProgress[task.id];
+                
+                return (
+                  <div key={task.id} style={{ background: 'var(--bg-secondary)', border: '1px solid var(--border)', borderRadius: 'var(--radius-sm)', padding: 12 }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 8 }}>
+                      <div style={{ fontWeight: 600, fontSize: 13, color: 'var(--text-primary)' }}>{task.title}</div>
+                      <div style={{ fontSize: 11, color: 'var(--text-muted)', background: 'var(--bg-tertiary)', padding: '2px 6px', borderRadius: 4 }}>
+                        📅 {dateStr}
+                      </div>
+                    </div>
+                    
+                    {task.subtasks && task.subtasks.length > 0 && (
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginTop: 8 }}>
+                        {task.subtasks.map((st: any) => {
+                          const isSubtaskCompleted = progress?.subtasks_completed?.includes(st.id);
+                          return (
+                            <div key={st.id} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, cursor: 'pointer' }} onClick={(e) => { e.stopPropagation(); toggleSubtask(task.id, st.id); }}>
+                              <div style={{
+                                width: 14, height: 14, borderRadius: 3, marginTop: 2, flexShrink: 0,
+                                border: `1px solid ${isSubtaskCompleted ? 'var(--accent-success)' : 'var(--text-muted)'}`,
+                                background: isSubtaskCompleted ? 'var(--accent-success)' : 'transparent',
+                                display: 'flex', alignItems: 'center', justifyContent: 'center'
+                              }}>
+                                {isSubtaskCompleted && <span style={{ color: '#fff', fontSize: 9 }}>✓</span>}
+                              </div>
+                              <span style={{ fontSize: 12, color: isSubtaskCompleted ? 'var(--text-muted)' : 'var(--text-secondary)', textDecoration: isSubtaskCompleted ? 'line-through' : 'none' }}>
+                                {st.title}
+                              </span>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
+                    
+                    {task.resources && task.resources.length > 0 && (
+                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 12 }}>
+                        {task.resources.map((r: string, idx: number) => (
+                          <a key={idx} href={r} target="_blank" rel="noopener noreferrer" onClick={e => e.stopPropagation()} style={{
+                            fontSize: 11, display: 'flex', alignItems: 'center', gap: 4,
+                            background: 'var(--bg-card)', padding: '4px 8px', borderRadius: 4,
+                            color: 'var(--accent-primary)', textDecoration: 'none', border: '1px solid var(--border)'
+                          }}>
+                            🔗 Resource {idx + 1}
+                          </a>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          )}
         </div>
       )}
     </div>

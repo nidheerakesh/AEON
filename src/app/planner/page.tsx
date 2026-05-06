@@ -12,8 +12,9 @@ const catBadgeClass: Record<string, string> = {
 };
 
 export default function PlannerPage() {
-  const { state, completeTask, startTask, setFocusTask } = useApp();
+  const { state, completeTask, startTask, setFocusTask, toggleSubtask } = useApp();
   const [energy, setEnergy] = useState<'low' | 'medium' | 'high'>('medium');
+  const [expandedTasks, setExpandedTasks] = useState<string[]>([]);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => { setMounted(true); }, []);
@@ -25,6 +26,24 @@ export default function PlannerPage() {
   const completedTime = plan.filter(t => state.task_progress[t.id]?.status === 'completed')
     .reduce((s, t) => s + t.time_min, 0);
 
+  const getRealDate = (weekId: number, dayId: number) => {
+    if (!state.settings?.start_date) return null;
+    try {
+      const startDate = new Date(state.settings.start_date);
+      const daysOffset = (weekId - 1) * 7 + (dayId - 1);
+      const date = new Date(startDate.getTime() + daysOffset * 24 * 60 * 60 * 1000);
+      return date.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+    } catch {
+      return null;
+    }
+  };
+
+  const currentDateStr = getRealDate(state.current_week, state.current_day) || `Week ${state.current_week}, Day ${state.current_day}`;
+
+  const toggleExpand = (id: string) => {
+    setExpandedTasks(prev => prev.includes(id) ? prev.filter(t => t !== id) : [...prev, id]);
+  };
+
   return (
     <div>
       <div className="fade-in" style={{ marginBottom: 28 }}>
@@ -32,7 +51,7 @@ export default function PlannerPage() {
           <span className="glow-text">Daily Planner</span> 📋
         </h1>
         <p style={{ color: 'var(--text-secondary)', marginTop: 6, fontSize: 14 }}>
-          AI-generated plan based on your progress — Week {state.current_week}, Day {state.current_day}
+          {currentDateStr}
         </p>
       </div>
 
@@ -127,34 +146,94 @@ export default function PlannerPage() {
                 const progress = state.task_progress[task.id];
                 const isCompleted = progress?.status === 'completed';
                 const isInProgress = progress?.status === 'in_progress';
+                const isExpanded = expandedTasks.includes(task.id);
                 return (
                   <div key={task.id} className="card-flat" style={{
-                    marginBottom: 6, display: 'flex', alignItems: 'center', gap: 12,
-                    opacity: isCompleted ? 0.5 : 1,
-                    borderLeft: `3px solid ${isInProgress ? cat.color : 'transparent'}`,
+                    marginBottom: 10,
+                    opacity: isCompleted ? 0.6 : 1,
+                    borderLeft: `3px solid ${isInProgress ? cat.color : isCompleted ? 'var(--accent-success)' : 'transparent'}`,
+                    transition: 'all 0.2s',
                   }}>
-                    <button
-                      onClick={() => isCompleted ? null : completeTask(task.id, task.xp)}
-                      disabled={isCompleted}
-                      style={{
-                        width: 24, height: 24, borderRadius: 6,
-                        border: isCompleted ? 'none' : `2px solid ${cat.color}`,
-                        background: isCompleted ? cat.color : 'transparent',
-                        cursor: isCompleted ? 'default' : 'pointer',
-                        display: 'flex', alignItems: 'center', justifyContent: 'center',
-                        fontSize: 12, color: 'white', flexShrink: 0,
-                        fontFamily: 'var(--font-sans)',
-                      }}
-                    >{isCompleted && '✓'}</button>
-                    <div style={{ flex: 1 }}>
-                      <div style={{ fontSize: 13, fontWeight: 500, textDecoration: isCompleted ? 'line-through' : 'none' }}>
-                        {task.title}
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                      <button
+                        onClick={() => isCompleted ? null : completeTask(task.id, task.xp)}
+                        disabled={isCompleted}
+                        style={{
+                          width: 24, height: 24, borderRadius: 6,
+                          border: isCompleted ? 'none' : `2px solid ${cat.color}`,
+                          background: isCompleted ? cat.color : 'transparent',
+                          cursor: isCompleted ? 'default' : 'pointer',
+                          display: 'flex', alignItems: 'center', justifyContent: 'center',
+                          fontSize: 12, color: 'white', flexShrink: 0,
+                        }}
+                      >{isCompleted && '✓'}</button>
+                      
+                      <div style={{ flex: 1, cursor: 'pointer' }} onClick={() => toggleExpand(task.id)}>
+                        <div style={{ fontSize: 14, fontWeight: 600, textDecoration: isCompleted ? 'line-through' : 'none', color: isCompleted ? 'var(--text-muted)' : 'var(--text-primary)' }}>
+                          {task.title}
+                        </div>
+                        <div style={{ fontSize: 12, color: 'var(--text-muted)' }}>
+                          ~{task.time_min}min · {task.subtasks?.length || 0} subtasks
+                        </div>
                       </div>
-                      <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>~{task.time_min}min</div>
+                      
+                      <span style={{ fontSize: 12, fontFamily: 'var(--font-mono)', color: 'var(--accent-warning)', fontWeight: 600 }}>
+                        {task.xp} XP
+                      </span>
+                      
+                      <button onClick={() => toggleExpand(task.id)} style={{ background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', width: 24, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <span style={{ transform: isExpanded ? 'rotate(180deg)' : 'rotate(0)', transition: '0.2s' }}>▼</span>
+                      </button>
                     </div>
-                    <span style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--accent-warning)', fontWeight: 600 }}>
-                      {task.xp} XP
-                    </span>
+
+                    {isExpanded && (
+                      <div style={{ marginTop: 16, paddingLeft: 36, borderTop: '1px dashed var(--border)', paddingTop: 16 }}>
+                        {task.description && (
+                          <p style={{ fontSize: 13, color: 'var(--text-secondary)', marginBottom: 16 }}>{task.description}</p>
+                        )}
+                        
+                        {task.subtasks && task.subtasks.length > 0 && (
+                          <div style={{ marginBottom: 16 }}>
+                            <div style={{ fontSize: 11, textTransform: 'uppercase', color: 'var(--text-muted)', fontWeight: 600, marginBottom: 8, letterSpacing: '0.5px' }}>Checklist</div>
+                            {task.subtasks.map(st => {
+                              const isSubtaskCompleted = progress?.subtasks_completed?.includes(st.id);
+                              return (
+                                <div key={st.id} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, marginBottom: 8 }} onClick={() => toggleSubtask(task.id, st.id)}>
+                                  <div style={{
+                                    width: 16, height: 16, borderRadius: 4, marginTop: 2, cursor: 'pointer', flexShrink: 0,
+                                    border: `1.5px solid ${isSubtaskCompleted ? 'var(--accent-success)' : 'var(--text-muted)'}`,
+                                    background: isSubtaskCompleted ? 'var(--accent-success)' : 'transparent',
+                                    display: 'flex', alignItems: 'center', justifyContent: 'center'
+                                  }}>
+                                    {isSubtaskCompleted && <span style={{ color: '#fff', fontSize: 10 }}>✓</span>}
+                                  </div>
+                                  <span style={{ fontSize: 13, cursor: 'pointer', textDecoration: isSubtaskCompleted ? 'line-through' : 'none', color: isSubtaskCompleted ? 'var(--text-muted)' : 'var(--text-secondary)' }}>
+                                    {st.title}
+                                  </span>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        )}
+
+                        {task.resources && task.resources.length > 0 && (
+                          <div>
+                            <div style={{ fontSize: 11, textTransform: 'uppercase', color: 'var(--text-muted)', fontWeight: 600, marginBottom: 8, letterSpacing: '0.5px' }}>Resources</div>
+                            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+                              {task.resources.map((res, idx) => (
+                                <a key={idx} href={res} target="_blank" rel="noopener noreferrer" style={{
+                                  fontSize: 12, display: 'flex', alignItems: 'center', gap: 4,
+                                  background: 'var(--bg-tertiary)', padding: '6px 10px', borderRadius: 6,
+                                  color: 'var(--accent-primary)', textDecoration: 'none', border: '1px solid var(--border)'
+                                }}>
+                                  <span>🔗</span> Resource {idx + 1}
+                                </a>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    )}
                   </div>
                 );
               })}

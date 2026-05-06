@@ -1,7 +1,7 @@
 'use client';
 
 import React, { createContext, useContext, useReducer, useEffect, useCallback } from 'react';
-import { AppState, TaskProgress, UserNote, XPLog, BossFightProgress } from '@/types';
+import { AppState, TaskProgress, UserNote, XPLog, BossFightProgress, CustomTask } from '@/types';
 import { awardXP, getLevelForXP } from '@/lib/xp-engine';
 import { updateStreak, getToday, getCurrentWeekAndDay } from '@/lib/streak-manager';
 
@@ -19,6 +19,7 @@ const getInitialState = (): AppState => {
     xp_logs: [],
     notes: [],
     completed_topics: [],
+    custom_tasks: [],
     settings: {
       theme: 'dark',
       focus_mode_duration: 25,
@@ -50,6 +51,9 @@ type Action =
   | { type: 'UPDATE_SETTINGS'; settings: Partial<AppState['settings']> }
   | { type: 'SET_WEEK_DAY'; week: number; day: number }
   | { type: 'COMPLETE_TOPIC'; topicId: string }
+  | { type: 'ADD_CUSTOM_TASK'; task: CustomTask }
+  | { type: 'DELETE_CUSTOM_TASK'; taskId: string }
+  | { type: 'TOGGLE_SUBTASK'; taskId: string; subtaskId: string }
   | { type: 'HYDRATE'; state: AppState };
 
 function reducer(state: AppState, action: Action): AppState {
@@ -165,6 +169,34 @@ function reducer(state: AppState, action: Action): AppState {
       if (state.completed_topics.includes(action.topicId)) return state;
       return { ...state, completed_topics: [...state.completed_topics, action.topicId] };
 
+    case 'ADD_CUSTOM_TASK':
+      return { ...state, custom_tasks: [...state.custom_tasks, action.task] };
+
+    case 'DELETE_CUSTOM_TASK':
+      return { ...state, custom_tasks: state.custom_tasks.filter(t => t.id !== action.taskId) };
+
+    case 'TOGGLE_SUBTASK': {
+      const progress = state.task_progress[action.taskId] || {
+        task_id: action.taskId,
+        status: 'in_progress',
+        xp_earned: 0,
+        subtasks_completed: [],
+      };
+      
+      const isCompleted = progress.subtasks_completed.includes(action.subtaskId);
+      const newSubtasks = isCompleted
+        ? progress.subtasks_completed.filter((id: string) => id !== action.subtaskId)
+        : [...progress.subtasks_completed, action.subtaskId];
+        
+      return {
+        ...state,
+        task_progress: {
+          ...state.task_progress,
+          [action.taskId]: { ...progress, subtasks_completed: newSubtasks, status: progress.status === 'pending' ? 'in_progress' : progress.status }
+        }
+      };
+    }
+
     case 'HYDRATE':
       return action.state;
 
@@ -184,6 +216,9 @@ interface AppContextValue {
   addNote: (note: Omit<UserNote, 'id' | 'created_at' | 'updated_at'>) => void;
   completeBossFight: (weekId: number, score: number, xpReward: number) => void;
   dismissLevelUp: () => void;
+  addCustomTask: (task: CustomTask) => void;
+  deleteCustomTask: (taskId: string) => void;
+  toggleSubtask: (taskId: string, subtaskId: string) => void;
 }
 
 const AppContext = createContext<AppContextValue | null>(null);
@@ -252,10 +287,23 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     dispatch({ type: 'DISMISS_LEVEL_UP' });
   }, []);
 
+  const addCustomTask = useCallback((task: CustomTask) => {
+    dispatch({ type: 'ADD_CUSTOM_TASK', task });
+  }, []);
+
+  const deleteCustomTask = useCallback((taskId: string) => {
+    dispatch({ type: 'DELETE_CUSTOM_TASK', taskId });
+  }, []);
+
+  const toggleSubtask = useCallback((taskId: string, subtaskId: string) => {
+    dispatch({ type: 'TOGGLE_SUBTASK', taskId, subtaskId });
+  }, []);
+
   return (
     <AppContext.Provider value={{
       state, dispatch, completeTask, skipTask, startTask,
       setFocusTask, addNote, completeBossFight, dismissLevelUp,
+      addCustomTask, deleteCustomTask, toggleSubtask,
     }}>
       {children}
     </AppContext.Provider>

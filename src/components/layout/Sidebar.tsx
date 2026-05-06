@@ -12,6 +12,7 @@ const navItems = [
   { href: '/', label: 'Dashboard', icon: '🏠' },
   { href: '/roadmap', label: 'Roadmap', icon: '🗺️' },
   { href: '/planner', label: 'Daily Plan', icon: '📋' },
+  { href: '/calendar', label: 'Calendar', icon: '📅' },
   { href: '/focus', label: 'Focus Mode', icon: '🎯' },
   { href: '/boss-fight', label: 'Boss Fight', icon: '⚔️' },
   { href: '/analytics', label: 'Analytics', icon: '📊' },

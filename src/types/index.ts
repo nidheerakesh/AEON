@@ -154,6 +154,24 @@ export interface UserSettings {
   start_date: string; // ISO date — when the 12-week journey started
 }
 
+// --- Custom Task (AI-scheduled or user-added) ---
+
+export interface CustomTask {
+  id: string;
+  title: string;
+  description: string;
+  xp: number;
+  time_min: number;
+  difficulty: 'easy' | 'medium' | 'hard';
+  category: TaskCategory;
+  week_id: number;
+  day_id: number;
+  created_at: string;
+  source: 'ai' | 'user';
+  subtasks: SubTask[];
+  resources: string[];
+}
+
 export interface AppState {
   // Progress
   task_progress: Record<string, TaskProgress>;
@@ -168,6 +186,7 @@ export interface AppState {
   // Content
   notes: UserNote[];
   completed_topics: string[];
+  custom_tasks: CustomTask[];
 
   // Settings
   settings: UserSettings;
