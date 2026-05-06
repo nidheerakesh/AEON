@@ -1,0 +1,3543 @@
+{
+  "weeks": [
+    {
+      "week_id": 1,
+      "theme": "Foundation — Internet, Python, Math Basics",
+      "goals": [
+        "How the Internet works",
+        "What is Machine Learning?",
+        "Arrays basics"
+      ],
+      "days": [
+        {
+          "day_id": 1,
+          "day_label": "Monday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w1d1_ml1",
+                "title": "What is Machine Learning?",
+                "description": "",
+                "xp": 25,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w1d1_be1",
+                "title": "How the Internet works",
+                "description": "",
+                "xp": 25,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "build": [],
+            "dsa": [
+              {
+                "id": "w1d1_dsa1",
+                "title": "Arrays basics",
+                "description": "",
+                "xp": 15,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "easy",
+                "resources": []
+              }
+            ],
+            "college": [
+              {
+                "id": "w1d1_col1",
+                "title": "Review lecture notes",
+                "description": "",
+                "xp": 15,
+                "time_min": 20,
+                "subtasks": [],
+                "difficulty": "easy",
+                "resources": []
+              }
+            ]
+          },
+          "estimated_time_min": 155
+        },
+        {
+          "day_id": 2,
+          "day_label": "Tuesday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w1d2_ml1",
+                "title": "Supervised vs Unsupervised",
+                "description": "",
+                "xp": 25,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w1d2_be1",
+                "title": "HTTP/HTTPS deep dive",
+                "description": "",
+                "xp": 25,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "build": [],
+            "dsa": [
+              {
+                "id": "w1d2_dsa1",
+                "title": "String manipulation",
+                "description": "",
+                "xp": 15,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "easy",
+                "resources": []
+              }
+            ],
+            "college": []
+          },
+          "estimated_time_min": 135
+        },
+        {
+          "day_id": 3,
+          "day_label": "Wednesday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w1d3_ml1",
+                "title": "ML Pipeline overview",
+                "description": "",
+                "xp": 25,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w1d3_be1",
+                "title": "DNS & Domain Names",
+                "description": "",
+                "xp": 25,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "build": [],
+            "dsa": [
+              {
+                "id": "w1d3_dsa1",
+                "title": "Big-O notation",
+                "description": "",
+                "xp": 15,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "easy",
+                "resources": []
+              }
+            ],
+            "college": []
+          },
+          "estimated_time_min": 135
+        },
+        {
+          "day_id": 4,
+          "day_label": "Thursday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w1d4_ml1",
+                "title": "Python for ML setup",
+                "description": "",
+                "xp": 40,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w1d4_be1",
+                "title": "How Browsers work",
+                "description": "",
+                "xp": 40,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "build": [],
+            "dsa": [
+              {
+                "id": "w1d4_dsa1",
+                "title": "Linear search",
+                "description": "",
+                "xp": 15,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "easy",
+                "resources": []
+              }
+            ],
+            "college": [
+              {
+                "id": "w1d4_col1",
+                "title": "Assignment prep",
+                "description": "",
+                "xp": 15,
+                "time_min": 20,
+                "subtasks": [],
+                "difficulty": "easy",
+                "resources": []
+              }
+            ]
+          },
+          "estimated_time_min": 155
+        },
+        {
+          "day_id": 5,
+          "day_label": "Friday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w1d5_ml1",
+                "title": "Jupyter notebooks",
+                "description": "",
+                "xp": 40,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w1d5_be1",
+                "title": "Hosting basics",
+                "description": "",
+                "xp": 40,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "build": [],
+            "dsa": [
+              {
+                "id": "w1d5_dsa1",
+                "title": "Binary search intro",
+                "description": "",
+                "xp": 15,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "easy",
+                "resources": []
+              }
+            ],
+            "college": []
+          },
+          "estimated_time_min": 135
+        },
+        {
+          "day_id": 6,
+          "day_label": "Saturday",
+          "tasks": {
+            "ai_ml": [],
+            "backend": [],
+            "build": [],
+            "dsa": [],
+            "college": []
+          },
+          "estimated_time_min": 0
+        }
+      ],
+      "boss_fight": {
+        "name": "The Gateway Guardian",
+        "description": "Week 1 Boss Fight",
+        "challenge": "Build a CLI tool that fetches data from a public API and displays it formatted",
+        "xp_reward": 500,
+        "requirements": [
+          "Complete at least 15 tasks in Week 1"
+        ]
+      }
+    },
+    {
+      "week_id": 2,
+      "theme": "APIs & Data — REST, NumPy, Pandas",
+      "goals": [
+        "REST API fundamentals",
+        "NumPy arrays & ops",
+        "Two pointers"
+      ],
+      "days": [
+        {
+          "day_id": 1,
+          "day_label": "Monday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w2d1_ml1",
+                "title": "NumPy arrays & ops",
+                "description": "",
+                "xp": 25,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w2d1_be1",
+                "title": "REST API fundamentals",
+                "description": "",
+                "xp": 25,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "build": [],
+            "dsa": [
+              {
+                "id": "w2d1_dsa1",
+                "title": "Two pointers",
+                "description": "",
+                "xp": 15,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "easy",
+                "resources": []
+              }
+            ],
+            "college": [
+              {
+                "id": "w2d1_col1",
+                "title": "Review lecture notes",
+                "description": "",
+                "xp": 15,
+                "time_min": 20,
+                "subtasks": [],
+                "difficulty": "easy",
+                "resources": []
+              }
+            ]
+          },
+          "estimated_time_min": 155
+        },
+        {
+          "day_id": 2,
+          "day_label": "Tuesday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w2d2_ml1",
+                "title": "Pandas DataFrames",
+                "description": "",
+                "xp": 25,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w2d2_be1",
+                "title": "JSON & Serialization",
+                "description": "",
+                "xp": 25,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "build": [],
+            "dsa": [
+              {
+                "id": "w2d2_dsa1",
+                "title": "Sliding window",
+                "description": "",
+                "xp": 15,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "easy",
+                "resources": []
+              }
+            ],
+            "college": []
+          },
+          "estimated_time_min": 135
+        },
+        {
+          "day_id": 3,
+          "day_label": "Wednesday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w2d3_ml1",
+                "title": "Data cleaning",
+                "description": "",
+                "xp": 25,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w2d3_be1",
+                "title": "HTTP Status Codes",
+                "description": "",
+                "xp": 25,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "build": [],
+            "dsa": [
+              {
+                "id": "w2d3_dsa1",
+                "title": "Hash maps",
+                "description": "",
+                "xp": 15,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "easy",
+                "resources": []
+              }
+            ],
+            "college": []
+          },
+          "estimated_time_min": 135
+        },
+        {
+          "day_id": 4,
+          "day_label": "Thursday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w2d4_ml1",
+                "title": "Matplotlib basics",
+                "description": "",
+                "xp": 40,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w2d4_be1",
+                "title": "API Design patterns",
+                "description": "",
+                "xp": 40,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "build": [],
+            "dsa": [
+              {
+                "id": "w2d4_dsa1",
+                "title": "Frequency counting",
+                "description": "",
+                "xp": 15,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "easy",
+                "resources": []
+              }
+            ],
+            "college": [
+              {
+                "id": "w2d4_col1",
+                "title": "Lab prep",
+                "description": "",
+                "xp": 15,
+                "time_min": 20,
+                "subtasks": [],
+                "difficulty": "easy",
+                "resources": []
+              }
+            ]
+          },
+          "estimated_time_min": 155
+        },
+        {
+          "day_id": 5,
+          "day_label": "Friday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w2d5_ml1",
+                "title": "Seaborn visualization",
+                "description": "",
+                "xp": 40,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w2d5_be1",
+                "title": "Postman & Testing APIs",
+                "description": "",
+                "xp": 40,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "build": [],
+            "dsa": [
+              {
+                "id": "w2d5_dsa1",
+                "title": "Anagram problems",
+                "description": "",
+                "xp": 15,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "easy",
+                "resources": []
+              }
+            ],
+            "college": []
+          },
+          "estimated_time_min": 135
+        },
+        {
+          "day_id": 6,
+          "day_label": "Saturday",
+          "tasks": {
+            "ai_ml": [],
+            "backend": [],
+            "build": [],
+            "dsa": [],
+            "college": []
+          },
+          "estimated_time_min": 0
+        }
+      ],
+      "boss_fight": {
+        "name": "Data Wrangler",
+        "description": "Week 2 Boss Fight",
+        "challenge": "Clean and visualize a messy dataset, produce 3 meaningful charts",
+        "xp_reward": 500,
+        "requirements": [
+          "Complete at least 15 tasks in Week 2"
+        ]
+      }
+    },
+    {
+      "week_id": 3,
+      "theme": "Frameworks & ML Pipeline — Flask, Supervised Learning",
+      "goals": [
+        "Flask setup & routing",
+        "Feature engineering",
+        "Linked list basics"
+      ],
+      "days": [
+        {
+          "day_id": 1,
+          "day_label": "Monday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w3d1_ml1",
+                "title": "Feature engineering",
+                "description": "",
+                "xp": 25,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w3d1_be1",
+                "title": "Flask setup & routing",
+                "description": "",
+                "xp": 25,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "build": [],
+            "dsa": [
+              {
+                "id": "w3d1_dsa1",
+                "title": "Linked list basics",
+                "description": "",
+                "xp": 15,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "easy",
+                "resources": []
+              }
+            ],
+            "college": [
+              {
+                "id": "w3d1_col1",
+                "title": "Review lecture notes",
+                "description": "",
+                "xp": 15,
+                "time_min": 20,
+                "subtasks": [],
+                "difficulty": "easy",
+                "resources": []
+              }
+            ]
+          },
+          "estimated_time_min": 155
+        },
+        {
+          "day_id": 2,
+          "day_label": "Tuesday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w3d2_ml1",
+                "title": "Feature scaling",
+                "description": "",
+                "xp": 25,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w3d2_be1",
+                "title": "Flask templates",
+                "description": "",
+                "xp": 25,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "build": [],
+            "dsa": [
+              {
+                "id": "w3d2_dsa1",
+                "title": "Singly linked list ops",
+                "description": "",
+                "xp": 15,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "easy",
+                "resources": []
+              }
+            ],
+            "college": []
+          },
+          "estimated_time_min": 135
+        },
+        {
+          "day_id": 3,
+          "day_label": "Wednesday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w3d3_ml1",
+                "title": "Train/test split",
+                "description": "",
+                "xp": 25,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w3d3_be1",
+                "title": "Flask middleware",
+                "description": "",
+                "xp": 25,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "build": [],
+            "dsa": [
+              {
+                "id": "w3d3_dsa1",
+                "title": "Stack implementation",
+                "description": "",
+                "xp": 15,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "easy",
+                "resources": []
+              }
+            ],
+            "college": []
+          },
+          "estimated_time_min": 135
+        },
+        {
+          "day_id": 4,
+          "day_label": "Thursday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w3d4_ml1",
+                "title": "Cross-validation",
+                "description": "",
+                "xp": 40,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w3d4_be1",
+                "title": "FastAPI intro",
+                "description": "",
+                "xp": 40,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "build": [],
+            "dsa": [
+              {
+                "id": "w3d4_dsa1",
+                "title": "Queue implementation",
+                "description": "",
+                "xp": 15,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "easy",
+                "resources": []
+              }
+            ],
+            "college": [
+              {
+                "id": "w3d4_col1",
+                "title": "Assignment submission",
+                "description": "",
+                "xp": 15,
+                "time_min": 20,
+                "subtasks": [],
+                "difficulty": "easy",
+                "resources": []
+              }
+            ]
+          },
+          "estimated_time_min": 155
+        },
+        {
+          "day_id": 5,
+          "day_label": "Friday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w3d5_ml1",
+                "title": "Bias-variance tradeoff",
+                "description": "",
+                "xp": 40,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w3d5_be1",
+                "title": "Request/Response cycle",
+                "description": "",
+                "xp": 40,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "build": [
+              {
+                "id": "w3d5_build1",
+                "title": "CLI todo app",
+                "description": "",
+                "xp": 40,
+                "time_min": 60,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "dsa": [
+              {
+                "id": "w3d5_dsa1",
+                "title": "Bracket matching",
+                "description": "",
+                "xp": 15,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "easy",
+                "resources": []
+              }
+            ],
+            "college": []
+          },
+          "estimated_time_min": 195
+        },
+        {
+          "day_id": 6,
+          "day_label": "Saturday",
+          "tasks": {
+            "ai_ml": [],
+            "backend": [],
+            "build": [],
+            "dsa": [],
+            "college": []
+          },
+          "estimated_time_min": 0
+        }
+      ],
+      "boss_fight": {
+        "name": "The Framework Forge",
+        "description": "Week 3 Boss Fight",
+        "challenge": "Build a Flask API with 3 endpoints and serve ML predictions",
+        "xp_reward": 600,
+        "requirements": [
+          "Complete at least 15 tasks in Week 3"
+        ]
+      }
+    },
+    {
+      "week_id": 4,
+      "theme": "Databases & Classical ML — PostgreSQL, Regression",
+      "goals": [
+        "SQL fundamentals",
+        "Linear Regression theory",
+        "Recursion basics"
+      ],
+      "days": [
+        {
+          "day_id": 1,
+          "day_label": "Monday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w4d1_ml1",
+                "title": "Linear Regression theory",
+                "description": "",
+                "xp": 25,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w4d1_be1",
+                "title": "SQL fundamentals",
+                "description": "",
+                "xp": 25,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "build": [],
+            "dsa": [
+              {
+                "id": "w4d1_dsa1",
+                "title": "Recursion basics",
+                "description": "",
+                "xp": 15,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "easy",
+                "resources": []
+              }
+            ],
+            "college": [
+              {
+                "id": "w4d1_col1",
+                "title": "Review lecture notes",
+                "description": "",
+                "xp": 15,
+                "time_min": 20,
+                "subtasks": [],
+                "difficulty": "easy",
+                "resources": []
+              }
+            ]
+          },
+          "estimated_time_min": 155
+        },
+        {
+          "day_id": 2,
+          "day_label": "Tuesday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w4d2_ml1",
+                "title": "Linear Regression implementation",
+                "description": "",
+                "xp": 25,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w4d2_be1",
+                "title": "PostgreSQL setup",
+                "description": "",
+                "xp": 25,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "build": [],
+            "dsa": [
+              {
+                "id": "w4d2_dsa1",
+                "title": "Merge sort",
+                "description": "",
+                "xp": 15,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "easy",
+                "resources": []
+              }
+            ],
+            "college": []
+          },
+          "estimated_time_min": 135
+        },
+        {
+          "day_id": 3,
+          "day_label": "Wednesday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w4d3_ml1",
+                "title": "Polynomial regression",
+                "description": "",
+                "xp": 25,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w4d3_be1",
+                "title": "CRUD operations",
+                "description": "",
+                "xp": 25,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "build": [],
+            "dsa": [
+              {
+                "id": "w4d3_dsa1",
+                "title": "Quick sort",
+                "description": "",
+                "xp": 15,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "easy",
+                "resources": []
+              }
+            ],
+            "college": []
+          },
+          "estimated_time_min": 135
+        },
+        {
+          "day_id": 4,
+          "day_label": "Thursday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w4d4_ml1",
+                "title": "Regularization (Ridge/Lasso)",
+                "description": "",
+                "xp": 40,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w4d4_be1",
+                "title": "Joins & Relations",
+                "description": "",
+                "xp": 40,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "build": [],
+            "dsa": [
+              {
+                "id": "w4d4_dsa1",
+                "title": "Binary search",
+                "description": "",
+                "xp": 15,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "easy",
+                "resources": []
+              }
+            ],
+            "college": [
+              {
+                "id": "w4d4_col1",
+                "title": "Mid-sem prep",
+                "description": "",
+                "xp": 15,
+                "time_min": 20,
+                "subtasks": [],
+                "difficulty": "easy",
+                "resources": []
+              }
+            ]
+          },
+          "estimated_time_min": 155
+        },
+        {
+          "day_id": 5,
+          "day_label": "Friday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w4d5_ml1",
+                "title": "Model evaluation metrics",
+                "description": "",
+                "xp": 40,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w4d5_be1",
+                "title": "Database normalization",
+                "description": "",
+                "xp": 40,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "build": [
+              {
+                "id": "w4d5_build1",
+                "title": "REST API project setup",
+                "description": "",
+                "xp": 40,
+                "time_min": 60,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "dsa": [
+              {
+                "id": "w4d5_dsa1",
+                "title": "Search in rotated array",
+                "description": "",
+                "xp": 15,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "easy",
+                "resources": []
+              }
+            ],
+            "college": []
+          },
+          "estimated_time_min": 195
+        },
+        {
+          "day_id": 6,
+          "day_label": "Saturday",
+          "tasks": {
+            "ai_ml": [],
+            "backend": [],
+            "build": [],
+            "dsa": [],
+            "college": []
+          },
+          "estimated_time_min": 0
+        }
+      ],
+      "boss_fight": {
+        "name": "Query Master",
+        "description": "Week 4 Boss Fight",
+        "challenge": "Design a normalized database schema and write 10 complex SQL queries",
+        "xp_reward": 600,
+        "requirements": [
+          "Complete at least 15 tasks in Week 4"
+        ]
+      }
+    },
+    {
+      "week_id": 5,
+      "theme": "Auth & Classification — JWT, Decision Trees, SVM",
+      "goals": [
+        "JWT authentication",
+        "Logistic Regression",
+        "Binary tree basics"
+      ],
+      "days": [
+        {
+          "day_id": 1,
+          "day_label": "Monday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w5d1_ml1",
+                "title": "Logistic Regression",
+                "description": "",
+                "xp": 25,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w5d1_be1",
+                "title": "JWT authentication",
+                "description": "",
+                "xp": 25,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "build": [],
+            "dsa": [
+              {
+                "id": "w5d1_dsa1",
+                "title": "Binary tree basics",
+                "description": "",
+                "xp": 25,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "college": [
+              {
+                "id": "w5d1_col1",
+                "title": "Review lecture notes",
+                "description": "",
+                "xp": 15,
+                "time_min": 20,
+                "subtasks": [],
+                "difficulty": "easy",
+                "resources": []
+              }
+            ]
+          },
+          "estimated_time_min": 155
+        },
+        {
+          "day_id": 2,
+          "day_label": "Tuesday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w5d2_ml1",
+                "title": "Classification metrics",
+                "description": "",
+                "xp": 25,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w5d2_be1",
+                "title": "Sessions & Cookies",
+                "description": "",
+                "xp": 25,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "build": [],
+            "dsa": [
+              {
+                "id": "w5d2_dsa1",
+                "title": "Tree traversals (BFS/DFS)",
+                "description": "",
+                "xp": 25,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "college": []
+          },
+          "estimated_time_min": 135
+        },
+        {
+          "day_id": 3,
+          "day_label": "Wednesday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w5d3_ml1",
+                "title": "Decision Trees",
+                "description": "",
+                "xp": 25,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w5d3_be1",
+                "title": "OAuth 2.0 concepts",
+                "description": "",
+                "xp": 25,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "build": [],
+            "dsa": [
+              {
+                "id": "w5d3_dsa1",
+                "title": "BST operations",
+                "description": "",
+                "xp": 25,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "college": []
+          },
+          "estimated_time_min": 135
+        },
+        {
+          "day_id": 4,
+          "day_label": "Thursday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w5d4_ml1",
+                "title": "Confusion matrix",
+                "description": "",
+                "xp": 40,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w5d4_be1",
+                "title": "Password hashing",
+                "description": "",
+                "xp": 40,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "build": [],
+            "dsa": [
+              {
+                "id": "w5d4_dsa1",
+                "title": "Level order traversal",
+                "description": "",
+                "xp": 25,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "college": [
+              {
+                "id": "w5d4_col1",
+                "title": "Lab report",
+                "description": "",
+                "xp": 15,
+                "time_min": 20,
+                "subtasks": [],
+                "difficulty": "easy",
+                "resources": []
+              }
+            ]
+          },
+          "estimated_time_min": 155
+        },
+        {
+          "day_id": 5,
+          "day_label": "Friday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w5d5_ml1",
+                "title": "ROC & AUC",
+                "description": "",
+                "xp": 40,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w5d5_be1",
+                "title": "CORS & Security headers",
+                "description": "",
+                "xp": 40,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "build": [
+              {
+                "id": "w5d5_build1",
+                "title": "Add auth to API",
+                "description": "",
+                "xp": 40,
+                "time_min": 60,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "dsa": [
+              {
+                "id": "w5d5_dsa1",
+                "title": "Tree height/depth",
+                "description": "",
+                "xp": 25,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "college": []
+          },
+          "estimated_time_min": 195
+        },
+        {
+          "day_id": 6,
+          "day_label": "Saturday",
+          "tasks": {
+            "ai_ml": [],
+            "backend": [],
+            "build": [],
+            "dsa": [],
+            "college": []
+          },
+          "estimated_time_min": 0
+        }
+      ],
+      "boss_fight": {
+        "name": "The Auth Sentinel",
+        "description": "Week 5 Boss Fight",
+        "challenge": "Implement JWT auth with role-based access control",
+        "xp_reward": 700,
+        "requirements": [
+          "Complete at least 15 tasks in Week 5"
+        ]
+      }
+    },
+    {
+      "week_id": 6,
+      "theme": "DevOps & Ensemble — Docker, Random Forest, Boosting",
+      "goals": [
+        "Docker fundamentals",
+        "Random Forest",
+        "Heap basics"
+      ],
+      "days": [
+        {
+          "day_id": 1,
+          "day_label": "Monday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w6d1_ml1",
+                "title": "Random Forest",
+                "description": "",
+                "xp": 25,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w6d1_be1",
+                "title": "Docker fundamentals",
+                "description": "",
+                "xp": 25,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "build": [],
+            "dsa": [
+              {
+                "id": "w6d1_dsa1",
+                "title": "Heap basics",
+                "description": "",
+                "xp": 25,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "college": [
+              {
+                "id": "w6d1_col1",
+                "title": "Review lecture notes",
+                "description": "",
+                "xp": 15,
+                "time_min": 20,
+                "subtasks": [],
+                "difficulty": "easy",
+                "resources": []
+              }
+            ]
+          },
+          "estimated_time_min": 155
+        },
+        {
+          "day_id": 2,
+          "day_label": "Tuesday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w6d2_ml1",
+                "title": "Gradient Boosting",
+                "description": "",
+                "xp": 25,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w6d2_be1",
+                "title": "Dockerfile & images",
+                "description": "",
+                "xp": 25,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "build": [],
+            "dsa": [
+              {
+                "id": "w6d2_dsa1",
+                "title": "Priority queue",
+                "description": "",
+                "xp": 25,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "college": []
+          },
+          "estimated_time_min": 135
+        },
+        {
+          "day_id": 3,
+          "day_label": "Wednesday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w6d3_ml1",
+                "title": "XGBoost",
+                "description": "",
+                "xp": 25,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w6d3_be1",
+                "title": "Docker Compose",
+                "description": "",
+                "xp": 25,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "build": [],
+            "dsa": [
+              {
+                "id": "w6d3_dsa1",
+                "title": "Kth largest element",
+                "description": "",
+                "xp": 25,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "college": []
+          },
+          "estimated_time_min": 135
+        },
+        {
+          "day_id": 4,
+          "day_label": "Thursday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w6d4_ml1",
+                "title": "Ensemble methods",
+                "description": "",
+                "xp": 40,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w6d4_be1",
+                "title": "CI/CD with GitHub Actions",
+                "description": "",
+                "xp": 40,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "build": [],
+            "dsa": [
+              {
+                "id": "w6d4_dsa1",
+                "title": "Graph representation",
+                "description": "",
+                "xp": 25,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "college": [
+              {
+                "id": "w6d4_col1",
+                "title": "Assignment prep",
+                "description": "",
+                "xp": 15,
+                "time_min": 20,
+                "subtasks": [],
+                "difficulty": "easy",
+                "resources": []
+              }
+            ]
+          },
+          "estimated_time_min": 155
+        },
+        {
+          "day_id": 5,
+          "day_label": "Friday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w6d5_ml1",
+                "title": "Hyperparameter tuning",
+                "description": "",
+                "xp": 40,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w6d5_be1",
+                "title": "Environment variables",
+                "description": "",
+                "xp": 40,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "build": [
+              {
+                "id": "w6d5_build1",
+                "title": "Dockerize the API",
+                "description": "",
+                "xp": 40,
+                "time_min": 60,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "dsa": [
+              {
+                "id": "w6d5_dsa1",
+                "title": "BFS on graphs",
+                "description": "",
+                "xp": 25,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "college": []
+          },
+          "estimated_time_min": 195
+        },
+        {
+          "day_id": 6,
+          "day_label": "Saturday",
+          "tasks": {
+            "ai_ml": [],
+            "backend": [],
+            "build": [],
+            "dsa": [],
+            "college": []
+          },
+          "estimated_time_min": 0
+        }
+      ],
+      "boss_fight": {
+        "name": "Container Commander",
+        "description": "Week 6 Boss Fight",
+        "challenge": "Dockerize a multi-service app with docker-compose",
+        "xp_reward": 700,
+        "requirements": [
+          "Complete at least 15 tasks in Week 6"
+        ]
+      }
+    },
+    {
+      "week_id": 7,
+      "theme": "System Design & Neural Networks — Caching, Deep Learning",
+      "goals": [
+        "Caching with Redis",
+        "Neural network basics",
+        "DFS on graphs"
+      ],
+      "days": [
+        {
+          "day_id": 1,
+          "day_label": "Monday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w7d1_ml1",
+                "title": "Neural network basics",
+                "description": "",
+                "xp": 25,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w7d1_be1",
+                "title": "Caching with Redis",
+                "description": "",
+                "xp": 25,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "build": [],
+            "dsa": [
+              {
+                "id": "w7d1_dsa1",
+                "title": "DFS on graphs",
+                "description": "",
+                "xp": 25,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "college": [
+              {
+                "id": "w7d1_col1",
+                "title": "Review lecture notes",
+                "description": "",
+                "xp": 15,
+                "time_min": 20,
+                "subtasks": [],
+                "difficulty": "easy",
+                "resources": []
+              }
+            ]
+          },
+          "estimated_time_min": 155
+        },
+        {
+          "day_id": 2,
+          "day_label": "Tuesday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w7d2_ml1",
+                "title": "Perceptrons",
+                "description": "",
+                "xp": 25,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w7d2_be1",
+                "title": "Load balancing concepts",
+                "description": "",
+                "xp": 25,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "build": [],
+            "dsa": [
+              {
+                "id": "w7d2_dsa1",
+                "title": "Topological sort",
+                "description": "",
+                "xp": 25,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "college": []
+          },
+          "estimated_time_min": 135
+        },
+        {
+          "day_id": 3,
+          "day_label": "Wednesday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w7d3_ml1",
+                "title": "Activation functions",
+                "description": "",
+                "xp": 25,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w7d3_be1",
+                "title": "Rate limiting",
+                "description": "",
+                "xp": 25,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "build": [],
+            "dsa": [
+              {
+                "id": "w7d3_dsa1",
+                "title": "Dijkstra's algorithm",
+                "description": "",
+                "xp": 25,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "college": []
+          },
+          "estimated_time_min": 135
+        },
+        {
+          "day_id": 4,
+          "day_label": "Thursday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w7d4_ml1",
+                "title": "Backpropagation",
+                "description": "",
+                "xp": 40,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w7d4_be1",
+                "title": "Monolith vs Microservices",
+                "description": "",
+                "xp": 40,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "build": [],
+            "dsa": [
+              {
+                "id": "w7d4_dsa1",
+                "title": "Connected components",
+                "description": "",
+                "xp": 25,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "college": [
+              {
+                "id": "w7d4_col1",
+                "title": "Project discussion",
+                "description": "",
+                "xp": 15,
+                "time_min": 20,
+                "subtasks": [],
+                "difficulty": "easy",
+                "resources": []
+              }
+            ]
+          },
+          "estimated_time_min": 155
+        },
+        {
+          "day_id": 5,
+          "day_label": "Friday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w7d5_ml1",
+                "title": "Loss functions",
+                "description": "",
+                "xp": 40,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w7d5_be1",
+                "title": "Message queues intro",
+                "description": "",
+                "xp": 40,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "build": [
+              {
+                "id": "w7d5_build1",
+                "title": "Add caching layer",
+                "description": "",
+                "xp": 40,
+                "time_min": 60,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "dsa": [
+              {
+                "id": "w7d5_dsa1",
+                "title": "Cycle detection",
+                "description": "",
+                "xp": 25,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "college": []
+          },
+          "estimated_time_min": 195
+        },
+        {
+          "day_id": 6,
+          "day_label": "Saturday",
+          "tasks": {
+            "ai_ml": [],
+            "backend": [],
+            "build": [],
+            "dsa": [],
+            "college": []
+          },
+          "estimated_time_min": 0
+        }
+      ],
+      "boss_fight": {
+        "name": "The Neural Architect",
+        "description": "Week 7 Boss Fight",
+        "challenge": "Build and train a neural network from scratch (no frameworks)",
+        "xp_reward": 800,
+        "requirements": [
+          "Complete at least 15 tasks in Week 7"
+        ]
+      }
+    },
+    {
+      "week_id": 8,
+      "theme": "Advanced Backend & CNNs — Microservices, Computer Vision",
+      "goals": [
+        "Microservices patterns",
+        "CNN architecture",
+        "Dynamic programming intro"
+      ],
+      "days": [
+        {
+          "day_id": 1,
+          "day_label": "Monday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w8d1_ml1",
+                "title": "CNN architecture",
+                "description": "",
+                "xp": 25,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w8d1_be1",
+                "title": "Microservices patterns",
+                "description": "",
+                "xp": 25,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "build": [],
+            "dsa": [
+              {
+                "id": "w8d1_dsa1",
+                "title": "Dynamic programming intro",
+                "description": "",
+                "xp": 25,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "college": [
+              {
+                "id": "w8d1_col1",
+                "title": "Review lecture notes",
+                "description": "",
+                "xp": 15,
+                "time_min": 20,
+                "subtasks": [],
+                "difficulty": "easy",
+                "resources": []
+              }
+            ]
+          },
+          "estimated_time_min": 155
+        },
+        {
+          "day_id": 2,
+          "day_label": "Tuesday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w8d2_ml1",
+                "title": "Convolution & pooling",
+                "description": "",
+                "xp": 25,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w8d2_be1",
+                "title": "API Gateway",
+                "description": "",
+                "xp": 25,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "build": [],
+            "dsa": [
+              {
+                "id": "w8d2_dsa1",
+                "title": "Fibonacci variants",
+                "description": "",
+                "xp": 25,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "college": []
+          },
+          "estimated_time_min": 135
+        },
+        {
+          "day_id": 3,
+          "day_label": "Wednesday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w8d3_ml1",
+                "title": "Image classification",
+                "description": "",
+                "xp": 25,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w8d3_be1",
+                "title": "Service discovery",
+                "description": "",
+                "xp": 25,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "build": [],
+            "dsa": [
+              {
+                "id": "w8d3_dsa1",
+                "title": "Climbing stairs",
+                "description": "",
+                "xp": 25,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "college": []
+          },
+          "estimated_time_min": 135
+        },
+        {
+          "day_id": 4,
+          "day_label": "Thursday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w8d4_ml1",
+                "title": "Transfer learning",
+                "description": "",
+                "xp": 40,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w8d4_be1",
+                "title": "Event-driven architecture",
+                "description": "",
+                "xp": 40,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "build": [],
+            "dsa": [
+              {
+                "id": "w8d4_dsa1",
+                "title": "Coin change",
+                "description": "",
+                "xp": 25,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "college": [
+              {
+                "id": "w8d4_col1",
+                "title": "Lab prep",
+                "description": "",
+                "xp": 15,
+                "time_min": 20,
+                "subtasks": [],
+                "difficulty": "easy",
+                "resources": []
+              }
+            ]
+          },
+          "estimated_time_min": 155
+        },
+        {
+          "day_id": 5,
+          "day_label": "Friday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w8d5_ml1",
+                "title": "Data augmentation",
+                "description": "",
+                "xp": 40,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w8d5_be1",
+                "title": "gRPC basics",
+                "description": "",
+                "xp": 40,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "build": [
+              {
+                "id": "w8d5_build1",
+                "title": "Build microservice",
+                "description": "",
+                "xp": 40,
+                "time_min": 60,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "dsa": [
+              {
+                "id": "w8d5_dsa1",
+                "title": "Subset sum",
+                "description": "",
+                "xp": 25,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "college": []
+          },
+          "estimated_time_min": 195
+        },
+        {
+          "day_id": 6,
+          "day_label": "Saturday",
+          "tasks": {
+            "ai_ml": [],
+            "backend": [],
+            "build": [],
+            "dsa": [],
+            "college": []
+          },
+          "estimated_time_min": 0
+        }
+      ],
+      "boss_fight": {
+        "name": "Vision Vanguard",
+        "description": "Week 8 Boss Fight",
+        "challenge": "Build an image classifier with 90%+ accuracy on a custom dataset",
+        "xp_reward": 800,
+        "requirements": [
+          "Complete at least 15 tasks in Week 8"
+        ]
+      }
+    },
+    {
+      "week_id": 9,
+      "theme": "Testing & RNNs — TDD, Sequences, NLP basics",
+      "goals": [
+        "Unit testing basics",
+        "RNN fundamentals",
+        "Longest common subsequence"
+      ],
+      "days": [
+        {
+          "day_id": 1,
+          "day_label": "Monday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w9d1_ml1",
+                "title": "RNN fundamentals",
+                "description": "",
+                "xp": 25,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w9d1_be1",
+                "title": "Unit testing basics",
+                "description": "",
+                "xp": 25,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "build": [],
+            "dsa": [
+              {
+                "id": "w9d1_dsa1",
+                "title": "Longest common subsequence",
+                "description": "",
+                "xp": 40,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "college": [
+              {
+                "id": "w9d1_col1",
+                "title": "Review lecture notes",
+                "description": "",
+                "xp": 15,
+                "time_min": 20,
+                "subtasks": [],
+                "difficulty": "easy",
+                "resources": []
+              }
+            ]
+          },
+          "estimated_time_min": 155
+        },
+        {
+          "day_id": 2,
+          "day_label": "Tuesday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w9d2_ml1",
+                "title": "LSTM & GRU",
+                "description": "",
+                "xp": 25,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w9d2_be1",
+                "title": "Integration testing",
+                "description": "",
+                "xp": 25,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "build": [],
+            "dsa": [
+              {
+                "id": "w9d2_dsa1",
+                "title": "0/1 Knapsack",
+                "description": "",
+                "xp": 40,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "college": []
+          },
+          "estimated_time_min": 135
+        },
+        {
+          "day_id": 3,
+          "day_label": "Wednesday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w9d3_ml1",
+                "title": "Sequence modeling",
+                "description": "",
+                "xp": 25,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w9d3_be1",
+                "title": "Test-driven development",
+                "description": "",
+                "xp": 25,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "build": [],
+            "dsa": [
+              {
+                "id": "w9d3_dsa1",
+                "title": "Matrix chain",
+                "description": "",
+                "xp": 40,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "college": []
+          },
+          "estimated_time_min": 135
+        },
+        {
+          "day_id": 4,
+          "day_label": "Thursday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w9d4_ml1",
+                "title": "Text preprocessing",
+                "description": "",
+                "xp": 40,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w9d4_be1",
+                "title": "Mocking & fixtures",
+                "description": "",
+                "xp": 40,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "build": [],
+            "dsa": [
+              {
+                "id": "w9d4_dsa1",
+                "title": "Edit distance",
+                "description": "",
+                "xp": 40,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "college": [
+              {
+                "id": "w9d4_col1",
+                "title": "Assignment submission",
+                "description": "",
+                "xp": 15,
+                "time_min": 20,
+                "subtasks": [],
+                "difficulty": "easy",
+                "resources": []
+              }
+            ]
+          },
+          "estimated_time_min": 155
+        },
+        {
+          "day_id": 5,
+          "day_label": "Friday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w9d5_ml1",
+                "title": "Word embeddings (Word2Vec)",
+                "description": "",
+                "xp": 40,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w9d5_be1",
+                "title": "Code coverage",
+                "description": "",
+                "xp": 40,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "build": [
+              {
+                "id": "w9d5_build1",
+                "title": "Write test suite",
+                "description": "",
+                "xp": 40,
+                "time_min": 60,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "dsa": [
+              {
+                "id": "w9d5_dsa1",
+                "title": "Palindrome DP",
+                "description": "",
+                "xp": 40,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "college": []
+          },
+          "estimated_time_min": 195
+        },
+        {
+          "day_id": 6,
+          "day_label": "Saturday",
+          "tasks": {
+            "ai_ml": [],
+            "backend": [],
+            "build": [],
+            "dsa": [],
+            "college": []
+          },
+          "estimated_time_min": 0
+        }
+      ],
+      "boss_fight": {
+        "name": "Sequence Sorcerer",
+        "description": "Week 9 Boss Fight",
+        "challenge": "Build a text generation model using LSTM",
+        "xp_reward": 900,
+        "requirements": [
+          "Complete at least 15 tasks in Week 9"
+        ]
+      }
+    },
+    {
+      "week_id": 10,
+      "theme": "Cloud & Transformers — AWS, Attention, BERT",
+      "goals": [
+        "AWS EC2 & S3 basics",
+        "Attention mechanism",
+        "Trie data structure"
+      ],
+      "days": [
+        {
+          "day_id": 1,
+          "day_label": "Monday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w10d1_ml1",
+                "title": "Attention mechanism",
+                "description": "",
+                "xp": 25,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w10d1_be1",
+                "title": "AWS EC2 & S3 basics",
+                "description": "",
+                "xp": 25,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "build": [],
+            "dsa": [
+              {
+                "id": "w10d1_dsa1",
+                "title": "Trie data structure",
+                "description": "",
+                "xp": 40,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "college": [
+              {
+                "id": "w10d1_col1",
+                "title": "Review lecture notes",
+                "description": "",
+                "xp": 15,
+                "time_min": 20,
+                "subtasks": [],
+                "difficulty": "easy",
+                "resources": []
+              }
+            ]
+          },
+          "estimated_time_min": 155
+        },
+        {
+          "day_id": 2,
+          "day_label": "Tuesday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w10d2_ml1",
+                "title": "Transformer architecture",
+                "description": "",
+                "xp": 25,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w10d2_be1",
+                "title": "Serverless functions",
+                "description": "",
+                "xp": 25,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "build": [],
+            "dsa": [
+              {
+                "id": "w10d2_dsa1",
+                "title": "Prefix problems",
+                "description": "",
+                "xp": 40,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "college": []
+          },
+          "estimated_time_min": 135
+        },
+        {
+          "day_id": 3,
+          "day_label": "Wednesday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w10d3_ml1",
+                "title": "BERT overview",
+                "description": "",
+                "xp": 25,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w10d3_be1",
+                "title": "Cloud databases (RDS)",
+                "description": "",
+                "xp": 25,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "build": [],
+            "dsa": [
+              {
+                "id": "w10d3_dsa1",
+                "title": "Segment trees intro",
+                "description": "",
+                "xp": 40,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "college": []
+          },
+          "estimated_time_min": 135
+        },
+        {
+          "day_id": 4,
+          "day_label": "Thursday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w10d4_ml1",
+                "title": "GPT overview",
+                "description": "",
+                "xp": 40,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w10d4_be1",
+                "title": "CDN & CloudFront",
+                "description": "",
+                "xp": 40,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "build": [],
+            "dsa": [
+              {
+                "id": "w10d4_dsa1",
+                "title": "Bit manipulation",
+                "description": "",
+                "xp": 40,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "college": [
+              {
+                "id": "w10d4_col1",
+                "title": "End-sem prep start",
+                "description": "",
+                "xp": 15,
+                "time_min": 20,
+                "subtasks": [],
+                "difficulty": "easy",
+                "resources": []
+              }
+            ]
+          },
+          "estimated_time_min": 155
+        },
+        {
+          "day_id": 5,
+          "day_label": "Friday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w10d5_ml1",
+                "title": "Fine-tuning basics",
+                "description": "",
+                "xp": 40,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w10d5_be1",
+                "title": "Infrastructure as Code",
+                "description": "",
+                "xp": 40,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "build": [
+              {
+                "id": "w10d5_build1",
+                "title": "Deploy to cloud",
+                "description": "",
+                "xp": 40,
+                "time_min": 60,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "dsa": [
+              {
+                "id": "w10d5_dsa1",
+                "title": "XOR problems",
+                "description": "",
+                "xp": 40,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "college": []
+          },
+          "estimated_time_min": 195
+        },
+        {
+          "day_id": 6,
+          "day_label": "Saturday",
+          "tasks": {
+            "ai_ml": [],
+            "backend": [],
+            "build": [],
+            "dsa": [],
+            "college": []
+          },
+          "estimated_time_min": 0
+        }
+      ],
+      "boss_fight": {
+        "name": "Transformer Titan",
+        "description": "Week 10 Boss Fight",
+        "challenge": "Fine-tune a transformer model for a classification task",
+        "xp_reward": 900,
+        "requirements": [
+          "Complete at least 15 tasks in Week 10"
+        ]
+      }
+    },
+    {
+      "week_id": 11,
+      "theme": "AI Engineering — Embeddings, RAG, Vector DBs",
+      "goals": [
+        "WebSockets",
+        "Embeddings deep dive",
+        "Greedy algorithms"
+      ],
+      "days": [
+        {
+          "day_id": 1,
+          "day_label": "Monday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w11d1_ml1",
+                "title": "Embeddings deep dive",
+                "description": "",
+                "xp": 25,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w11d1_be1",
+                "title": "WebSockets",
+                "description": "",
+                "xp": 25,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "build": [],
+            "dsa": [
+              {
+                "id": "w11d1_dsa1",
+                "title": "Greedy algorithms",
+                "description": "",
+                "xp": 40,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "college": [
+              {
+                "id": "w11d1_col1",
+                "title": "Review lecture notes",
+                "description": "",
+                "xp": 15,
+                "time_min": 20,
+                "subtasks": [],
+                "difficulty": "easy",
+                "resources": []
+              }
+            ]
+          },
+          "estimated_time_min": 155
+        },
+        {
+          "day_id": 2,
+          "day_label": "Tuesday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w11d2_ml1",
+                "title": "Vector databases (Pinecone)",
+                "description": "",
+                "xp": 25,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w11d2_be1",
+                "title": "GraphQL intro",
+                "description": "",
+                "xp": 25,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "build": [],
+            "dsa": [
+              {
+                "id": "w11d2_dsa1",
+                "title": "Activity selection",
+                "description": "",
+                "xp": 40,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "college": []
+          },
+          "estimated_time_min": 135
+        },
+        {
+          "day_id": 3,
+          "day_label": "Wednesday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w11d3_ml1",
+                "title": "RAG architecture",
+                "description": "",
+                "xp": 25,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w11d3_be1",
+                "title": "Streaming APIs",
+                "description": "",
+                "xp": 25,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "build": [],
+            "dsa": [
+              {
+                "id": "w11d3_dsa1",
+                "title": "Huffman coding",
+                "description": "",
+                "xp": 40,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "college": []
+          },
+          "estimated_time_min": 135
+        },
+        {
+          "day_id": 4,
+          "day_label": "Thursday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w11d4_ml1",
+                "title": "LangChain basics",
+                "description": "",
+                "xp": 40,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w11d4_be1",
+                "title": "Webhooks",
+                "description": "",
+                "xp": 40,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "build": [],
+            "dsa": [
+              {
+                "id": "w11d4_dsa1",
+                "title": "Interval scheduling",
+                "description": "",
+                "xp": 40,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "college": [
+              {
+                "id": "w11d4_col1",
+                "title": "End-sem revision",
+                "description": "",
+                "xp": 15,
+                "time_min": 20,
+                "subtasks": [],
+                "difficulty": "easy",
+                "resources": []
+              }
+            ]
+          },
+          "estimated_time_min": 155
+        },
+        {
+          "day_id": 5,
+          "day_label": "Friday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w11d5_ml1",
+                "title": "AI Agents intro",
+                "description": "",
+                "xp": 40,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w11d5_be1",
+                "title": "API versioning",
+                "description": "",
+                "xp": 40,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "build": [
+              {
+                "id": "w11d5_build1",
+                "title": "Build RAG chatbot",
+                "description": "",
+                "xp": 40,
+                "time_min": 60,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "dsa": [
+              {
+                "id": "w11d5_dsa1",
+                "title": "Backtracking intro",
+                "description": "",
+                "xp": 40,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "college": []
+          },
+          "estimated_time_min": 195
+        },
+        {
+          "day_id": 6,
+          "day_label": "Saturday",
+          "tasks": {
+            "ai_ml": [],
+            "backend": [],
+            "build": [],
+            "dsa": [],
+            "college": []
+          },
+          "estimated_time_min": 0
+        }
+      ],
+      "boss_fight": {
+        "name": "RAG Reaper",
+        "description": "Week 11 Boss Fight",
+        "challenge": "Build a RAG-powered Q&A system over custom documents",
+        "xp_reward": 1000,
+        "requirements": [
+          "Complete at least 15 tasks in Week 11"
+        ]
+      }
+    },
+    {
+      "week_id": 12,
+      "theme": "Capstone — Full Stack AI App + Boss Rush",
+      "goals": [
+        "Full-stack project setup",
+        "Building RAG app",
+        "N-Queens"
+      ],
+      "days": [
+        {
+          "day_id": 1,
+          "day_label": "Monday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w12d1_ml1",
+                "title": "Building RAG app",
+                "description": "",
+                "xp": 25,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w12d1_be1",
+                "title": "Full-stack project setup",
+                "description": "",
+                "xp": 25,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "build": [],
+            "dsa": [
+              {
+                "id": "w12d1_dsa1",
+                "title": "N-Queens",
+                "description": "",
+                "xp": 40,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "college": [
+              {
+                "id": "w12d1_col1",
+                "title": "Review lecture notes",
+                "description": "",
+                "xp": 15,
+                "time_min": 20,
+                "subtasks": [],
+                "difficulty": "easy",
+                "resources": []
+              }
+            ]
+          },
+          "estimated_time_min": 155
+        },
+        {
+          "day_id": 2,
+          "day_label": "Tuesday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w12d2_ml1",
+                "title": "Agent workflows",
+                "description": "",
+                "xp": 25,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w12d2_be1",
+                "title": "Backend architecture review",
+                "description": "",
+                "xp": 25,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "build": [],
+            "dsa": [
+              {
+                "id": "w12d2_dsa1",
+                "title": "Sudoku solver",
+                "description": "",
+                "xp": 40,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "college": []
+          },
+          "estimated_time_min": 135
+        },
+        {
+          "day_id": 3,
+          "day_label": "Wednesday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w12d3_ml1",
+                "title": "Prompt engineering",
+                "description": "",
+                "xp": 25,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w12d3_be1",
+                "title": "Performance optimization",
+                "description": "",
+                "xp": 25,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "medium",
+                "resources": []
+              }
+            ],
+            "build": [],
+            "dsa": [
+              {
+                "id": "w12d3_dsa1",
+                "title": "Graph coloring",
+                "description": "",
+                "xp": 40,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "college": []
+          },
+          "estimated_time_min": 135
+        },
+        {
+          "day_id": 4,
+          "day_label": "Thursday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w12d4_ml1",
+                "title": "Model deployment",
+                "description": "",
+                "xp": 40,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w12d4_be1",
+                "title": "Deployment pipeline",
+                "description": "",
+                "xp": 40,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "build": [],
+            "dsa": [
+              {
+                "id": "w12d4_dsa1",
+                "title": "Mock interview prep",
+                "description": "",
+                "xp": 40,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "college": [
+              {
+                "id": "w12d4_col1",
+                "title": "End-sem finals",
+                "description": "",
+                "xp": 15,
+                "time_min": 20,
+                "subtasks": [],
+                "difficulty": "easy",
+                "resources": []
+              }
+            ]
+          },
+          "estimated_time_min": 155
+        },
+        {
+          "day_id": 5,
+          "day_label": "Friday",
+          "tasks": {
+            "ai_ml": [
+              {
+                "id": "w12d5_ml1",
+                "title": "ML system design",
+                "description": "",
+                "xp": 40,
+                "time_min": 50,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "backend": [
+              {
+                "id": "w12d5_be1",
+                "title": "Production checklist",
+                "description": "",
+                "xp": 40,
+                "time_min": 45,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "build": [
+              {
+                "id": "w12d5_build1",
+                "title": "Full capstone project",
+                "description": "",
+                "xp": 40,
+                "time_min": 60,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "dsa": [
+              {
+                "id": "w12d5_dsa1",
+                "title": "Problem marathon",
+                "description": "",
+                "xp": 40,
+                "time_min": 40,
+                "subtasks": [],
+                "difficulty": "hard",
+                "resources": []
+              }
+            ],
+            "college": []
+          },
+          "estimated_time_min": 195
+        },
+        {
+          "day_id": 6,
+          "day_label": "Saturday",
+          "tasks": {
+            "ai_ml": [],
+            "backend": [],
+            "build": [],
+            "dsa": [],
+            "college": []
+          },
+          "estimated_time_min": 0
+        }
+      ],
+      "boss_fight": {
+        "name": "The Final Boss — AEON Prime",
+        "description": "Week 12 Boss Fight",
+        "challenge": "Build and deploy a full-stack AI application end-to-end",
+        "xp_reward": 2000,
+        "requirements": [
+          "Complete at least 15 tasks in Week 12"
+        ]
+      }
+    }
+  ],
+  "xp_system": {
+    "levels": [
+      {
+        "level": 1,
+        "name": "Novice",
+        "xp_required": 0,
+        "badge_emoji": "🌱"
+      },
+      {
+        "level": 2,
+        "name": "Apprentice",
+        "xp_required": 300,
+        "badge_emoji": "📘"
+      },
+      {
+        "level": 3,
+        "name": "Student",
+        "xp_required": 700,
+        "badge_emoji": "📗"
+      },
+      {
+        "level": 4,
+        "name": "Practitioner",
+        "xp_required": 1200,
+        "badge_emoji": "⚡"
+      },
+      {
+        "level": 5,
+        "name": "Builder",
+        "xp_required": 2000,
+        "badge_emoji": "🔨"
+      },
+      {
+        "level": 6,
+        "name": "Engineer",
+        "xp_required": 3000,
+        "badge_emoji": "⚙️"
+      },
+      {
+        "level": 7,
+        "name": "Architect",
+        "xp_required": 4500,
+        "badge_emoji": "🏗️"
+      },
+      {
+        "level": 8,
+        "name": "Expert",
+        "xp_required": 6500,
+        "badge_emoji": "🎯"
+      },
+      {
+        "level": 9,
+        "name": "Master",
+        "xp_required": 9000,
+        "badge_emoji": "👑"
+      },
+      {
+        "level": 10,
+        "name": "Sage",
+        "xp_required": 12000,
+        "badge_emoji": "🌟"
+      }
+    ],
+    "task_xp": {
+      "easy": 15,
+      "medium": 25,
+      "hard": 40
+    },
+    "streak_bonus": {
+      "3": 1.2,
+      "7": 1.5,
+      "14": 1.8,
+      "30": 2
+    },
+    "boss_fight_xp": 500
+  },
+  "streak_rules": {
+    "min_tasks_per_day": 3,
+    "grace_days": 1,
+    "freeze_tokens_max": 3
+  }
+}
