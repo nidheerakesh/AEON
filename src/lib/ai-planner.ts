@@ -28,7 +28,7 @@ export function generateDailyPlan(
     const tasks = (day.tasks as any)[cat] as Task[] || [];
     for (const task of tasks) {
       const progress = state.task_progress[task.id];
-      if (progress?.status === 'completed') continue;
+
 
       planned.push({
         ...task,

@@ -32,13 +32,61 @@ const statusIcons: Record<TopicStatus, string> = {
 };
 
 const treeTabs = [
+  { key: 'ai_ml', label: 'Machine Learning', icon: '🧠', color: 'var(--cat-ml)' },
   { key: 'backend', label: 'Backend', icon: '⚙️', color: 'var(--cat-backend)' },
-  { key: 'ml', label: 'Machine Learning', icon: '🧠', color: 'var(--cat-ml)' },
+  { key: 'mlops', label: 'MLOps', icon: '⚙️', color: 'var(--cat-ml)' },
   { key: 'dsa', label: 'DSA', icon: '🧩', color: 'var(--cat-dsa)' },
 ] as const;
 
+function buildDynamicTree(category: 'ai_ml' | 'backend' | 'mlops' | 'dsa'): TopicNodeType {
+  let catKey = category === 'mlops' ? 'ai_ml' : category; // mlops is stored under ai_ml in weeks 9-12
+  let startWeek = 1;
+  let endWeek = 12;
+  
+  if (category === 'ai_ml') { endWeek = 4; }
+  else if (category === 'backend') { startWeek = 5; endWeek = 8; }
+  else if (category === 'mlops') { startWeek = 9; endWeek = 12; }
+
+  const root: TopicNodeType = {
+    id: category,
+    label: treeTabs.find(t => t.key === category)?.label || 'Track',
+    status: 'available',
+    children: []
+  };
+
+  roadmapData.weeks.forEach((w: any) => {
+    if (w.week_id < startWeek || w.week_id > endWeek) return;
+    
+    const weekNode: TopicNodeType = {
+      id: `${category}_w${w.week_id}`,
+      label: `Week ${w.week_id}: ${w.theme}`,
+      status: 'available',
+      children: []
+    };
+
+    w.days.forEach((d: any) => {
+      const tasks = d.tasks[catKey] || [];
+      if (tasks.length === 0) return;
+      const t = tasks[0];
+      
+      weekNode.children!.push({
+        id: `node_${t.id}`,
+        label: `Day ${d.day_id} — ${t.title}`,
+        status: 'available',
+        linked_tasks: [t.id]
+      });
+    });
+
+    if (weekNode.children!.length > 0) {
+      root.children!.push(weekNode);
+    }
+  });
+
+  return root;
+}
+
 export default function RoadmapPage() {
-  const [activeTab, setActiveTab] = useState<'backend' | 'ml' | 'dsa'>('backend');
+  const [activeTab, setActiveTab] = useState<'ai_ml' | 'backend' | 'mlops' | 'dsa'>('ai_ml');
   const { state, toggleSubtask } = useApp();
 
   const getRealDate = (weekId: number, dayId: number) => {
@@ -53,7 +101,7 @@ export default function RoadmapPage() {
     }
   };
 
-  const tree = topicTrees[activeTab];
+  const tree = buildDynamicTree(activeTab);
   const completedCount = countCompleted(tree, state.completed_topics);
   const totalCount = countTotal(tree);
 
@@ -191,6 +239,29 @@ function TreeNodeComponent({ node, depth, completedTopics, getRealDate, toggleSu
           {node.label}
         </span>
 
+        {/* Inline Date for leaf nodes */}
+        {!hasChildren && hasTasks && (
+          <span style={{
+            fontSize: 11,
+            color: 'var(--text-muted)',
+            background: 'var(--bg-tertiary)',
+            padding: '2px 8px',
+            borderRadius: 12,
+            marginLeft: 8,
+            fontFamily: 'var(--font-mono)',
+            whiteSpace: 'nowrap'
+          }}>
+            {(() => {
+              const matchId = node.linked_tasks![0].replace(/1$/, '');
+              const task = allRoadmapTasks.find(t => t.id === matchId);
+              if (task) {
+                return getRealDate(task.week_id, task.day_id) || `Week ${task.week_id}, Day ${task.day_id}`;
+              }
+              return 'Scheduled';
+            })()}
+          </span>
+        )}
+
         {/* Count badge */}
         {hasChildren && (
           <span style={{
@@ -250,29 +321,6 @@ function TreeNodeComponent({ node, depth, completedTopics, getRealDate, toggleSu
                         📅 {dateStr}
                       </div>
                     </div>
-                    
-                    {task.subtasks && task.subtasks.length > 0 && (
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginTop: 8 }}>
-                        {task.subtasks.map((st: any) => {
-                          const isSubtaskCompleted = progress?.subtasks_completed?.includes(st.id);
-                          return (
-                            <div key={st.id} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, cursor: 'pointer' }} onClick={(e) => { e.stopPropagation(); toggleSubtask(task.id, st.id); }}>
-                              <div style={{
-                                width: 14, height: 14, borderRadius: 3, marginTop: 2, flexShrink: 0,
-                                border: `1px solid ${isSubtaskCompleted ? 'var(--accent-success)' : 'var(--text-muted)'}`,
-                                background: isSubtaskCompleted ? 'var(--accent-success)' : 'transparent',
-                                display: 'flex', alignItems: 'center', justifyContent: 'center'
-                              }}>
-                                {isSubtaskCompleted && <span style={{ color: '#fff', fontSize: 9 }}>✓</span>}
-                              </div>
-                              <span style={{ fontSize: 12, color: isSubtaskCompleted ? 'var(--text-muted)' : 'var(--text-secondary)', textDecoration: isSubtaskCompleted ? 'line-through' : 'none' }}>
-                                {st.title}
-                              </span>
-                            </div>
-                          );
-                        })}
-                      </div>
-                    )}
                     
                     {task.resources && task.resources.length > 0 && (
                       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 12 }}>
