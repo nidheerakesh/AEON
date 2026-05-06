@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useApp } from '@/context/AppContext';
+import { topicTrees } from '@/data/topic-trees';
 import { TopicNode as TopicNodeType, TopicStatus } from '@/types';
 import roadmapData from '@/data/roadmap.json';
 
