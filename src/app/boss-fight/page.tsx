@@ -225,12 +225,12 @@ export default function BossFightPage() {
 
         {/* Action Buttons */}
         <div style={{ padding: '0 32px 24px', textAlign: 'center' }}>
-          {!isCompleted && (
-            fighting ? (
-              <div>
-                <p style={{ color: 'var(--text-secondary)', marginBottom: 16, fontSize: 14 }}>
-                  Complete all win conditions, then claim your victory! 🗡️
-                </p>
+          <div style={{ display: 'flex', gap: 12, justifyContent: 'center' }}>
+            <Link href="/boss-fight/guide" className="btn-ghost" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 6, padding: '12px 24px' }}>
+              📖 Read Full Doc
+            </Link>
+            {!isCompleted && (
+              fighting ? (
                 <button
                   className="btn-primary"
                   style={{ padding: '14px 40px', fontSize: 16 }}
@@ -238,23 +238,23 @@ export default function BossFightPage() {
                 >
                   ⚔️ Claim Victory!
                 </button>
-              </div>
-            ) : (
-              <button
-                className="btn-primary"
-                disabled={!canFight}
-                style={{
-                  padding: '14px 40px', fontSize: 16,
-                  opacity: canFight ? 1 : 0.4,
-                  cursor: canFight ? 'pointer' : 'not-allowed',
-                  background: canFight ? `linear-gradient(135deg, ${phaseColor}, ${phaseColor}cc)` : undefined,
-                }}
-                onClick={() => setFighting(true)}
-              >
-                {canFight ? '⚔️ Begin Boss Fight' : '🔒 Locked'}
-              </button>
-            )
-          )}
+              ) : (
+                <button
+                  className="btn-primary"
+                  disabled={!canFight}
+                  style={{
+                    padding: '14px 40px', fontSize: 16,
+                    opacity: canFight ? 1 : 0.4,
+                    cursor: canFight ? 'pointer' : 'not-allowed',
+                    background: canFight ? `linear-gradient(135deg, ${phaseColor}, ${phaseColor}cc)` : undefined,
+                  }}
+                  onClick={() => setFighting(true)}
+                >
+                  {canFight ? '⚔️ Begin Boss Fight' : '🔒 Locked'}
+                </button>
+              )
+            )}
+          </div>
           {isCompleted && (
             <div style={{ color: phaseColor, fontWeight: 700, fontSize: 16 }}>
               ✅ Victory! +{boss.xpReward} XP earned
