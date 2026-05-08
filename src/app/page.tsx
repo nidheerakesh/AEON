@@ -123,7 +123,7 @@ export default function Dashboard() {
       {/* Header */}
       <div className="fade-in" style={{ marginBottom: 28 }}>
         <h1 style={{ fontSize: 32, fontWeight: 800, letterSpacing: '-0.5px' }}>
-          Good {getTimeOfDay()}, <span className="glow-text">Learner</span> 👋
+          Good {getTimeOfDay()}, <span className="glow-text">Nidhi</span>
         </h1>
         <p style={{ color: 'var(--text-secondary)', marginTop: 8, fontSize: 15, maxWidth: 500 }}>
           {motivation}
@@ -132,10 +132,10 @@ export default function Dashboard() {
 
       {/* Stats Row */}
       <div className="fade-in fade-in-delay-1" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 24, marginBottom: 40 }}>
-        <StatCard icon={xpInfo.current.badge_emoji} label="Level" value={`${xpInfo.current.level} — ${xpInfo.current.name}`} accent="var(--accent-primary)" />
-        <StatCard icon="⚡" label="Total XP" value={state.xp.toLocaleString()} accent="var(--text-primary)" />
-        <StatCard icon="✅" label="Tasks Done" value={`${totalCompleted}`} accent="var(--accent-secondary)" />
-        <StatCard icon={state.streak_count > 0 ? '🔥' : '❄️'} label="Streak" value={`${state.streak_count} days`} accent="var(--accent-primary)" />
+        <StatCard icon="" label="Level" value={`${xpInfo.current.level} — ${xpInfo.current.name}`} accent="var(--accent-primary)" />
+        <StatCard icon="" label="Total XP" value={state.xp.toLocaleString()} accent="var(--text-primary)" />
+        <StatCard icon="" label="Tasks Done" value={`${totalCompleted}`} accent="var(--accent-secondary)" />
+        <StatCard icon="" label="Streak" value={`${state.streak_count} days`} accent="var(--accent-primary)" />
       </div>
 
       {/* Overall Progress */}

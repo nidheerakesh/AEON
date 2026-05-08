@@ -92,6 +92,8 @@ body {
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-md);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  padding: 32px;
+  overflow: hidden;
 }
 
 .card-hover:hover {

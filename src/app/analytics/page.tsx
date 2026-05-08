@@ -115,9 +115,8 @@ export default function AnalyticsPage() {
         <MiniStat label="Boss Victories" value={`${state.boss_fights.filter(b => b.status === 'completed').length}/12`} accent="var(--accent-primary)" icon="⚔️" />
       </div>
 
-      {/* XP Timeline Chart */}
-      <div className="card fade-in fade-in-delay-1" style={{ marginBottom: 24 }}>
-        <h3 style={{ fontSize: 15, fontWeight: 700, marginBottom: 16 }}>XP Earned (Last 14 Days)</h3>
+      <div className="card fade-in fade-in-delay-1" style={{ marginBottom: 24, padding: '32px 40px' }}>
+        <h3 style={{ fontSize: 16, fontWeight: 800, marginBottom: 24, textTransform: 'uppercase', letterSpacing: '1px' }}>XP Earned (Last 14 Days)</h3>
         <div style={{ display: 'flex', alignItems: 'flex-end', gap: 4, height: 120 }}>
           {xpTimeline.map((d, i) => {
             const height = maxDailyXP ? Math.max(4, (d.xp / maxDailyXP) * 100) : 4;
@@ -162,8 +161,8 @@ export default function AnalyticsPage() {
             return (
               <div key={cat.key} style={{ marginBottom: 14 }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
-                  <span style={{ fontSize: 13, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 6 }}>
-                    <span>{cat.icon}</span> {cat.label}
+                  <span style={{ fontSize: 14, fontWeight: 700 }}>
+                    {cat.label}
                   </span>
                   <span style={{ fontSize: 12, fontFamily: 'var(--font-mono)', color: cat.color }}>
                     {s.completed}/{s.total} · {pct}%
@@ -191,8 +190,8 @@ export default function AnalyticsPage() {
             return (
               <div key={diff} style={{ marginBottom: 14 }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
-                  <span style={{ fontSize: 13, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 6 }}>
-                    {icons[diff]} {diff.charAt(0).toUpperCase() + diff.slice(1)}
+                  <span style={{ fontSize: 14, fontWeight: 700 }}>
+                    {diff.charAt(0).toUpperCase() + diff.slice(1)}
                   </span>
                   <span style={{ fontSize: 12, fontFamily: 'var(--font-mono)', color: colors[diff] }}>
                     {s.done}/{s.total} · {pct}%
@@ -209,9 +208,9 @@ export default function AnalyticsPage() {
           })}
 
           {/* Time invested estimate */}
-          <div style={{ marginTop: 20, padding: '20px 24px', background: 'var(--accent-secondary)', border: '1px solid var(--border)', borderRadius: 'var(--radius-md)', boxShadow: 'var(--shadow-hard)' }}>
-            <div style={{ fontSize: 11, color: 'var(--text-primary)', textTransform: 'uppercase', letterSpacing: '1.5px', fontWeight: 800 }}>Estimated Time Invested</div>
-            <div style={{ fontSize: 24, fontWeight: 900, color: 'var(--text-primary)', marginTop: 8 }}>
+          <div style={{ marginTop: 24, padding: '32px 40px', background: 'var(--accent-secondary)', border: '1px solid var(--border)', borderRadius: 'var(--radius-md)', boxShadow: 'var(--shadow-hard)' }}>
+            <div style={{ fontSize: 13, color: '#000000', textTransform: 'uppercase', letterSpacing: '2px', fontWeight: 900 }}>Estimated Time Invested</div>
+            <div style={{ fontSize: 32, fontWeight: 900, color: '#000000', marginTop: 16 }}>
               {(() => {
                 let total = 0;
                 for (const week of roadmapData.weeks) {

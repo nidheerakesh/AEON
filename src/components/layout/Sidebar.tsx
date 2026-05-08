@@ -9,16 +9,16 @@ import { ACHIEVEMENTS } from '@/lib/achievements';
 import { useState, useEffect } from 'react';
 
 const navItems = [
-  { href: '/', label: 'Dashboard', icon: '🏠' },
-  { href: '/roadmap', label: 'Roadmap', icon: '🗺️' },
-  { href: '/planner', label: 'Daily Plan', icon: '📋' },
-  { href: '/calendar', label: 'Calendar', icon: '📅' },
-  { href: '/focus', label: 'Focus Mode', icon: '🎯' },
-  { href: '/boss-fight', label: 'Boss Fight', icon: '⚔️' },
-  { href: '/analytics', label: 'Analytics', icon: '📊' },
-  { href: '/achievements', label: 'Achievements', icon: '🏆' },
-  { href: '/notes', label: 'Notes', icon: '📝' },
-  { href: '/settings', label: 'Settings', icon: '⚙️' },
+  { href: '/', label: 'Dashboard', icon: '' },
+  { href: '/roadmap', label: 'Roadmap', icon: '' },
+  { href: '/planner', label: 'Daily Plan', icon: '' },
+  { href: '/calendar', label: 'Calendar', icon: '' },
+  { href: '/focus', label: 'Focus Mode', icon: '' },
+  { href: '/boss-fight', label: 'Boss Fight', icon: '' },
+  { href: '/analytics', label: 'Analytics', icon: '' },
+  { href: '/achievements', label: 'Achievements', icon: '' },
+  { href: '/notes', label: 'Notes', icon: '' },
+  { href: '/settings', label: 'Settings', icon: '' },
 ];
 
 export default function Sidebar() {
