@@ -2,12 +2,12 @@
 
 import React, { createContext, useContext, useReducer, useEffect, useCallback } from 'react';
 import { AppState, TaskProgress, UserNote, XPLog, BossFightProgress, CustomTask } from '@/types';
-import { awardXP, getLevelForXP } from '@/lib/xp-engine';
-import { updateStreak, getToday, getCurrentWeekAndDay } from '@/lib/streak-manager';
+import { awardXP } from '@/lib/xp-engine';
+import { updateStreak, getCurrentWeekAndDay } from '@/lib/streak-manager';
 
 // --- Initial State ---
 const getInitialState = (): AppState => {
-  const startDate = new Date().toISOString().split('T')[0];
+  const startDate = '2026-05-06';
   return {
     task_progress: {},
     xp: 0,
@@ -20,6 +20,7 @@ const getInitialState = (): AppState => {
     notes: [],
     completed_topics: [],
     custom_tasks: [],
+    custom_schedule: {},
     settings: {
       theme: 'dark',
       focus_mode_duration: 25,
@@ -27,6 +28,7 @@ const getInitialState = (): AppState => {
       notifications: true,
       sound_effects: true,
       start_date: startDate,
+      gemini_api_key: '',
     },
     current_week: 1,
     current_day: 1,
@@ -54,6 +56,8 @@ type Action =
   | { type: 'ADD_CUSTOM_TASK'; task: CustomTask }
   | { type: 'DELETE_CUSTOM_TASK'; taskId: string }
   | { type: 'TOGGLE_SUBTASK'; taskId: string; subtaskId: string }
+  | { type: 'RESCHEDULE_TASK'; taskId: string; newDate: string }
+  | { type: 'ROLLOVER_INCOMPLETE_TASKS'; taskIds: string[] }
   | { type: 'HYDRATE'; state: AppState };
 
 function reducer(state: AppState, action: Action): AppState {
@@ -197,6 +201,27 @@ function reducer(state: AppState, action: Action): AppState {
       };
     }
 
+    case 'RESCHEDULE_TASK':
+      return {
+        ...state,
+        custom_schedule: {
+          ...state.custom_schedule,
+          [action.taskId]: action.newDate
+        }
+      };
+
+    case 'ROLLOVER_INCOMPLETE_TASKS': {
+      const today = new Date().toISOString().split('T')[0];
+      const newSchedule = { ...state.custom_schedule };
+      action.taskIds.forEach(id => {
+        newSchedule[id] = today;
+      });
+      return {
+        ...state,
+        custom_schedule: newSchedule
+      };
+    }
+
     case 'HYDRATE':
       return action.state;
 
@@ -219,6 +244,8 @@ interface AppContextValue {
   addCustomTask: (task: CustomTask) => void;
   deleteCustomTask: (taskId: string) => void;
   toggleSubtask: (taskId: string, subtaskId: string) => void;
+  rescheduleTask: (taskId: string, newDate: string) => void;
+  rolloverTasks: (taskIds: string[]) => void;
 }
 
 const AppContext = createContext<AppContextValue | null>(null);
@@ -251,7 +278,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     if (week !== state.current_week || day !== state.current_day) {
       dispatch({ type: 'SET_WEEK_DAY', week, day });
     }
-  }, [state.settings.start_date]);
+  }, [state.current_day, state.current_week, state.settings.start_date]);
 
   const completeTask = useCallback((taskId: string, baseXP: number) => {
     dispatch({ type: 'COMPLETE_TASK', taskId, baseXP });
@@ -299,11 +326,19 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     dispatch({ type: 'TOGGLE_SUBTASK', taskId, subtaskId });
   }, []);
 
+  const rescheduleTask = useCallback((taskId: string, newDate: string) => {
+    dispatch({ type: 'RESCHEDULE_TASK', taskId, newDate });
+  }, []);
+
+  const rolloverTasks = useCallback((taskIds: string[]) => {
+    dispatch({ type: 'ROLLOVER_INCOMPLETE_TASKS', taskIds });
+  }, []);
+
   return (
     <AppContext.Provider value={{
       state, dispatch, completeTask, skipTask, startTask,
       setFocusTask, addNote, completeBossFight, dismissLevelUp,
-      addCustomTask, deleteCustomTask, toggleSubtask,
+      addCustomTask, deleteCustomTask, toggleSubtask, rescheduleTask, rolloverTasks
     }}>
       {children}
     </AppContext.Provider>

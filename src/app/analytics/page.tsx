@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useMemo } from 'react';
 import { useApp } from '@/context/AppContext';
-import { CATEGORIES, TaskCategory } from '@/types';
+import { CATEGORIES } from '@/types';
 import roadmapData from '@/data/roadmap.json';
 
 export default function AnalyticsPage() {

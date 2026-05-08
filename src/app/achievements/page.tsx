@@ -15,7 +15,6 @@ export default function AchievementsPage() {
 
   const unlockedIds = getUnlockedAchievements(state);
   const unlocked = ACHIEVEMENTS.filter(a => unlockedIds.includes(a.id));
-  const locked = ACHIEVEMENTS.filter(a => !unlockedIds.includes(a.id));
 
   const filtered = filter === 'all'
     ? ACHIEVEMENTS

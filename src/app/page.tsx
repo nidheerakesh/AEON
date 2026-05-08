@@ -3,9 +3,10 @@
 import { useApp } from '@/context/AppContext';
 import { getXPProgress, getTotalTasksCompleted, getDayCompletionRate } from '@/lib/xp-engine';
 import { generateDailyPlan, getMotivationalMessage } from '@/lib/ai-planner';
-import { CATEGORIES, TaskCategory } from '@/types';
-import { getUnlockedAchievements, getNewlyUnlocked, ACHIEVEMENTS, getTierColor } from '@/lib/achievements';
+import { CATEGORIES } from '@/types';
+import { getUnlockedAchievements, ACHIEVEMENTS, getTierColor } from '@/lib/achievements';
 import roadmapData from '@/data/roadmap.json';
+import { getBossGuideWeek } from '@/lib/bossfight';
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 
@@ -19,19 +20,23 @@ export default function Dashboard() {
   const [mounted, setMounted] = useState(false);
   const [xpPopups, setXpPopups] = useState<{ id: number; xp: number; x: number; y: number }[]>([]);
   const [toasts, setToasts] = useState<{ id: string; title: string; icon: string; tier: string }[]>([]);
-  const prevUnlockedRef = useRef<string[]>([]);
+  const prevUnlockedRef = useRef<string[] | null>(null);
 
   useEffect(() => {
     setMounted(true);
-    prevUnlockedRef.current = getUnlockedAchievements(state);
   }, []);
 
   // Check for new achievements
   useEffect(() => {
     if (!mounted) return;
     const currentUnlocked = getUnlockedAchievements(state);
+    if (prevUnlockedRef.current === null) {
+      prevUnlockedRef.current = currentUnlocked;
+      return;
+    }
+    const previousUnlocked = prevUnlockedRef.current;
     const newlyUnlocked = ACHIEVEMENTS.filter(
-      a => currentUnlocked.includes(a.id) && !prevUnlockedRef.current.includes(a.id)
+      a => currentUnlocked.includes(a.id) && !previousUnlocked.includes(a.id)
     );
     
     if (newlyUnlocked.length > 0) {
@@ -60,6 +65,7 @@ export default function Dashboard() {
   const motivation = getMotivationalMessage(state);
 
   const week = roadmapData.weeks.find((w: any) => w.week_id === state.current_week);
+  const guideWeek = getBossGuideWeek(state.current_week);
 
   // Total tasks in roadmap
   let totalTasks = 0;
@@ -345,7 +351,7 @@ export default function Dashboard() {
           </div>
 
           {/* Boss Fight Teaser */}
-          {week && (
+          {week && guideWeek && (
             <div style={{ marginTop: 16 }}>
               <div className="card boss-arena" style={{
                 background: 'linear-gradient(135deg, rgba(255,107,107,0.05), rgba(255,107,107,0.02))',
@@ -357,7 +363,7 @@ export default function Dashboard() {
                       Week {state.current_week} Boss
                     </div>
                     <h3 style={{ fontSize: 14, fontWeight: 700, marginTop: 2 }}>
-                      {week.boss_fight.name}
+                      {guideWeek.name}
                     </h3>
                   </div>
                   <div style={{ textAlign: 'center' }}>

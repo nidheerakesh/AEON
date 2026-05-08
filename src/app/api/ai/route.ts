@@ -1,14 +1,15 @@
 import { GoogleGenAI } from '@google/genai';
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || '' });
-
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { action, context } = body;
+    const { action, context, apiKey } = body;
+    const configuredApiKey = typeof apiKey === 'string' && apiKey.trim()
+      ? apiKey.trim()
+      : process.env.GEMINI_API_KEY || '';
 
-    if (!process.env.GEMINI_API_KEY) {
-      return Response.json({ error: 'GEMINI_API_KEY not configured', fallback: true }, { status: 200 });
+    if (!configuredApiKey) {
+      return Response.json({ error: 'Gemini API key not configured', fallback: true }, { status: 200 });
     }
 
     let prompt = '';
@@ -85,6 +86,7 @@ Respond with JSON only (no markdown fences):
         return Response.json({ error: 'Unknown action' }, { status: 400 });
     }
 
+    const ai = new GoogleGenAI({ apiKey: configuredApiKey });
     const response = await ai.models.generateContent({
       model: 'gemini-2.0-flash',
       contents: prompt,
@@ -104,10 +106,11 @@ Respond with JSON only (no markdown fences):
     } catch {
       return Response.json({ success: true, data: { raw: text } });
     }
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Gemini API error:', error);
+    const message = error instanceof Error ? error.message : 'AI request failed';
     return Response.json(
-      { error: error.message || 'AI request failed', fallback: true },
+      { error: message, fallback: true },
       { status: 200 }
     );
   }

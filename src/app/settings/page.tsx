@@ -9,6 +9,7 @@ export default function SettingsPage() {
   const [startDate, setStartDate] = useState(state.settings.start_date);
   const [focusDuration, setFocusDuration] = useState(state.settings.focus_mode_duration);
   const [dailyGoal, setDailyGoal] = useState(state.settings.daily_goal_tasks);
+  const [apiKey, setApiKey] = useState(state.settings.gemini_api_key || '');
   const [saved, setSaved] = useState(false);
 
   useEffect(() => { setMounted(true); }, []);
@@ -21,6 +22,7 @@ export default function SettingsPage() {
         start_date: startDate,
         focus_mode_duration: focusDuration,
         daily_goal_tasks: dailyGoal,
+        gemini_api_key: apiKey.trim(),
       },
     });
     setSaved(true);
@@ -117,6 +119,29 @@ export default function SettingsPage() {
             onChange={e => setDailyGoal(Number(e.target.value))}
             style={{ width: '100%', accentColor: 'var(--accent-primary)' }}
           />
+        </div>
+
+        <div style={{ marginBottom: 20 }}>
+          <label style={{ fontSize: 13, fontWeight: 600, display: 'block', marginBottom: 6 }}>
+            Gemini API Key
+          </label>
+          <input
+            type="password"
+            value={apiKey}
+            onChange={e => setApiKey(e.target.value)}
+            placeholder="Paste your Gemini API key"
+            autoComplete="off"
+            style={{
+              width: '100%',
+              padding: '8px 14px', background: 'var(--bg-hover)',
+              border: '1px solid var(--border)', borderRadius: 'var(--radius-sm)',
+              color: 'var(--text-primary)', fontSize: 14,
+              fontFamily: 'var(--font-mono)', outline: 'none',
+            }}
+          />
+          <p style={{ fontSize: 11, color: 'var(--text-muted)', marginTop: 4 }}>
+            Stored locally in this browser and used for AI scheduling.
+          </p>
         </div>
 
         <div style={{ display: 'flex', gap: 12 }}>

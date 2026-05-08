@@ -267,17 +267,12 @@
 - [ ] Write a detailed README.md
 - [ ] Add visualizations, metrics table, and results to the notebook
 - [ ] Push final project to GitHub
-- [ ] (Optional) Deploy on Hugging Face Spaces or Streamlit Cloud
 
 ---
 
-## 🏆 Capstone Project Ideas
+## 🏆 Capstone Projects
 
-Choose **one** based on your interest and skill level:
-
----
-
-### 🥉 Beginner Capstone — End-to-End House Price Predictor
+### 🥉 Baseline Capstone — Real Estate Price Predictor
 **Stack:** Python + Pandas + Scikit-learn + Matplotlib + Streamlit  
 **Dataset:** Kaggle House Prices or California Housing  
 **Features:**
@@ -288,8 +283,6 @@ Choose **one** based on your interest and skill level:
 - SHAP feature importance plot
 - Streamlit web app for live predictions
 - Clean GitHub repo with notebook + README
-
----
 
 ### 🥈 Intermediate Capstone — Customer Churn Prediction Platform
 **Stack:** Python + Scikit-learn + XGBoost + SHAP + FastAPI + Docker  
@@ -304,21 +297,19 @@ Choose **one** based on your interest and skill level:
 - Dockerized application
 - Experiment tracking with MLflow
 
----
-
 ### 🥇 Advanced Capstone — Multi-Modal Sentiment & Review Intelligence System
-**Stack:** Python + PyTorch + HuggingFace + Streamlit + FastAPI + Docker  
-**Dataset:** Amazon Reviews or IMDb + custom image data  
+**Stack:** Python + PyTorch + HuggingFace + Streamlit + FastAPI + Docker + FAISS  
+**Dataset:** Amazon Reviews, IMDb, or Yelp  
 **Features:**
-- NLP pipeline: BERT fine-tuned for sentiment classification (positive/negative/neutral)
-- Aspect-based sentiment extraction (what specifically users liked/disliked)
-- Semantic search over reviews using Sentence Transformers + FAISS
-- Optional: CNN for product image classification (relevant/irrelevant)
-- SHAP/LIME explainability on model predictions
-- Streamlit dashboard: paste a review → get sentiment, aspects, similar reviews
-- FastAPI backend + Docker container
-- Evaluation: Accuracy, F1, AUC on held-out test set
-- Full README with architecture diagram
+- NLP pipeline: BERT fine-tuned for multi-class sentiment classification
+- Aspect-based sentiment analysis to extract specific features liked/disliked
+- Semantic search engine for reviews using Sentence Transformers + FAISS
+- MLOps pipeline including model versioning and experiment tracking
+- SHAP/LIME explainability dashboard to visualize token importance
+- Streamlit UI: paste a review to get sentiment, aspects, and similar reviews
+- FastAPI backend for real-time inference, containerized via Docker
+- Comprehensive evaluation: Confusion matrix, F1-score, and Latency benchmarks
+- Full README with architecture diagram, API documentation, and results analysis
 
 ---
 

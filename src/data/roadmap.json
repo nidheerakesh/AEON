@@ -2172,11 +2172,6 @@
                     "id": "st3",
                     "title": "Push final project to GitHub",
                     "completed": false
-                  },
-                  {
-                    "id": "st4",
-                    "title": "(Optional) Deploy on Hugging Face Spaces or Streamlit Cloud",
-                    "completed": false
                   }
                 ],
                 "resources": [

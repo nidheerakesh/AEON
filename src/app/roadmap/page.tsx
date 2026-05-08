@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { useApp } from '@/context/AppContext';
-import { topicTrees } from '@/data/topic-trees';
 import { TopicNode as TopicNodeType, TopicStatus } from '@/types';
 import roadmapData from '@/data/roadmap.json';
 
@@ -39,7 +38,7 @@ const treeTabs = [
 ] as const;
 
 function buildDynamicTree(category: 'ai_ml' | 'backend' | 'mlops' | 'dsa'): TopicNodeType {
-  let catKey = category === 'mlops' ? 'ai_ml' : category; // mlops is stored under ai_ml in weeks 9-12
+  const catKey = category === 'mlops' ? 'ai_ml' : category; // mlops is stored under ai_ml in weeks 9-12
   let startWeek = 1;
   let endWeek = 12;
   
@@ -252,7 +251,7 @@ function TreeNodeComponent({ node, depth, completedTopics, getRealDate, toggleSu
             whiteSpace: 'nowrap'
           }}>
             {(() => {
-              const matchId = node.linked_tasks![0].replace(/1$/, '');
+              const matchId = node.linked_tasks![0];
               const task = allRoadmapTasks.find(t => t.id === matchId);
               if (task) {
                 return getRealDate(task.week_id, task.day_id) || `Week ${task.week_id}, Day ${task.day_id}`;
@@ -304,15 +303,12 @@ function TreeNodeComponent({ node, depth, completedTopics, getRealDate, toggleSu
           {!hasChildren && hasTasks && (
             <div style={{ paddingLeft: depth > 0 ? 32 : 16, marginTop: 8, marginBottom: 16, display: 'flex', flexDirection: 'column', gap: 12 }}>
               {node.linked_tasks!.map(linkedId => {
-                // Strip the trailing '1' to match new roadmap generator IDs
-                const matchId = linkedId.replace(/1$/, '');
+                const matchId = linkedId;
                 const task = allRoadmapTasks.find(t => t.id === matchId);
                 
                 if (!task) return null;
                 
                 const dateStr = getRealDate(task.week_id, task.day_id) || `Week ${task.week_id}, Day ${task.day_id}`;
-                const progress = taskProgress[task.id];
-                
                 return (
                   <div key={task.id} style={{ background: 'var(--bg-secondary)', border: '1px solid var(--border)', borderRadius: 'var(--radius-sm)', padding: 12 }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 8 }}>

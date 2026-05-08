@@ -4,15 +4,9 @@ import { useState, useEffect } from 'react';
 import { useApp } from '@/context/AppContext';
 import { generateDailyPlan, suggestEasiestTask } from '@/lib/ai-planner';
 import { CATEGORIES } from '@/types';
-import roadmapData from '@/data/roadmap.json';
-
-const catBadgeClass: Record<string, string> = {
-  ai_ml: 'badge-ml', backend: 'badge-backend', build: 'badge-build',
-  dsa: 'badge-dsa', college: 'badge-college',
-};
 
 export default function PlannerPage() {
-  const { state, completeTask, startTask, setFocusTask, toggleSubtask } = useApp();
+  const { state, completeTask, setFocusTask, toggleSubtask } = useApp();
   const [energy, setEnergy] = useState<'low' | 'medium' | 'high'>('medium');
   const [expandedTasks, setExpandedTasks] = useState<string[]>([]);
   const [mounted, setMounted] = useState(false);

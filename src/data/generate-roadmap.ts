@@ -91,20 +91,8 @@ const COLLEGE_TOPICS = [
   ["Review lecture notes","End-sem finals"]
 ];
 
-const BOSS_FIGHTS = [
-  { name: "The Gateway Guardian", challenge: "Build a CLI tool that fetches data from a public API and displays it formatted", xp: 500 },
-  { name: "Data Wrangler", challenge: "Clean and visualize a messy dataset, produce 3 meaningful charts", xp: 500 },
-  { name: "The Framework Forge", challenge: "Build a Flask API with 3 endpoints and serve ML predictions", xp: 600 },
-  { name: "Query Master", challenge: "Design a normalized database schema and write 10 complex SQL queries", xp: 600 },
-  { name: "The Auth Sentinel", challenge: "Implement JWT auth with role-based access control", xp: 700 },
-  { name: "Container Commander", challenge: "Dockerize a multi-service app with docker-compose", xp: 700 },
-  { name: "The Neural Architect", challenge: "Build and train a neural network from scratch (no frameworks)", xp: 800 },
-  { name: "Vision Vanguard", challenge: "Build an image classifier with 90%+ accuracy on a custom dataset", xp: 800 },
-  { name: "Sequence Sorcerer", challenge: "Build a text generation model using LSTM", xp: 900 },
-  { name: "Transformer Titan", challenge: "Fine-tune a transformer model for a classification task", xp: 900 },
-  { name: "RAG Reaper", challenge: "Build a RAG-powered Q&A system over custom documents", xp: 1000 },
-  { name: "The Final Boss — AEON Prime", challenge: "Build and deploy a full-stack AI application end-to-end", xp: 2000 }
-];
+import { BOSS_FIGHTS } from './boss-fights';
+
 
 const DAYS = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 
@@ -183,10 +171,20 @@ function generateWeeks() {
       days,
       boss_fight: {
         name: bf.name,
-        description: `Week ${w+1} Boss Fight`,
-        challenge: bf.challenge,
-        xp_reward: bf.xp,
-        requirements: [`Complete at least 15 tasks in Week ${w+1}`]
+        description: bf.lore,
+        challenge: bf.winConditions.join(' · '),
+        xp_reward: bf.xpReward,
+        requirements: [`Complete at least 10 tasks in Week ${w+1}`],
+        emoji: bf.emoji,
+        difficulty: bf.difficulty,
+        difficultyLabel: bf.difficultyLabel,
+        phase: bf.phase,
+        phaseLabel: bf.phaseLabel,
+        skills: bf.skills,
+        winConditions: bf.winConditions,
+        failConditions: bf.failConditions,
+        bossDrops: bf.bossDrops,
+        dailyTasks: bf.dailyTasks,
       }
     });
   }

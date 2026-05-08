@@ -30,7 +30,7 @@ export default function CalendarPage() {
         ) || [];
         
         let standardCount = 0;
-        let standardTasks: any[] = [];
+        const standardTasks: any[] = [];
         Object.values(day.tasks).forEach((arr: any) => {
           standardCount += arr.length;
           standardTasks.push(...arr);
@@ -63,6 +63,7 @@ export default function CalendarPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           action: 'schedule_task',
+          apiKey: state.settings.gemini_api_key,
           context: {
             userInput: aiInput,
             currentWeek: state.current_week,
@@ -406,7 +407,7 @@ export default function CalendarPage() {
                 </div>
                 
                 <div style={{ fontSize: 12, color: 'var(--text-muted)', fontStyle: 'italic', marginBottom: 16, paddingLeft: 8, borderLeft: '2px solid var(--border)' }}>
-                  "{aiResult.reason}"
+                  &quot;{aiResult.reason}&quot;
                 </div>
                 
                 <div style={{ display: 'flex', gap: 12 }}>

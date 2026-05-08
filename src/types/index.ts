@@ -37,12 +37,29 @@ export interface Day {
   estimated_time_min: number;
 }
 
+export interface BossDailyTask {
+  day: number;
+  dayLabel: string;
+  title: string;
+  subtasks: string[];
+}
+
 export interface BossFight {
   name: string;
   description: string;
   challenge: string;
   xp_reward: number;
   requirements: string[];
+  emoji?: string;
+  difficulty?: string;
+  difficultyLabel?: string;
+  phase?: string;
+  phaseLabel?: string;
+  skills?: string[];
+  winConditions?: string[];
+  failConditions?: string[];
+  bossDrops?: string[];
+  dailyTasks?: BossDailyTask[];
 }
 
 export interface Week {
@@ -152,6 +169,7 @@ export interface UserSettings {
   notifications: boolean;
   sound_effects: boolean;
   start_date: string; // ISO date — when the 12-week journey started
+  gemini_api_key?: string;
 }
 
 // --- Custom Task (AI-scheduled or user-added) ---
@@ -190,6 +208,9 @@ export interface AppState {
 
   // Settings
   settings: UserSettings;
+
+  // Scheduling
+  custom_schedule: Record<string, string>;
 
   // UI State
   current_week: number;

@@ -3,9 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "generate:data": "node scripts/generate-bossfight-data.mjs && node scripts/generate-roadmap.js",
+    "predev": "npm run generate:data",
     "dev": "next dev",
+    "prebuild": "npm run generate:data",
     "build": "next build",
     "start": "next start",
+    "prelint": "npm run generate:data",
     "lint": "eslint"
   },
   "dependencies": {

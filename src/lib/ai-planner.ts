@@ -1,5 +1,6 @@
-import { AppState, Task, DayTasks, TaskCategory } from '@/types';
+import { AppState, Task, TaskCategory } from '@/types';
 import roadmapData from '@/data/roadmap.json';
+import { getBossFightTask, getBossFightTasksBefore, PlannedBossTask } from '@/lib/bossfight';
 
 // Mock AI planner — generates smart daily plans
 // Phase 2: Replace with Gemini API calls
@@ -8,6 +9,7 @@ interface PlannedTask extends Task {
   category: TaskCategory;
   reason: string;
   priority: number;
+  carriedFrom?: string;
 }
 
 export function generateDailyPlan(
@@ -27,26 +29,38 @@ export function generateDailyPlan(
   for (const cat of categories) {
     const tasks = (day.tasks as any)[cat] as Task[] || [];
     for (const task of tasks) {
-      const progress = state.task_progress[task.id];
-
-
       planned.push({
         ...task,
         category: cat,
-        reason: getTaskReason(cat, task, state),
+        reason: getTaskReason(cat),
         priority: getTaskPriority(cat, task, state, energyLevel),
       });
     }
   }
 
-  // Also pick up missed tasks from previous days (max 2)
+  const bossTask = getBossFightTask(weekId, dayId);
+  if (bossTask) planned.push(bossTask);
+
+  const customTasks = state.custom_tasks?.filter(t => t.week_id === weekId && t.day_id === dayId) || [];
+  for (const task of customTasks) {
+    planned.push({
+      ...task,
+      reason: task.source === 'ai' ? 'Scheduled by AI' : 'Added by you',
+      priority: 7,
+    });
+  }
+
+  // Pick up every unfinished task from previous roadmap days.
   const missedTasks = getMissedTasks(state, weekId, dayId);
-  for (const mt of missedTasks.slice(0, 2)) {
+  const plannedIds = new Set(planned.map(task => task.id));
+  for (const mt of missedTasks) {
+    if (plannedIds.has(mt.id)) continue;
     planned.push({
       ...mt,
-      reason: '⚠️ Carried over from a previous day',
-      priority: mt.priority - 1, // slightly lower priority
+      reason: mt.reason || '⚠️ High Priority: Catch-up required',
+      priority: 10,
     });
+    plannedIds.add(mt.id);
   }
 
   // Sort by priority (higher = first), then by time estimate
@@ -71,7 +85,7 @@ export function generateDailyPlan(
   return planned;
 }
 
-function getTaskReason(cat: TaskCategory, task: Task, state: AppState): string {
+function getTaskReason(cat: TaskCategory): string {
   const reasons: Record<TaskCategory, string[]> = {
     ai_ml: ['🧠 Build your ML foundation', '🧠 Core AI skill', '🧠 Essential for AI engineering'],
     backend: ['⚙️ Backend fundamentals', '⚙️ Critical for full-stack', '⚙️ Industry-standard skill'],
@@ -111,28 +125,57 @@ function getTaskPriority(
   return priority;
 }
 
-function getMissedTasks(state: AppState, currentWeek: number, currentDay: number): PlannedTask[] {
-  const week = roadmapData.weeks.find((w: any) => w.week_id === currentWeek);
-  if (!week) return [];
+function isIncomplete(state: AppState, taskId: string): boolean {
+  const status = state.task_progress[taskId]?.status;
+  return status !== 'completed' && status !== 'skipped';
+}
 
+function getMissedTasks(state: AppState, currentWeek: number, currentDay: number): PlannedTask[] {
   const missed: PlannedTask[] = [];
   const categories: TaskCategory[] = ['ai_ml', 'backend', 'dsa', 'build', 'college'];
 
-  for (const day of week.days) {
-    if (day.day_id >= currentDay) break;
-    for (const cat of categories) {
-      const tasks = (day.tasks as any)[cat] as Task[] || [];
-      for (const task of tasks) {
-        const progress = state.task_progress[task.id];
-        if (!progress || progress.status === 'pending') {
-          missed.push({
-            ...task,
-            category: cat,
-            reason: `Missed from Day ${day.day_id}`,
-            priority: 3,
-          });
+  for (const week of roadmapData.weeks as any[]) {
+    if (week.week_id > currentWeek) break;
+    for (const day of week.days) {
+      if (week.week_id === currentWeek && day.day_id >= currentDay) break;
+      for (const cat of categories) {
+        const tasks = (day.tasks as any)[cat] as Task[] || [];
+        for (const task of tasks) {
+          if (isIncomplete(state, task.id)) {
+            missed.push({
+              ...task,
+              category: cat,
+              reason: `🔴 LATE: From Week ${week.week_id}, Day ${day.day_id}`,
+              priority: 10,
+              carriedFrom: `Week ${week.week_id}, Day ${day.day_id}`,
+            });
+          }
         }
       }
+    }
+  }
+
+  const missedBossTasks: PlannedBossTask[] = getBossFightTasksBefore(currentWeek, currentDay)
+    .filter(task => isIncomplete(state, task.id));
+
+  for (const task of missedBossTasks) {
+    missed.push({
+      ...task,
+      reason: `⚔️ LATE BOSS PREP: Week ${task.bossWeekId}, Day ${task.scheduledDayId}`,
+      priority: 11, // Even higher priority for boss tasks
+      carriedFrom: `Week ${task.bossWeekId}, Day ${task.scheduledDayId}`,
+    });
+  }
+
+  for (const task of state.custom_tasks || []) {
+    const isBeforeToday = task.week_id < currentWeek || (task.week_id === currentWeek && task.day_id < currentDay);
+    if (isBeforeToday && isIncomplete(state, task.id)) {
+      missed.push({
+        ...task,
+        reason: `Missed from Week ${task.week_id}, Day ${task.day_id}`,
+        priority: 4,
+        carriedFrom: `Week ${task.week_id}, Day ${task.day_id}`,
+      });
     }
   }
 

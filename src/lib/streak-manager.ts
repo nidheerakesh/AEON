@@ -80,6 +80,6 @@ export function getCurrentWeekAndDay(startDate: string): { week: number; day: nu
   const diffMs = now.getTime() - start.getTime();
   const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
   const week = Math.min(12, Math.max(1, Math.floor(diffDays / 7) + 1));
-  const dayInWeek = Math.min(6, Math.max(1, (diffDays % 7) + 1));
+  const dayInWeek = Math.min(7, Math.max(1, (diffDays % 7) + 1));
   return { week, day: dayInWeek };
 }
