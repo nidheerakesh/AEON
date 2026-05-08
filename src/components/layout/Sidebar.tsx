@@ -190,18 +190,18 @@ export default function Sidebar() {
                 style={{
                   display: 'flex',
                   alignItems: 'center',
-                  gap: 12,
-                  padding: '10px 16px',
+                  gap: 16,
+                  padding: '14px 24px',
                   borderRadius: 'var(--radius-pill)',
                   textDecoration: 'none',
                   color: isActive ? 'var(--text-primary)' : 'var(--text-secondary)',
                   background: isActive ? 'var(--accent-secondary)' : 'transparent',
                   border: isActive ? '1px solid var(--border)' : '1px solid transparent',
                   boxShadow: isActive ? 'var(--shadow-hard)' : 'none',
-                  fontSize: 13,
-                  fontWeight: 700,
+                  fontSize: 14,
+                  fontWeight: 800,
                   transition: 'all 0.15s ease',
-                  marginBottom: 8,
+                  marginBottom: 12,
                 }}
               >
                 <span style={{ fontSize: 18 }}>{item.icon}</span>

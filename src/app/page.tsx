@@ -131,7 +131,7 @@ export default function Dashboard() {
       </div>
 
       {/* Stats Row */}
-      <div className="fade-in fade-in-delay-1" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16, marginBottom: 32 }}>
+      <div className="fade-in fade-in-delay-1" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 24, marginBottom: 40 }}>
         <StatCard icon={xpInfo.current.badge_emoji} label="Level" value={`${xpInfo.current.level} — ${xpInfo.current.name}`} accent="var(--accent-primary)" />
         <StatCard icon="⚡" label="Total XP" value={state.xp.toLocaleString()} accent="var(--text-primary)" />
         <StatCard icon="✅" label="Tasks Done" value={`${totalCompleted}`} accent="var(--accent-secondary)" />
@@ -383,10 +383,10 @@ export default function Dashboard() {
 
 function StatCard({ icon, label, value, accent }: { icon: string; label: string; value: string; accent: string }) {
   return (
-    <div className="card" style={{ textAlign: 'center', padding: '24px 16px' }}>
-      <div style={{ fontSize: 32, marginBottom: 12 }}>{icon}</div>
+    <div className="card" style={{ textAlign: 'center', padding: '32px 24px' }}>
+      <div style={{ fontSize: 40, marginBottom: 16 }}>{icon}</div>
       <div style={{ fontSize: 11, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1.5px', fontWeight: 800 }}>{label}</div>
-      <div style={{ fontSize: 16, fontWeight: 800, color: accent, marginTop: 8 }}>{value}</div>
+      <div style={{ fontSize: 18, fontWeight: 800, color: accent, marginTop: 12 }}>{value}</div>
     </div>
   );
 }

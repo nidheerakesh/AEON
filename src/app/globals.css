@@ -14,7 +14,7 @@
   --text-muted: #666666;
   
   --accent-primary: #ff57ac;   /* Pink */
-  --accent-secondary: #eaff00; /* Yellow */
+  --accent-secondary: #fff4bd; /* Pastel Yellow */
   --accent-success: #2ecc71;   /* Green */
   --accent-warning: #f1c40f;
   --accent-danger: #e74c3c;
@@ -329,7 +329,7 @@ body {
   margin-left: 260px;
   flex: 1;
   min-height: 100vh;
-  padding: 24px 32px;
+  padding: 48px 64px;
 }
 
 /* Mobile hamburger button — hidden by default */
