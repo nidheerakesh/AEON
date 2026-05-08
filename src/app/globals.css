@@ -2,52 +2,45 @@
 @import "tailwindcss";
 
 :root {
-  --bg-primary: #07070d;
-  --bg-secondary: #0e0e18;
-  --bg-tertiary: #161625;
-  --bg-card: #12121e;
-  --bg-hover: #1a1a2e;
-  --bg-elevated: #1e1e32;
+  /* Macaron Pure Dark Palette */
+  --bg-primary: #000000;
+  --bg-secondary: #0a0a0a;
+  --bg-tertiary: #0d1a0d; /* Dark Sage Sidebar */
+  --bg-card: #000000;
+  --bg-hover: #1a1a1a;
   
-  /* Macaron Color Palette */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f0f4f0;
-  --bg-tertiary: #c7e2c7; /* Sage Green Sidebar */
-  --bg-card: #ffffff;
-  --bg-hover: #e8f5e8;
+  --text-primary: #ffffff;
+  --text-secondary: #cccccc;
+  --text-muted: #666666;
   
-  --text-primary: #1a1a1a;
-  --text-secondary: #4a4a4a;
-  --text-muted: #8a8a8a;
-  
-  --accent-primary: #ff57ac;   /* Hot Pink */
-  --accent-secondary: #eaff00; /* Bright Yellow */
-  --accent-success: #2ecc71;
+  --accent-primary: #ff57ac;   /* Pink */
+  --accent-secondary: #eaff00; /* Yellow */
+  --accent-success: #2ecc71;   /* Green */
   --accent-warning: #f1c40f;
   --accent-danger: #e74c3c;
   
-  --border: #1a1a1a;
+  --border: #ffffff;
   --radius-sm: 8px;
   --radius-md: 16px;
-  --radius-lg: 32px; /* Super rounded like Macaron */
+  --radius-lg: 32px;
   --radius-pill: 9999px;
   
-  --shadow-hard: 2px 2px 0px #1a1a1a;
-  --shadow-md: 4px 4px 0px #1a1a1a;
+  --shadow-hard: 3px 3px 0px #ffffff;
+  --shadow-md: 5px 5px 0px #ffffff;
   
   --font-sans: 'Roboto Mono', monospace;
   --font-mono: 'Roboto Mono', monospace;
 }
 
-[data-theme='dark'] {
-  --bg-primary: #1a1a1a;
-  --bg-secondary: #2a2a2a;
-  --bg-tertiary: #1e2e1e; /* Dark Sage */
-  --bg-card: #252525;
-  --text-primary: #ffffff;
-  --text-secondary: #cccccc;
-  --border: #ffffff;
-  --shadow-hard: 2px 2px 0px #ffffff;
+[data-theme='light'] {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f0f4f0;
+  --bg-tertiary: #c7e2c7;
+  --bg-card: #ffffff;
+  --text-primary: #1a1a1a;
+  --text-secondary: #4a4a4a;
+  --border: #1a1a1a;
+  --shadow-hard: 3px 3px 0px #1a1a1a;
 }
 
 * {
@@ -114,15 +107,12 @@ body {
 }
 
 .glow-text {
-  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--accent-primary);
 }
 
 /* Buttons */
 .btn-primary {
-  background: linear-gradient(135deg, var(--accent-primary), #5b4cdb);
+  background: var(--accent-primary);
   color: white;
   border: none;
   padding: 10px 20px;
@@ -140,7 +130,7 @@ body {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, transparent, rgba(255,255,255,0.1));
+  background: rgba(255,255,255,0.1);
   opacity: 0;
   transition: opacity 0.2s ease;
 }
@@ -213,9 +203,8 @@ body {
 }
 
 .shimmer {
-  background: linear-gradient(90deg, var(--bg-card), rgba(255,255,255,0.05), var(--bg-card));
-  background-size: 200% 100%;
-  animation: shimmer 2s infinite;
+  background: var(--bg-card);
+  animation: none;
 }
 
 /* Task completion check animation */
@@ -495,9 +484,7 @@ body {
 }
 
 .gradient-border {
-  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary), var(--accent-warning), var(--accent-primary));
-  background-size: 300% 300%;
-  animation: gradientRotate 4s ease infinite;
+  background: var(--accent-primary);
   padding: 2px;
   border-radius: var(--radius-lg);
 }

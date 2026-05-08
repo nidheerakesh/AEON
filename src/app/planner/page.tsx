@@ -107,8 +107,8 @@ export default function PlannerPage() {
       {/* Overwhelmed? */}
       {easiest && energy === 'low' && (
         <div className="card fade-in fade-in-delay-2" style={{
-          marginBottom: 20, background: 'linear-gradient(135deg, rgba(108,92,231,0.05), rgba(0,206,201,0.05))',
-          border: '1px solid var(--accent-primary)',
+          marginBottom: 20, background: 'var(--bg-primary)',
+          border: '3px solid var(--accent-primary)',
         }}>
           <div style={{ fontSize: 12, color: 'var(--accent-primary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1px' }}>
             🌿 Just do one thing

@@ -252,7 +252,7 @@ export default function BossFightPage() {
                     padding: '14px 40px', fontSize: 16,
                     opacity: canFight ? 1 : 0.4,
                     cursor: canFight ? 'pointer' : 'not-allowed',
-                    background: canFight ? `linear-gradient(135deg, ${phaseColor}, ${phaseColor}cc)` : undefined,
+                    background: canFight ? 'var(--accent-primary)' : 'var(--bg-secondary)',
                   }}
                   onClick={() => setFighting(true)}
                 >

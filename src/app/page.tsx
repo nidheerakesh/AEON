@@ -157,7 +157,7 @@ export default function Dashboard() {
 
       {/* Weekly Theme */}
       {week && (
-        <div className="card fade-in fade-in-delay-2" style={{ marginBottom: 24, background: 'linear-gradient(135deg, var(--bg-card), var(--bg-tertiary))' }}>
+        <div className="card fade-in fade-in-delay-2" style={{ marginBottom: 24, background: 'var(--bg-secondary)' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div>
               <div style={{ fontSize: 12, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: 4 }}>
@@ -399,9 +399,9 @@ function LevelUpModal() {
     <div className="focus-overlay" onClick={dismissLevelUp}>
       <div className="level-up-modal card" style={{
         textAlign: 'center', maxWidth: 400, padding: 48,
-        background: 'linear-gradient(135deg, var(--bg-card), var(--bg-elevated))',
-        border: '1px solid var(--accent-primary)',
-        boxShadow: '0 0 60px var(--accent-primary-glow)',
+        background: 'var(--bg-secondary)',
+        border: '3px solid var(--accent-primary)',
+        boxShadow: 'var(--shadow-md)',
       }} onClick={e => e.stopPropagation()}>
         <div style={{ fontSize: 64, marginBottom: 16 }}>{xpInfo.current.badge_emoji}</div>
         <h2 style={{ fontSize: 28, fontWeight: 900 }}>
