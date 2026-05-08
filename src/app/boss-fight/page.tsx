@@ -28,11 +28,12 @@ export default function BossFightPage() {
   useEffect(() => { setMounted(true); }, []);
   if (!mounted) return null;
 
-  const week = (roadmapData.weeks as any[]).find((w) => w.week_id === selectedWeek);
-  if (!week) return null;
+  const weeks = (roadmapData?.weeks as any[]) || [];
+  const week = weeks.find((w) => w.week_id === selectedWeek);
+  if (!week) return <div style={{ padding: 40, textAlign: 'center' }}>Week {selectedWeek} roadmap not found.</div>;
 
-  const boss = BOSS_FIGHTS.find(b => b.week === selectedWeek);
-  if (!boss) return null;
+  const boss = (BOSS_FIGHTS || []).find(b => b.week === selectedWeek);
+  if (!boss) return <div style={{ padding: 40, textAlign: 'center' }}>Boss data for Week {selectedWeek} not found.</div>;
 
   const bfProgress = state.boss_fights.find(b => b.week_id === selectedWeek);
   const isCompleted = bfProgress?.status === 'completed';

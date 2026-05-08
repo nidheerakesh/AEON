@@ -1,10 +1,14 @@
-import { readFileSync } from 'fs';
-import path from 'path';
+'use client';
+
+import { BOSSFIGHT_MARKDOWN } from '@/data/boss-fights';
 import Link from 'next/link';
+import { useState, useEffect } from 'react';
 
 export default function BossFightGuidePage() {
-  const filePath = path.join(process.cwd(), 'src/bossfight.md');
-  const content = readFileSync(filePath, 'utf8');
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => { setMounted(true); }, []);
+
+  if (!mounted) return null;
 
   // Simple Markdown to HTML parser
   const renderMarkdown = (md: string) => {
@@ -49,7 +53,7 @@ export default function BossFightGuidePage() {
   };
 
   return (
-    <div style={{ maxWidth: 800, margin: '0 auto', padding: '40px 20px' }}>
+    <div style={{ maxWidth: 800, margin: '0 auto', padding: '40px 20px' }} className="fade-in">
       <div style={{ marginBottom: 32, display: 'flex', alignItems: 'center', gap: 12 }}>
         <Link href="/boss-fight" style={{ textDecoration: 'none', color: 'var(--accent-primary)', fontSize: 14, fontWeight: 600 }}>
           ← Back to Arena
@@ -58,7 +62,7 @@ export default function BossFightGuidePage() {
         <span style={{ fontSize: 14, color: 'var(--text-muted)' }}>Full Guide Document</span>
       </div>
 
-      <div className="card" style={{ padding: '40px 48px', background: 'var(--bg-card)' }}>
+      <div className="card" style={{ padding: '40px 48px', background: 'var(--bg-card)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--border)' }}>
         <div style={{ textAlign: 'center', marginBottom: 48 }}>
             <div style={{ fontSize: 12, color: 'var(--accent-primary)', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '2px', marginBottom: 8 }}>Original Document</div>
             <h1 style={{ fontSize: 36, fontWeight: 900 }}>BOSS FIGHT GUIDE</h1>
@@ -66,7 +70,7 @@ export default function BossFightGuidePage() {
         </div>
 
         <div className="markdown-content">
-          {renderMarkdown(content)}
+          {renderMarkdown(BOSSFIGHT_MARKDOWN)}
         </div>
       </div>
 

@@ -154,6 +154,8 @@ export interface BossData {
 }
 
 export const BOSS_FIGHTS: BossData[] = ${JSON.stringify(weeks, null, 2)};
+
+export const BOSSFIGHT_MARKDOWN = \`${markdown.replace(/`/g, '\\`').replace(/\${/g, '\\${')}\`;
 `;
 
 writeFileSync(outFile, fileContent);
