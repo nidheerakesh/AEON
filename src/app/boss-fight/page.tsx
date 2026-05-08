@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { useApp } from '@/context/AppContext';
 import roadmapData from '@/data/roadmap.json';
 import { BOSS_FIGHTS, BossData } from '@/data/boss-fights';
@@ -225,19 +226,25 @@ export default function BossFightPage() {
 
         {/* Action Buttons */}
         <div style={{ padding: '0 32px 24px', textAlign: 'center' }}>
-          <div style={{ display: 'flex', gap: 12, justifyContent: 'center' }}>
-            <Link href="/boss-fight/guide" className="btn-ghost" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 6, padding: '12px 24px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16 }}>
+            <Link href="/boss-fight/guide" className="btn-ghost" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 6, padding: '10px 20px' }}>
               📖 Read Full Doc
             </Link>
+
             {!isCompleted && (
               fighting ? (
-                <button
-                  className="btn-primary"
-                  style={{ padding: '14px 40px', fontSize: 16 }}
-                  onClick={() => { completeBossFight(selectedWeek, 100, boss.xpReward); setFighting(false); }}
-                >
-                  ⚔️ Claim Victory!
-                </button>
+                <div>
+                  <p style={{ color: 'var(--text-secondary)', marginBottom: 16, fontSize: 14 }}>
+                    Complete all win conditions, then claim your victory! 🗡️
+                  </p>
+                  <button
+                    className="btn-primary"
+                    style={{ padding: '14px 40px', fontSize: 16 }}
+                    onClick={() => { completeBossFight(selectedWeek, 100, boss.xpReward); setFighting(false); }}
+                  >
+                    ⚔️ Claim Victory!
+                  </button>
+                </div>
               ) : (
                 <button
                   className="btn-primary"
