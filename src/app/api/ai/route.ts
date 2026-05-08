@@ -106,8 +106,43 @@ Respond with JSON only (no markdown fences):
     } catch {
       return Response.json({ success: true, data: { raw: text } });
     }
-  } catch (error: unknown) {
+  } catch (error: any) {
     console.error('Gemini API error:', error);
+    
+    // Check if it's a quota error or other common failure
+    const isQuotaError = error.message?.includes('429') || error.message?.includes('quota');
+    
+    if (isQuotaError || true) { // Always provide fallback for better UX
+      const body = await request.json();
+      const { action, context } = body;
+
+      if (action === 'schedule_task') {
+        const input = context.userInput.toLowerCase();
+        let category: any = 'build';
+        if (input.includes('ml') || input.includes('data') || input.includes('model')) category = 'ai_ml';
+        else if (input.includes('api') || input.includes('server') || input.includes('backend')) category = 'backend';
+        else if (input.includes('algo') || input.includes('leet') || input.includes('dsa')) category = 'dsa';
+        
+        return Response.json({
+          success: true,
+          fallback: true,
+          data: {
+            task: {
+              title: context.userInput.slice(0, 30) + (context.userInput.length > 30 ? '...' : ''),
+              description: `Custom goal: ${context.userInput}`,
+              xp: 25,
+              time_min: 45,
+              difficulty: 'medium',
+              category
+            },
+            suggested_week: context.currentWeek,
+            suggested_day: context.currentDay,
+            reason: "AI is currently resting, but I've scheduled this as a high-priority build goal for you."
+          }
+        });
+      }
+    }
+
     const message = error instanceof Error ? error.message : 'AI request failed';
     return Response.json(
       { error: message, fallback: true },

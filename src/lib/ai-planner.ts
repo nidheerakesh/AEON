@@ -57,7 +57,7 @@ export function generateDailyPlan(
     if (plannedIds.has(mt.id)) continue;
     planned.push({
       ...mt,
-      reason: mt.reason || '⚠️ High Priority: Catch-up required',
+      reason: mt.reason || 'High Priority: Catch-up required',
       priority: 10,
     });
     plannedIds.add(mt.id);
@@ -87,11 +87,11 @@ export function generateDailyPlan(
 
 function getTaskReason(cat: TaskCategory): string {
   const reasons: Record<TaskCategory, string[]> = {
-    ai_ml: ['🧠 Build your ML foundation', '🧠 Core AI skill', '🧠 Essential for AI engineering'],
-    backend: ['⚙️ Backend fundamentals', '⚙️ Critical for full-stack', '⚙️ Industry-standard skill'],
-    dsa: ['🧩 Sharpens problem-solving', '🧩 Interview prep essential', '🧩 Algorithmic thinking'],
-    build: ['🔨 Hands-on practice', '🔨 Apply what you learned', '🔨 Portfolio project'],
-    college: ['🎓 Keep up with coursework', '🎓 Light review session', '🎓 Stay on track'],
+    ai_ml: ['Build your ML foundation', 'Core AI skill', 'Essential for AI engineering'],
+    backend: ['Backend fundamentals', 'Critical for full-stack', 'Industry-standard skill'],
+    dsa: ['Sharpens problem-solving', 'Interview prep essential', 'Algorithmic thinking'],
+    build: ['Hands-on practice', 'Apply what you learned', 'Portfolio project'],
+    college: ['Keep up with coursework', 'Light review session', 'Stay on track'],
   };
   const catReasons = reasons[cat];
   return catReasons[Math.floor(Math.random() * catReasons.length)];
@@ -161,7 +161,7 @@ function getMissedTasks(state: AppState, currentWeek: number, currentDay: number
   for (const task of missedBossTasks) {
     missed.push({
       ...task,
-      reason: `⚔️ LATE BOSS PREP: Week ${task.bossWeekId}, Day ${task.scheduledDayId}`,
+      reason: `LATE BOSS PREP: Week ${task.bossWeekId}, Day ${task.scheduledDayId}`,
       priority: 11, // Even higher priority for boss tasks
       carriedFrom: `Week ${task.bossWeekId}, Day ${task.scheduledDayId}`,
     });
@@ -186,13 +186,13 @@ export function getMotivationalMessage(state: AppState): string {
   const completed = Object.values(state.task_progress).filter(p => p.status === 'completed').length;
   const streak = state.streak_count;
 
-  if (completed === 0) return "Your journey begins now. Every expert was once a beginner. 🌱";
-  if (streak >= 14) return `${streak}-day streak! You're on fire! Nothing can stop you. 🔥`;
-  if (streak >= 7) return `Week-long streak! You're building real momentum. ⚡`;
-  if (streak >= 3) return `${streak} days strong! Consistency beats intensity. 💪`;
-  if (completed > 50) return "Over 50 tasks crushed! You're transforming. 🚀";
-  if (completed > 20) return "Great progress! Keep the momentum going. ✨";
-  return "One task at a time. You've got this. 💫";
+  if (completed === 0) return "Your journey begins now. Every expert was once a beginner. ";
+  if (streak >= 14) return `${streak}-day streak! You're on fire! Nothing can stop you. `;
+  if (streak >= 7) return `Week-long streak! You're building real momentum. `;
+  if (streak >= 3) return `${streak} days strong! Consistency beats intensity. `;
+  if (completed > 50) return "Over 50 tasks crushed! You're transforming. ";
+  if (completed > 20) return "Great progress! Keep the momentum going. ";
+  return "One task at a time. You've got this. ";
 }
 
 export function suggestEasiestTask(

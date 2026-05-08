@@ -175,16 +175,15 @@ export default function CalendarPage() {
             padding: '12px 24px',
             fontSize: 15,
             fontWeight: 600,
-            background: 'linear-gradient(135deg, var(--accent-primary), var(--accent-secondary))',
-            color: '#fff',
+            background: 'var(--accent-secondary)',
+            color: '#000',
             border: 'none',
             borderRadius: 'var(--radius-md)',
             cursor: 'pointer',
-            boxShadow: '0 4px 15px rgba(162, 155, 254, 0.3)',
+            boxShadow: 'var(--shadow-md)',
             transition: 'all 0.2s ease'
           }}
         >
-          <span style={{ fontSize: 18 }}>✨</span>
           Schedule Extra Task
         </button>
       </div>
@@ -274,12 +273,12 @@ export default function CalendarPage() {
                     <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
                       {day.standardCount > 0 && (
                         <span style={{ fontSize: 12, display: 'flex', alignItems: 'center', gap: 4, background: 'rgba(255,255,255,0.05)', padding: '4px 8px', borderRadius: 12 }}>
-                          <span>📚</span> {day.standardCount} roadmap tasks
+                          {day.standardCount} roadmap tasks
                         </span>
                       )}
                       {day.customTasks.length > 0 && (
                         <span style={{ fontSize: 12, display: 'flex', alignItems: 'center', gap: 4, background: 'rgba(162,155,254,0.1)', color: 'var(--accent-primary)', padding: '4px 8px', borderRadius: 12, fontWeight: 500 }}>
-                          <span>✨</span> {day.customTasks.length} extra
+                          {day.customTasks.length} extra
                         </span>
                       )}
                     </div>
@@ -319,7 +318,7 @@ export default function CalendarPage() {
                               <div style={{ display: 'flex', gap: 8, marginTop: 12, flexWrap: 'wrap' }}>
                                 {t.resources.map((r: string, i: number) => (
                                   <a href={r} key={i} target="_blank" rel="noopener noreferrer" style={{ fontSize: 11, color: 'var(--accent-primary)', background: 'var(--bg-tertiary)', padding: '4px 8px', borderRadius: 6, textDecoration: 'none', border: '1px solid var(--border)', display: 'flex', alignItems: 'center', gap: 4 }}>
-                                    <span>🔗</span> Resource {i+1}
+                                    Resource {i+1}
                                   </a>
                                 ))}
                               </div>
@@ -355,7 +354,7 @@ export default function CalendarPage() {
             </button>
             
             <h2 style={{ fontSize: 24, fontWeight: 700, marginBottom: 8, display: 'flex', alignItems: 'center', gap: 8 }}>
-              <span className="glow-text">AI Scheduler</span> ✨
+              <span className="glow-text">AI Scheduler</span>
             </h2>
             <p style={{ color: 'var(--text-secondary)', fontSize: 14, marginBottom: 20 }}>
               Tell AEON what you want to learn or practice. It will break it down into a task, estimate time/XP, and schedule it optimally.
@@ -401,9 +400,9 @@ export default function CalendarPage() {
                 <div style={{ fontSize: 13, color: 'var(--text-secondary)', marginBottom: 12 }}>{aiResult.task.description}</div>
                 
                 <div style={{ display: 'flex', gap: 12, marginBottom: 16, fontSize: 12 }}>
-                  <span style={{ background: 'var(--bg-tertiary)', padding: '4px 8px', borderRadius: 4 }}>⏳ {aiResult.task.time_min} min</span>
-                  <span style={{ background: 'var(--bg-tertiary)', padding: '4px 8px', borderRadius: 4 }}>✨ {aiResult.task.xp} XP</span>
-                  <span style={{ background: 'var(--bg-tertiary)', padding: '4px 8px', borderRadius: 4 }}>📅 Week {aiResult.suggested_week}, Day {aiResult.suggested_day}</span>
+                  <span style={{ background: 'var(--bg-tertiary)', padding: '4px 8px', borderRadius: 4 }}>Time: {aiResult.task.time_min} min</span>
+                  <span style={{ background: 'var(--bg-tertiary)', padding: '4px 8px', borderRadius: 4 }}>Reward: {aiResult.task.xp} XP</span>
+                  <span style={{ background: 'var(--bg-tertiary)', padding: '4px 8px', borderRadius: 4 }}>Plan: Week {aiResult.suggested_week}, Day {aiResult.suggested_day}</span>
                 </div>
                 
                 <div style={{ fontSize: 12, color: 'var(--text-muted)', fontStyle: 'italic', marginBottom: 16, paddingLeft: 8, borderLeft: '2px solid var(--border)' }}>
