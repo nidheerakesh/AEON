@@ -140,10 +140,10 @@ export default function BossFightPage() {
       {/* Boss Arena Card */}
       <div className={`card ${!isCompleted ? 'boss-arena' : ''}`} style={{
         padding: 0, overflow: 'hidden',
-        background: isCompleted
-          ? `linear-gradient(135deg, ${phaseColor}08, ${phaseColor}03)`
-          : `linear-gradient(135deg, rgba(255,107,107,0.04), rgba(255,107,107,0.01))`,
-        borderColor: isCompleted ? `${phaseColor}40` : undefined,
+        background: 'var(--bg-card)',
+        border: '1px solid var(--border)',
+        boxShadow: 'var(--shadow-md)',
+        borderRadius: 'var(--radius-md)',
       }}>
         {/* Boss Header */}
         <div style={{
@@ -208,13 +208,11 @@ export default function BossFightPage() {
               <span>WEEK {selectedWeek} PROGRESS</span>
               <span>{weekCompleted}/{weekTasks} tasks · {progressPct}%</span>
             </div>
-            <div style={{ width: '100%', height: 8, background: 'var(--bg-hover)', borderRadius: 4, overflow: 'hidden' }}>
+            <div style={{ width: '100%', height: 12, background: 'var(--bg-secondary)', border: '1px solid var(--border)', borderRadius: 6, overflow: 'hidden' }}>
               <div style={{
                 width: `${progressPct}%`, height: '100%',
-                background: canFight
-                  ? `linear-gradient(90deg, ${phaseColor}, var(--accent-warning))`
-                  : phaseColor,
-                borderRadius: 4, transition: 'width 0.5s ease',
+                background: 'var(--accent-primary)',
+                borderRadius: 0, transition: 'width 0.5s ease',
               }} />
             </div>
             {!canFight && (
@@ -272,19 +270,20 @@ export default function BossFightPage() {
       </div>
 
       {/* Tabs */}
-      <div style={{ display: 'flex', gap: 4, marginTop: 20, marginBottom: 16 }}>
+      <div style={{ display: 'flex', gap: 12, marginTop: 24, marginBottom: 16 }}>
         {([
-          { key: 'overview', label: '📋 Win Conditions', },
-          { key: 'daily', label: '📅 Daily Tasks' },
-          { key: 'checklist', label: '☠️ Fail / Drops' },
+          { key: 'overview', label: '📋 Conditions', },
+          { key: 'daily', label: '📅 Tasks' },
+          { key: 'checklist', label: '☠️ Fail' },
         ] as const).map(tab => (
           <button key={tab.key} onClick={() => setActiveTab(tab.key)}
             style={{
-              flex: 1, padding: '10px 16px', borderRadius: 8,
-              border: activeTab === tab.key ? `1px solid ${phaseColor}` : '1px solid var(--border)',
-              background: activeTab === tab.key ? `${phaseColor}12` : 'var(--bg-card)',
-              color: activeTab === tab.key ? phaseColor : 'var(--text-secondary)',
-              cursor: 'pointer', fontWeight: 600, fontSize: 13, fontFamily: 'var(--font-sans)',
+              flex: 1, padding: '10px 16px', borderRadius: 'var(--radius-pill)',
+              border: '1px solid var(--border)',
+              background: activeTab === tab.key ? 'var(--accent-secondary)' : 'var(--bg-card)',
+              boxShadow: activeTab === tab.key ? 'var(--shadow-hard)' : 'none',
+              color: 'var(--text-primary)',
+              cursor: 'pointer', fontWeight: 700, fontSize: 13,
               transition: 'all 0.15s ease',
             }}
           >

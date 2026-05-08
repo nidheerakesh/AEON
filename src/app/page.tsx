@@ -131,27 +131,26 @@ export default function Dashboard() {
       </div>
 
       {/* Stats Row */}
-      <div className="fade-in fade-in-delay-1" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 14, marginBottom: 24 }}>
+      <div className="fade-in fade-in-delay-1" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16, marginBottom: 32 }}>
         <StatCard icon={xpInfo.current.badge_emoji} label="Level" value={`${xpInfo.current.level} — ${xpInfo.current.name}`} accent="var(--accent-primary)" />
-        <StatCard icon="⚡" label="Total XP" value={state.xp.toLocaleString()} accent="var(--accent-warning)" />
-        <StatCard icon="✅" label="Tasks Done" value={`${totalCompleted}`} accent="var(--accent-success)" />
-        <StatCard icon={state.streak_count > 0 ? '🔥' : '❄️'} label="Streak" value={`${state.streak_count} days`} accent={state.streak_count > 0 ? 'var(--accent-warning)' : 'var(--text-muted)'} />
+        <StatCard icon="⚡" label="Total XP" value={state.xp.toLocaleString()} accent="var(--text-primary)" />
+        <StatCard icon="✅" label="Tasks Done" value={`${totalCompleted}`} accent="var(--accent-secondary)" />
+        <StatCard icon={state.streak_count > 0 ? '🔥' : '❄️'} label="Streak" value={`${state.streak_count} days`} accent="var(--accent-primary)" />
       </div>
 
       {/* Overall Progress */}
-      <div className="card-flat fade-in fade-in-delay-2" style={{ marginBottom: 20 }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-          <span style={{ fontSize: 13, fontWeight: 600 }}>Overall Roadmap Progress</span>
-          <span style={{ fontSize: 12, fontFamily: 'var(--font-mono)', color: 'var(--accent-primary)' }}>
+      <div className="card-flat fade-in fade-in-delay-2" style={{ marginBottom: 32, padding: '24px 32px', background: 'var(--bg-secondary)', border: '1px solid var(--border)', borderRadius: 'var(--radius-md)', boxShadow: 'var(--shadow-hard)' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
+          <span style={{ fontSize: 14, fontWeight: 800, textTransform: 'uppercase' }}>Overall Roadmap Progress</span>
+          <span style={{ fontSize: 14, fontFamily: 'var(--font-mono)', fontWeight: 800, color: 'var(--accent-primary)' }}>
             {totalCompleted}/{totalTasks} · {overallPct}%
           </span>
         </div>
-        <div style={{ width: '100%', height: 8, background: 'var(--bg-hover)', borderRadius: 4, overflow: 'hidden' }}>
-          <div className="progress-glow" style={{
+        <div style={{ width: '100%', height: 12, background: 'var(--bg-primary)', border: '1px solid var(--border)', borderRadius: 6, overflow: 'hidden' }}>
+          <div style={{
             width: `${overallPct}%`, height: '100%',
-            background: 'linear-gradient(90deg, var(--accent-primary), var(--accent-secondary), var(--accent-success))',
-            backgroundSize: '200% 100%',
-            borderRadius: 4, transition: 'width 0.6s ease',
+            background: 'var(--accent-primary)',
+            borderRadius: 0, transition: 'width 0.6s ease',
           }} />
         </div>
       </div>
@@ -384,10 +383,10 @@ export default function Dashboard() {
 
 function StatCard({ icon, label, value, accent }: { icon: string; label: string; value: string; accent: string }) {
   return (
-    <div className="card" style={{ textAlign: 'center' }}>
-      <div style={{ fontSize: 24, marginBottom: 8 }}>{icon}</div>
-      <div style={{ fontSize: 10, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1px' }}>{label}</div>
-      <div style={{ fontSize: 16, fontWeight: 700, color: accent, marginTop: 4, fontFamily: 'var(--font-mono)' }}>{value}</div>
+    <div className="card" style={{ textAlign: 'center', padding: '24px 16px' }}>
+      <div style={{ fontSize: 32, marginBottom: 12 }}>{icon}</div>
+      <div style={{ fontSize: 11, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1.5px', fontWeight: 800 }}>{label}</div>
+      <div style={{ fontSize: 16, fontWeight: 800, color: accent, marginTop: 8 }}>{value}</div>
     </div>
   );
 }

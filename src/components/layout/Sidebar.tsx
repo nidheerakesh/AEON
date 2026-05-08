@@ -67,7 +67,12 @@ export default function Sidebar() {
         />
       )}
 
-      <aside className={`sidebar ${mobileOpen ? 'open' : ''}`}>
+      <aside className={`sidebar ${mobileOpen ? 'open' : ''}`} style={{
+        background: 'var(--bg-tertiary)',
+        borderRight: '1px solid var(--border)',
+        boxShadow: '4px 0 0 var(--border)',
+        zIndex: 50
+      }}>
         {/* Logo */}
         <div style={{ padding: '24px 20px', borderBottom: '1px solid var(--border)' }}>
           <h1 style={{
@@ -186,16 +191,17 @@ export default function Sidebar() {
                   display: 'flex',
                   alignItems: 'center',
                   gap: 12,
-                  padding: '10px 12px',
-                  borderRadius: 'var(--radius-sm)',
+                  padding: '10px 16px',
+                  borderRadius: 'var(--radius-pill)',
                   textDecoration: 'none',
                   color: isActive ? 'var(--text-primary)' : 'var(--text-secondary)',
-                  background: isActive ? 'var(--bg-hover)' : 'transparent',
-                  borderLeft: isActive ? '3px solid var(--accent-primary)' : '3px solid transparent',
-                  fontSize: 14,
-                  fontWeight: isActive ? 600 : 400,
+                  background: isActive ? 'var(--accent-secondary)' : 'transparent',
+                  border: isActive ? '1px solid var(--border)' : '1px solid transparent',
+                  boxShadow: isActive ? 'var(--shadow-hard)' : 'none',
+                  fontSize: 13,
+                  fontWeight: 700,
                   transition: 'all 0.15s ease',
-                  marginBottom: 2,
+                  marginBottom: 8,
                 }}
               >
                 <span style={{ fontSize: 18 }}>{item.icon}</span>

@@ -116,22 +116,22 @@ export default function RoadmapPage() {
       </div>
 
       {/* Tabs */}
-      <div style={{ display: 'flex', gap: 8, marginBottom: 24 }}>
+      <div style={{ display: 'flex', gap: 12, marginBottom: 32, flexWrap: 'wrap' }}>
         {treeTabs.map(tab => (
           <button
             key={tab.key}
             onClick={() => setActiveTab(tab.key)}
             style={{
-              padding: '10px 20px',
-              borderRadius: 'var(--radius-sm)',
-              border: activeTab === tab.key ? `1px solid ${tab.color}` : '1px solid var(--border)',
-              background: activeTab === tab.key ? `${tab.color}15` : 'var(--bg-card)',
-              color: activeTab === tab.key ? tab.color : 'var(--text-secondary)',
+              padding: '10px 24px',
+              borderRadius: 'var(--radius-pill)',
+              border: '1px solid var(--border)',
+              background: activeTab === tab.key ? 'var(--accent-secondary)' : 'var(--bg-card)',
+              boxShadow: activeTab === tab.key ? 'var(--shadow-hard)' : 'none',
+              color: 'var(--text-primary)',
               cursor: 'pointer',
-              fontWeight: 600,
+              fontWeight: 700,
               fontSize: 14,
-              fontFamily: 'var(--font-sans)',
-              transition: 'all 0.2s ease',
+              transition: 'all 0.15s ease',
               display: 'flex',
               alignItems: 'center',
               gap: 8,
@@ -143,26 +143,26 @@ export default function RoadmapPage() {
       </div>
 
       {/* Progress */}
-      <div className="card-flat" style={{ marginBottom: 24, display: 'flex', alignItems: 'center', gap: 16 }}>
+      <div className="card-flat" style={{ marginBottom: 32, display: 'flex', alignItems: 'center', gap: 16, background: 'var(--bg-secondary)', border: '1px solid var(--border)', boxShadow: 'var(--shadow-hard)', padding: '20px 24px', borderRadius: 'var(--radius-md)' }}>
         <div style={{ flex: 1 }}>
-          <div style={{ fontSize: 13, color: 'var(--text-muted)', marginBottom: 6 }}>
-            {activeTab.toUpperCase()} PROGRESS
+          <div style={{ fontSize: 12, color: 'var(--text-muted)', marginBottom: 8, fontWeight: 800 }}>
+            {activeTab.toUpperCase()} TRACK PROGRESS
           </div>
           <div style={{
-            width: '100%', height: 8,
-            background: 'var(--bg-hover)', borderRadius: 4,
+            width: '100%', height: 12,
+            background: 'var(--bg-primary)', border: '1px solid var(--border)', borderRadius: 6,
             overflow: 'hidden',
           }}>
             <div style={{
               width: `${totalCount ? (completedCount / totalCount) * 100 : 0}%`,
               height: '100%',
-              background: treeTabs.find(t => t.key === activeTab)?.color,
-              borderRadius: 4,
+              background: 'var(--accent-primary)',
+              borderRadius: 0,
               transition: 'width 0.5s ease',
             }} />
           </div>
         </div>
-        <span style={{ fontFamily: 'var(--font-mono)', fontWeight: 700, fontSize: 14, color: 'var(--text-secondary)' }}>
+        <span style={{ fontWeight: 800, fontSize: 16, color: 'var(--text-primary)' }}>
           {completedCount}/{totalCount}
         </span>
       </div>
@@ -310,11 +310,11 @@ function TreeNodeComponent({ node, depth, completedTopics, getRealDate, toggleSu
                 
                 const dateStr = getRealDate(task.week_id, task.day_id) || `Week ${task.week_id}, Day ${task.day_id}`;
                 return (
-                  <div key={task.id} style={{ background: 'var(--bg-secondary)', border: '1px solid var(--border)', borderRadius: 'var(--radius-sm)', padding: 12 }}>
+                  <div key={task.id} style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 'var(--radius-md)', padding: 16, boxShadow: 'var(--shadow-hard)' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 8 }}>
-                      <div style={{ fontWeight: 600, fontSize: 13, color: 'var(--text-primary)' }}>{task.title}</div>
-                      <div style={{ fontSize: 11, color: 'var(--text-muted)', background: 'var(--bg-tertiary)', padding: '2px 6px', borderRadius: 4 }}>
-                        📅 {dateStr}
+                      <div style={{ fontWeight: 700, fontSize: 14, color: 'var(--text-primary)' }}>{task.title}</div>
+                      <div style={{ fontSize: 11, color: 'var(--text-primary)', background: 'var(--accent-secondary)', padding: '4px 8px', borderRadius: 'var(--radius-pill)', border: '1px solid var(--border)', fontWeight: 700 }}>
+                        {dateStr}
                       </div>
                     </div>
                     

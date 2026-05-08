@@ -108,11 +108,11 @@ export default function AnalyticsPage() {
       </div>
 
       {/* Overview Stats */}
-      <div className="fade-in" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 14, marginBottom: 24 }}>
-        <MiniStat label="Total Tasks" value={`${totalCompleted}/${totalTasks}`} accent="var(--accent-success)" icon="✅" />
-        <MiniStat label="Total XP" value={totalXP.toLocaleString()} accent="var(--accent-warning)" icon="⚡" />
-        <MiniStat label="Progress" value={`${overallPct}%`} accent="var(--accent-primary)" icon="📈" />
-        <MiniStat label="Boss Victories" value={`${state.boss_fights.filter(b => b.status === 'completed').length}/12`} accent="var(--accent-danger)" icon="⚔️" />
+      <div className="fade-in" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16, marginBottom: 32 }}>
+        <MiniStat label="Total Tasks" value={`${totalCompleted}/${totalTasks}`} accent="var(--accent-primary)" icon="✅" />
+        <MiniStat label="Total XP" value={totalXP.toLocaleString()} accent="var(--text-primary)" icon="⚡" />
+        <MiniStat label="Progress" value={`${overallPct}%`} accent="var(--accent-secondary)" icon="📈" />
+        <MiniStat label="Boss Victories" value={`${state.boss_fights.filter(b => b.status === 'completed').length}/12`} accent="var(--accent-primary)" icon="⚔️" />
       </div>
 
       {/* XP Timeline Chart */}
@@ -136,11 +136,10 @@ export default function AnalyticsPage() {
                   )}
                   <div
                     style={{
-                      width: '70%', borderRadius: '4px 4px 0 0',
+                      width: '70%', borderRadius: 0,
                       height: `${height}%`, minHeight: 4,
-                      background: d.xp > 0
-                        ? 'linear-gradient(180deg, var(--accent-primary), var(--accent-secondary))'
-                        : 'var(--bg-hover)',
+                      background: d.xp > 0 ? 'var(--accent-primary)' : 'var(--bg-primary)',
+                      border: '1px solid var(--border)',
                       transition: 'height 0.5s ease',
                     }}
                   />
@@ -210,9 +209,9 @@ export default function AnalyticsPage() {
           })}
 
           {/* Time invested estimate */}
-          <div style={{ marginTop: 20, padding: '14px 16px', background: 'var(--bg-hover)', borderRadius: 'var(--radius-sm)' }}>
-            <div style={{ fontSize: 11, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1px' }}>Estimated Time Invested</div>
-            <div style={{ fontSize: 22, fontWeight: 800, fontFamily: 'var(--font-mono)', color: 'var(--accent-primary)', marginTop: 4 }}>
+          <div style={{ marginTop: 20, padding: '20px 24px', background: 'var(--accent-secondary)', border: '1px solid var(--border)', borderRadius: 'var(--radius-md)', boxShadow: 'var(--shadow-hard)' }}>
+            <div style={{ fontSize: 11, color: 'var(--text-primary)', textTransform: 'uppercase', letterSpacing: '1.5px', fontWeight: 800 }}>Estimated Time Invested</div>
+            <div style={{ fontSize: 24, fontWeight: 900, color: 'var(--text-primary)', marginTop: 8 }}>
               {(() => {
                 let total = 0;
                 for (const week of roadmapData.weeks) {

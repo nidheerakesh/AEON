@@ -50,51 +50,54 @@ export default function PlannerPage() {
       </div>
 
       {/* Energy Selector */}
-      <div className="card-flat fade-in" style={{ marginBottom: 20, display: 'flex', alignItems: 'center', gap: 16 }}>
-        <span style={{ fontSize: 14, fontWeight: 600 }}>How&apos;s your energy?</span>
-        <div style={{ display: 'flex', gap: 8 }}>
+      <div className="card-flat fade-in" style={{ marginBottom: 32, display: 'flex', alignItems: 'center', gap: 16, padding: '16px 24px', background: 'var(--bg-secondary)', border: '1px solid var(--border)', borderRadius: 'var(--radius-md)', boxShadow: 'var(--shadow-hard)' }}>
+        <span style={{ fontSize: 13, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '1px' }}>Energy:</span>
+        <div style={{ display: 'flex', gap: 12 }}>
           {(['low', 'medium', 'high'] as const).map(e => (
             <button
               key={e}
               onClick={() => setEnergy(e)}
               style={{
-                padding: '6px 16px', borderRadius: 20, border: '1px solid',
-                borderColor: energy === e ? 'var(--accent-primary)' : 'var(--border)',
-                background: energy === e ? 'var(--accent-primary)20' : 'transparent',
-                color: energy === e ? 'var(--accent-primary)' : 'var(--text-secondary)',
-                cursor: 'pointer', fontSize: 13, fontWeight: 500,
-                fontFamily: 'var(--font-sans)',
+                padding: '8px 20px', borderRadius: 'var(--radius-pill)', border: '1px solid var(--border)',
+                background: energy === e ? 'var(--accent-secondary)' : 'var(--bg-primary)',
+                boxShadow: energy === e ? 'var(--shadow-hard)' : 'none',
+                color: 'var(--text-primary)',
+                cursor: 'pointer', fontSize: 13, fontWeight: 700,
+                transition: 'all 0.15s ease',
               }}
             >
-              {e === 'low' ? '😴 Low' : e === 'medium' ? '😊 Medium' : '⚡ High'}
+              {e === 'low' ? '😴 Low' : e === 'medium' ? '😊 Mid' : '⚡ High'}
             </button>
           ))}
         </div>
       </div>
 
       {/* Time estimate */}
-      <div className="card-flat fade-in fade-in-delay-1" style={{ marginBottom: 20, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <div className="card-flat fade-in fade-in-delay-1" style={{ marginBottom: 32, display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '24px 32px', background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 'var(--radius-md)', boxShadow: 'var(--shadow-hard)' }}>
         <div>
-          <div style={{ fontSize: 12, color: 'var(--text-muted)', textTransform: 'uppercase' }}>Estimated Time</div>
-          <div style={{ fontSize: 20, fontWeight: 700, fontFamily: 'var(--font-mono)', marginTop: 4 }}>
+          <div style={{ fontSize: 11, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: 800 }}>Estimated Time</div>
+          <div style={{ fontSize: 24, fontWeight: 900, marginTop: 4 }}>
             {Math.floor(totalTime / 60)}h {totalTime % 60}m
           </div>
         </div>
         <div style={{ textAlign: 'right' }}>
-          <div style={{ fontSize: 12, color: 'var(--text-muted)', textTransform: 'uppercase' }}>Completed</div>
-          <div style={{ fontSize: 20, fontWeight: 700, fontFamily: 'var(--font-mono)', color: 'var(--accent-success)', marginTop: 4 }}>
+          <div style={{ fontSize: 11, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: 800 }}>Completed</div>
+          <div style={{ fontSize: 24, fontWeight: 900, color: 'var(--accent-primary)', marginTop: 4 }}>
             {Math.floor(completedTime / 60)}h {completedTime % 60}m
           </div>
         </div>
         <div style={{
-          width: 60, height: 60, borderRadius: '50%',
-          background: `conic-gradient(var(--accent-success) ${totalTime ? (completedTime / totalTime) * 360 : 0}deg, var(--bg-hover) 0)`,
+          width: 64, height: 64, borderRadius: '50%',
+          border: '1px solid var(--border)',
+          background: `conic-gradient(var(--accent-primary) ${totalTime ? (completedTime / totalTime) * 360 : 0}deg, var(--bg-secondary) 0)`,
           display: 'flex', alignItems: 'center', justifyContent: 'center',
+          boxShadow: 'var(--shadow-hard)',
         }}>
           <div style={{
-            width: 48, height: 48, borderRadius: '50%', background: 'var(--bg-card)',
+            width: 50, height: 50, borderRadius: '50%', background: 'var(--bg-card)',
+            border: '1px solid var(--border)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontSize: 12, fontWeight: 700, fontFamily: 'var(--font-mono)',
+            fontSize: 13, fontWeight: 900,
           }}>
             {totalTime ? Math.round((completedTime / totalTime) * 100) : 0}%
           </div>
@@ -143,9 +146,13 @@ export default function PlannerPage() {
                 const isExpanded = expandedTasks.includes(task.id);
                 return (
                   <div key={task.id} className="card-flat" style={{
-                    marginBottom: 10,
+                    marginBottom: 12,
                     opacity: isCompleted ? 0.6 : 1,
-                    borderLeft: `3px solid ${isInProgress ? cat.color : isCompleted ? 'var(--accent-success)' : 'transparent'}`,
+                    background: 'var(--bg-card)',
+                    border: '1px solid var(--border)',
+                    boxShadow: 'var(--shadow-hard)',
+                    borderRadius: 'var(--radius-md)',
+                    padding: '16px 20px',
                     transition: 'all 0.2s',
                   }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
