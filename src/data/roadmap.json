@@ -22,7 +22,7 @@
                 "subtasks": [
                   {
                     "id": "st0",
-                    "title": "What is an ML Engineer? vs AI Engineer — roles and responsibilities",
+                    "title": "What is an ML Engineer? vs AI Engineer  roles and responsibilities",
                     "completed": false
                   },
                   {
@@ -98,7 +98,7 @@
                 "subtasks": [
                   {
                     "id": "st0",
-                    "title": "Scalars, Vectors, Tensors — definitions and notation",
+                    "title": "Scalars, Vectors, Tensors  definitions and notation",
                     "completed": false
                   },
                   {
@@ -118,7 +118,7 @@
                   },
                   {
                     "id": "st4",
-                    "title": "Singular Value Decomposition (SVD) — what and why",
+                    "title": "Singular Value Decomposition (SVD)  what and why",
                     "completed": false
                   }
                 ],
@@ -440,7 +440,7 @@
                   },
                   {
                     "id": "st3",
-                    "title": "Data Formats: CSV, Excel, JSON, Parquet — how to read each in Pandas",
+                    "title": "Data Formats: CSV, Excel, JSON, Parquet  how to read each in Pandas",
                     "completed": false
                   }
                 ],
@@ -612,12 +612,12 @@
                   },
                   {
                     "id": "st1",
-                    "title": "Supervised Learning — labeled data, prediction tasks",
+                    "title": "Supervised Learning  labeled data, prediction tasks",
                     "completed": false
                   },
                   {
                     "id": "st2",
-                    "title": "Unsupervised Learning — finding structure in unlabeled data",
+                    "title": "Unsupervised Learning  finding structure in unlabeled data",
                     "completed": false
                   },
                   {
@@ -637,7 +637,7 @@
                   },
                   {
                     "id": "st6",
-                    "title": "Scikit-learn workflow: load data → split → fit → predict → evaluate",
+                    "title": "Scikit-learn workflow: load data  split  fit  predict  evaluate",
                     "completed": false
                   }
                 ],
@@ -858,7 +858,7 @@
                   },
                   {
                     "id": "st1",
-                    "title": "Accuracy, Precision, Recall, F1-Score — when to use each",
+                    "title": "Accuracy, Precision, Recall, F1-Score  when to use each",
                     "completed": false
                   },
                   {
@@ -868,7 +868,7 @@
                   },
                   {
                     "id": "st3",
-                    "title": "Confusion Matrix — reading and interpreting",
+                    "title": "Confusion Matrix  reading and interpreting",
                     "completed": false
                   },
                   {
@@ -1189,7 +1189,7 @@
                 "subtasks": [
                   {
                     "id": "st0",
-                    "title": "Biological neuron → Perceptron → Multi-layer Perceptron (MLP)",
+                    "title": "Biological neuron  Perceptron  Multi-layer Perceptron (MLP)",
                     "completed": false
                   },
                   {
@@ -1199,7 +1199,7 @@
                   },
                   {
                     "id": "st2",
-                    "title": "Activation Functions: Sigmoid, ReLU, Tanh, Softmax — when to use each",
+                    "title": "Activation Functions: Sigmoid, ReLU, Tanh, Softmax  when to use each",
                     "completed": false
                   },
                   {
@@ -1604,7 +1604,7 @@
               {
                 "id": "w3d7_ml",
                 "title": "Autoencoders & GANs",
-                "description": "Build a Variational Autoencoder on MNIST — encode digits to 2D latent space and visualize; decode random latent points to generate new digits",
+                "description": "Build a Variational Autoencoder on MNIST  encode digits to 2D latent space and visualize; decode random latent points to generate new digits",
                 "xp": 40,
                 "time_min": 120,
                 "difficulty": "medium",
@@ -1775,7 +1775,7 @@
             "ai_ml": [
               {
                 "id": "w4d2_ml",
-                "title": "Natural Language Processing (NLP) — Fundamentals",
+                "title": "Natural Language Processing (NLP)  Fundamentals",
                 "description": "Build a text classification pipeline (spam detection) using TF-IDF + Logistic Regression on the SMS Spam dataset",
                 "xp": 40,
                 "time_min": 120,
@@ -1946,7 +1946,7 @@
                   },
                   {
                     "id": "st2",
-                    "title": "SHAP: SHapley Additive exPlanations — feature importance",
+                    "title": "SHAP: SHapley Additive exPlanations  feature importance",
                     "completed": false
                   },
                   {
@@ -2012,7 +2012,7 @@
                 "subtasks": [
                   {
                     "id": "st0",
-                    "title": "What is MLOps? (awareness — full roadmap is separate)",
+                    "title": "What is MLOps? (awareness  full roadmap is separate)",
                     "completed": false
                   },
                   {
@@ -2099,7 +2099,7 @@
                   },
                   {
                     "id": "st2",
-                    "title": "Review all GitHub notebooks — clean them up with markdown explanations",
+                    "title": "Review all GitHub notebooks  clean them up with markdown explanations",
                     "completed": false
                   },
                   {
@@ -2672,7 +2672,7 @@
                 "subtasks": [
                   {
                     "id": "st0",
-                    "title": "Review all notes from Days 1–6",
+                    "title": "Review all notes from Days 16",
                     "completed": false
                   },
                   {
@@ -2928,7 +2928,7 @@
                   },
                   {
                     "id": "st2",
-                    "title": "Database indexes — what they are and when to use them",
+                    "title": "Database indexes  what they are and when to use them",
                     "completed": false
                   }
                 ],
@@ -3589,7 +3589,7 @@
                   },
                   {
                     "id": "st2",
-                    "title": "Basic pipeline: lint → test → build → deploy",
+                    "title": "Basic pipeline: lint  test  build  deploy",
                     "completed": false
                   }
                 ],
@@ -4535,7 +4535,7 @@
                   },
                   {
                     "id": "st2",
-                    "title": "MLOps maturity levels (Level 0 → Level 2)",
+                    "title": "MLOps maturity levels (Level 0  Level 2)",
                     "completed": false
                   },
                   {
@@ -4621,7 +4621,7 @@
                   },
                   {
                     "id": "st3",
-                    "title": "Go: awareness only — read what it's used for in MLOps tooling (Kubernetes, Terraform)",
+                    "title": "Go: awareness only  read what it's used for in MLOps tooling (Kubernetes, Terraform)",
                     "completed": false
                   }
                 ],
@@ -5322,7 +5322,7 @@
                   },
                   {
                     "id": "st4",
-                    "title": "MLflow Model Registry: staging → production → archived",
+                    "title": "MLflow Model Registry: staging  production  archived",
                     "completed": false
                   },
                   {
@@ -5386,7 +5386,7 @@
               {
                 "id": "w10d4_mlops",
                 "title": "Data Engineering Fundamentals",
-                "description": "Build a simple ETL pipeline in Python that: pulls data from an API → cleans it → validates schema → saves to a local \"data lake\" folder structure (`raw/`, `processed/`, `features/`)",
+                "description": "Build a simple ETL pipeline in Python that: pulls data from an API  cleans it  validates schema  saves to a local \"data lake\" folder structure (`raw/`, `processed/`, `features/`)",
                 "xp": 40,
                 "time_min": 120,
                 "difficulty": "medium",
@@ -5413,7 +5413,7 @@
                   },
                   {
                     "id": "st4",
-                    "title": "Feature Stores concept (Feast, Tecton — awareness)",
+                    "title": "Feature Stores concept (Feast, Tecton  awareness)",
                     "completed": false
                   }
                 ],
@@ -5553,7 +5553,7 @@
               {
                 "id": "w10d6_mlops",
                 "title": "Orchestration & Deployment: Airflow & KubeFlow",
-                "description": "Write an Airflow DAG with 4 tasks: download_data → preprocess → train_model → evaluate_and_save; run it locally with the Airflow Docker Compose setup",
+                "description": "Write an Airflow DAG with 4 tasks: download_data  preprocess  train_model  evaluate_and_save; run it locally with the Airflow Docker Compose setup",
                 "xp": 40,
                 "time_min": 120,
                 "difficulty": "medium",
@@ -5570,7 +5570,7 @@
                   },
                   {
                     "id": "st2",
-                    "title": "Writing your first Airflow DAG: data ingestion → training → evaluation → deployment",
+                    "title": "Writing your first Airflow DAG: data ingestion  training  evaluation  deployment",
                     "completed": false
                   },
                   {
@@ -6421,12 +6421,12 @@
                 "subtasks": [
                   {
                     "id": "st0",
-                    "title": "Connecting all components: data ingestion → training → evaluation → registration → deployment → monitoring → retraining trigger",
+                    "title": "Connecting all components: data ingestion  training  evaluation  registration  deployment  monitoring  retraining trigger",
                     "completed": false
                   },
                   {
                     "id": "st1",
-                    "title": "Event-driven retraining: Kafka event → Airflow DAG trigger → retrain → evaluate → promote if better",
+                    "title": "Event-driven retraining: Kafka event  Airflow DAG trigger  retrain  evaluate  promote if better",
                     "completed": false
                   },
                   {
@@ -6502,7 +6502,7 @@
                 "subtasks": [
                   {
                     "id": "st0",
-                    "title": "Multi-stage ML pipelines in GitHub Actions: data validation → training → model testing → staging deployment → production promotion",
+                    "title": "Multi-stage ML pipelines in GitHub Actions: data validation  training  model testing  staging deployment  production promotion",
                     "completed": false
                   },
                   {
@@ -6748,14 +6748,14 @@
               {
                 "id": "w12d6_mlops",
                 "title": "Final Review + Documentation",
-                "description": "Create a personal \"MLOps Cheat Sheet\" — one page per major tool (Docker, Kubernetes, MLflow, Airflow, Prometheus) with key commands",
+                "description": "Create a personal \"MLOps Cheat Sheet\"  one page per major tool (Docker, Kubernetes, MLflow, Airflow, Prometheus) with key commands",
                 "xp": 40,
                 "time_min": 120,
                 "difficulty": "medium",
                 "subtasks": [
                   {
                     "id": "st0",
-                    "title": "Review all 4 weeks — identify gaps",
+                    "title": "Review all 4 weeks  identify gaps",
                     "completed": false
                   },
                   {
@@ -6770,7 +6770,7 @@
                   },
                   {
                     "id": "st3",
-                    "title": "Review the full MLOps Components checklist (Version Control ✓, CI/CD ✓, Orchestration ✓, Experiment Tracking ✓, Data Lineage ✓, Model Serving ✓, Monitoring ✓)",
+                    "title": "Review the full MLOps Components checklist (Version Control , CI/CD , Orchestration , Experiment Tracking , Data Lineage , Model Serving , Monitoring )",
                     "completed": false
                   }
                 ],
@@ -6920,31 +6920,31 @@
         "level": 1,
         "name": "Novice",
         "xp_required": 0,
-        "badge_emoji": "🌱"
+        "badge_emoji": ""
       },
       {
         "level": 2,
         "name": "Apprentice",
         "xp_required": 500,
-        "badge_emoji": "🌿"
+        "badge_emoji": ""
       },
       {
         "level": 3,
         "name": "Adept",
         "xp_required": 1500,
-        "badge_emoji": "🌲"
+        "badge_emoji": ""
       },
       {
         "level": 4,
         "name": "Expert",
         "xp_required": 3000,
-        "badge_emoji": "🌳"
+        "badge_emoji": ""
       },
       {
         "level": 5,
         "name": "Master",
         "xp_required": 5000,
-        "badge_emoji": "🌎"
+        "badge_emoji": ""
       }
     ],
     "task_xp": {

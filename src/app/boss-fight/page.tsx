@@ -70,10 +70,10 @@ export default function BossFightPage() {
       {/* Header */}
       <div className="fade-in" style={{ marginBottom: 28 }}>
         <h1 style={{ fontSize: 28, fontWeight: 800 }}>
-          <span style={{ color: 'var(--accent-danger)' }}>Boss Fights</span> ⚔️
+          <span style={{ color: 'var(--accent-danger)' }}>Boss Fights</span> 
         </h1>
         <p style={{ color: 'var(--text-secondary)', marginTop: 6, fontSize: 14 }}>
-          12 weekly challenges across ML → Backend → MLOps
+          12 weekly challenges across ML  Backend  MLOps
         </p>
       </div>
 
@@ -122,7 +122,7 @@ export default function BossFightPage() {
                   position: 'relative',
                 }}
               >
-                {bf?.status === 'completed' ? '✓' : w.week_id}
+                {bf?.status === 'completed' ? '' : w.week_id}
                 <span style={{ fontSize: 8, opacity: 0.6 }}>{bossData.emoji}</span>
                 {isCurrent && !isSelected && (
                   <div style={{
@@ -152,7 +152,7 @@ export default function BossFightPage() {
           textAlign: 'center',
         }}>
           <div style={{ fontSize: 56, marginBottom: 12 }}>
-            {isCompleted ? '🏆' : boss.emoji || '👹'}
+            {isCompleted ? '' : boss.emoji || ''}
           </div>
           <div style={{
             display: 'inline-flex', alignItems: 'center', gap: 8,
@@ -164,11 +164,11 @@ export default function BossFightPage() {
           }}>
             <span>{boss.difficulty}</span>
             <span>{boss.difficultyLabel}</span>
-            <span>·</span>
+            <span></span>
             <span>{boss.phaseLabel}</span>
           </div>
           <h2 style={{ fontSize: 28, fontWeight: 900, marginTop: 8 }}>
-            {isCompleted && <span style={{ color: phaseColor }}>✦ </span>}
+            {isCompleted && <span style={{ color: phaseColor }}> </span>}
             {boss.name}
           </h2>
           <p style={{
@@ -206,7 +206,7 @@ export default function BossFightPage() {
           <div style={{ padding: '0 32px 24px' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 11, color: 'var(--text-muted)', marginBottom: 6 }}>
               <span>WEEK {selectedWeek} PROGRESS</span>
-              <span>{weekCompleted}/{weekTasks} tasks · {progressPct}%</span>
+              <span>{weekCompleted}/{weekTasks} tasks  {progressPct}%</span>
             </div>
             <div style={{ width: '100%', height: 12, background: 'var(--bg-secondary)', border: '1px solid var(--border)', borderRadius: 6, overflow: 'hidden' }}>
               <div style={{
@@ -217,7 +217,7 @@ export default function BossFightPage() {
             </div>
             {!canFight && (
               <p style={{ fontSize: 12, color: 'var(--accent-warning)', marginTop: 6 }}>
-                ⚡ Complete at least 10 tasks this week to unlock the boss fight
+                 Complete at least 10 tasks this week to unlock the boss fight
               </p>
             )}
           </div>
@@ -227,21 +227,21 @@ export default function BossFightPage() {
         <div style={{ padding: '0 32px 24px', textAlign: 'center' }}>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16 }}>
             <Link href="/boss-fight/guide" className="btn-ghost" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 6, padding: '10px 20px' }}>
-              📖 Read Full Doc
+               Read Full Doc
             </Link>
 
             {!isCompleted && (
               fighting ? (
                 <div>
                   <p style={{ color: 'var(--text-secondary)', marginBottom: 16, fontSize: 14 }}>
-                    Complete all win conditions, then claim your victory! 🗡️
+                    Complete all win conditions, then claim your victory! 
                   </p>
                   <button
                     className="btn-primary"
                     style={{ padding: '14px 40px', fontSize: 16 }}
                     onClick={() => { completeBossFight(selectedWeek, 100, boss.xpReward); setFighting(false); }}
                   >
-                    ⚔️ Claim Victory!
+                     Claim Victory!
                   </button>
                 </div>
               ) : (
@@ -256,14 +256,14 @@ export default function BossFightPage() {
                   }}
                   onClick={() => setFighting(true)}
                 >
-                  {canFight ? '⚔️ Begin Boss Fight' : '🔒 Locked'}
+                  {canFight ? ' Begin Boss Fight' : ' Locked'}
                 </button>
               )
             )}
           </div>
           {isCompleted && (
             <div style={{ color: phaseColor, fontWeight: 700, fontSize: 16 }}>
-              ✅ Victory! +{boss.xpReward} XP earned
+               Victory! +{boss.xpReward} XP earned
             </div>
           )}
         </div>
@@ -272,9 +272,9 @@ export default function BossFightPage() {
       {/* Tabs */}
       <div style={{ display: 'flex', gap: 12, marginTop: 24, marginBottom: 16 }}>
         {([
-          { key: 'overview', label: '📋 Conditions', },
-          { key: 'daily', label: '📅 Tasks' },
-          { key: 'checklist', label: '☠️ Fail' },
+          { key: 'overview', label: 'Conditions', },
+          { key: 'daily', label: 'Tasks' },
+          { key: 'checklist', label: 'Fail' },
         ] as const).map(tab => (
           <button key={tab.key} onClick={() => setActiveTab(tab.key)}
             style={{
@@ -296,7 +296,7 @@ export default function BossFightPage() {
       {activeTab === 'overview' && (
         <div className="card-flat fade-in" style={{ padding: 20 }}>
           <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 12, color: phaseColor }}>
-            🎯 Win Conditions
+             Win Conditions
           </div>
           {(boss.winConditions || []).map((wc: string, i: number) => (
             <div key={i} style={{
@@ -304,7 +304,7 @@ export default function BossFightPage() {
               borderBottom: i < (boss.winConditions?.length || 0) - 1 ? '1px solid var(--border)' : 'none',
             }}>
               <span style={{ color: isCompleted ? 'var(--accent-success)' : 'var(--text-muted)', fontSize: 14, marginTop: 1 }}>
-                {isCompleted ? '✅' : '⬜'}
+                {isCompleted ? '' : ''}
               </span>
               <span style={{ fontSize: 14, color: 'var(--text-primary)', lineHeight: 1.5 }}>{wc}</span>
             </div>
@@ -358,7 +358,7 @@ export default function BossFightPage() {
                         display: 'flex', alignItems: 'center', justifyContent: 'center',
                         transition: 'all 0.15s',
                       }}>
-                        {isDone && <span style={{ color: '#fff', fontSize: 10 }}>✓</span>}
+                        {isDone && <span style={{ color: '#fff', fontSize: 10 }}></span>}
                       </div>
                       <span style={{
                         fontSize: 13, lineHeight: 1.5,
@@ -380,14 +380,14 @@ export default function BossFightPage() {
           {/* Fail Conditions */}
           <div className="card-flat" style={{ padding: 20 }}>
             <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 12, color: 'var(--accent-danger)' }}>
-              ☠️ Instant Fail Conditions
+               Instant Fail Conditions
             </div>
             {(boss.failConditions || []).map((fc: string, i: number) => (
               <div key={i} style={{
                 display: 'flex', alignItems: 'center', gap: 10, padding: '6px 0',
                 fontSize: 13, color: 'var(--text-secondary)',
               }}>
-                <span style={{ color: 'var(--accent-danger)' }}>✕</span>
+                <span style={{ color: 'var(--accent-danger)' }}></span>
                 {fc}
               </div>
             ))}
@@ -396,14 +396,14 @@ export default function BossFightPage() {
           {/* Boss Drops */}
           <div className="card-flat" style={{ padding: 20 }}>
             <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 12, color: 'var(--accent-warning)' }}>
-              🎁 Boss Drops (What You Unlock)
+               Boss Drops (What You Unlock)
             </div>
             {(boss.bossDrops || []).map((bd: string, i: number) => (
               <div key={i} style={{
                 display: 'flex', alignItems: 'center', gap: 10, padding: '6px 0',
                 fontSize: 13, color: 'var(--text-secondary)',
               }}>
-                <span style={{ color: 'var(--accent-warning)' }}>★</span>
+                <span style={{ color: 'var(--accent-warning)' }}></span>
                 {bd}
               </div>
             ))}

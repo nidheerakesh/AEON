@@ -37,7 +37,7 @@ export const bossGuideWeeks: BossGuideWeek[] = BOSS_FIGHTS.map(bf => ({
     tasks: dt.subtasks,
   })),
   failConditions: bf.failConditions,
-  drop: bf.bossDrops.join(' · '),
+  drop: bf.bossDrops.join('  '),
 }));
 
 export function getBossGuideWeek(weekId: number): BossGuideWeek | undefined {
@@ -71,7 +71,7 @@ export function getBossFightTask(weekId: number, dayId: number): PlannedBossTask
       completed: false,
     })),
     resources: [],
-    reason: dayId === 6 ? `⚔️ ${week.name} — Fight Day!` : `⚔️ ${week.name} — Boss Prep`,
+    reason: dayId === 6 ? `${week.name}  Fight Day!` : `${week.name}  Boss Prep`,
     priority: dayId === 6 ? 10 : 8,
     bossWeekId: weekId,
     scheduledDayId: dayId,

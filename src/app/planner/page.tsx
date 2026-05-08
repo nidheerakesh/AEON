@@ -42,7 +42,7 @@ export default function PlannerPage() {
     <div>
       <div className="fade-in" style={{ marginBottom: 28 }}>
         <h1 style={{ fontSize: 28, fontWeight: 800 }}>
-          <span className="glow-text">Daily Planner</span> 📋
+          <span className="glow-text">Daily Planner</span> 
         </h1>
         <p style={{ color: 'var(--text-secondary)', marginTop: 6, fontSize: 14 }}>
           {currentDateStr}
@@ -66,7 +66,7 @@ export default function PlannerPage() {
                 transition: 'all 0.15s ease',
               }}
             >
-              {e === 'low' ? '😴 Low' : e === 'medium' ? '😊 Mid' : '⚡ High'}
+              {e === 'low' ? 'Low' : e === 'medium' ? 'Mid' : 'High'}
             </button>
           ))}
         </div>
@@ -111,16 +111,16 @@ export default function PlannerPage() {
           border: '3px solid var(--accent-primary)',
         }}>
           <div style={{ fontSize: 12, color: 'var(--accent-primary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1px' }}>
-            🌿 Just do one thing
+             Just do one thing
           </div>
           <p style={{ fontSize: 15, fontWeight: 600, marginTop: 8 }}>{easiest.title}</p>
-          <p style={{ fontSize: 12, color: 'var(--text-secondary)', marginTop: 4 }}>~{easiest.time_min} min · {easiest.xp} XP</p>
+          <p style={{ fontSize: 12, color: 'var(--text-secondary)', marginTop: 4 }}>~{easiest.time_min} min  {easiest.xp} XP</p>
           <button
             className="btn-primary"
             style={{ marginTop: 12 }}
             onClick={() => setFocusTask(easiest.id)}
           >
-            Start This →
+            Start This 
           </button>
         </div>
       )}
@@ -167,14 +167,14 @@ export default function PlannerPage() {
                           display: 'flex', alignItems: 'center', justifyContent: 'center',
                           fontSize: 12, color: 'white', flexShrink: 0,
                         }}
-                      >{isCompleted && '✓'}</button>
+                      >{isCompleted && ''}</button>
                       
                       <div style={{ flex: 1, cursor: 'pointer' }} onClick={() => toggleExpand(task.id)}>
                         <div style={{ fontSize: 14, fontWeight: 600, textDecoration: isCompleted ? 'line-through' : 'none', color: isCompleted ? 'var(--text-muted)' : 'var(--text-primary)' }}>
                           {task.title}
                         </div>
                         <div style={{ fontSize: 12, color: 'var(--text-muted)' }}>
-                          ~{task.time_min}min · {task.subtasks?.length || 0} subtasks
+                          ~{task.time_min}min  {task.subtasks?.length || 0} subtasks
                         </div>
                       </div>
                       
@@ -183,7 +183,7 @@ export default function PlannerPage() {
                       </span>
                       
                       <button onClick={() => toggleExpand(task.id)} style={{ background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', width: 24, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <span style={{ transform: isExpanded ? 'rotate(180deg)' : 'rotate(0)', transition: '0.2s' }}>▼</span>
+                        <span style={{ transform: isExpanded ? 'rotate(180deg)' : 'rotate(0)', transition: '0.2s' }}></span>
                       </button>
                     </div>
 
@@ -206,7 +206,7 @@ export default function PlannerPage() {
                                     background: isSubtaskCompleted ? 'var(--accent-success)' : 'transparent',
                                     display: 'flex', alignItems: 'center', justifyContent: 'center'
                                   }}>
-                                    {isSubtaskCompleted && <span style={{ color: '#fff', fontSize: 10 }}>✓</span>}
+                                    {isSubtaskCompleted && <span style={{ color: '#fff', fontSize: 10 }}></span>}
                                   </div>
                                   <span style={{ fontSize: 13, cursor: 'pointer', textDecoration: isSubtaskCompleted ? 'line-through' : 'none', color: isSubtaskCompleted ? 'var(--text-muted)' : 'var(--text-secondary)' }}>
                                     {st.title}
@@ -227,7 +227,7 @@ export default function PlannerPage() {
                                   background: 'var(--bg-tertiary)', padding: '6px 10px', borderRadius: 6,
                                   color: 'var(--accent-primary)', textDecoration: 'none', border: '1px solid var(--border)'
                                 }}>
-                                  <span>🔗</span> Resource {idx + 1}
+                                  <span></span> Resource {idx + 1}
                                 </a>
                               ))}
                             </div>

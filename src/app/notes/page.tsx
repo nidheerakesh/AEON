@@ -91,7 +91,7 @@ export default function NotesPage() {
       <div className="fade-in" style={{ marginBottom: 28, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
         <div>
           <h1 style={{ fontSize: 28, fontWeight: 800 }}>
-            <span className="glow-text">Notes & Git Integration</span> 📝
+            <span className="glow-text">Notes & Git Integration</span>
           </h1>
           <p style={{ color: 'var(--text-secondary)', marginTop: 6, fontSize: 14 }}>
             Track your learnings and log your commits
@@ -155,7 +155,7 @@ export default function NotesPage() {
       {showGitForm && (
         <div className="card fade-in" style={{
           marginBottom: 24, border: '1px solid var(--accent-secondary)',
-          background: 'linear-gradient(135deg, var(--bg-card), var(--bg-hover))'
+          background: 'var(--bg-secondary)'
         }}>
           <h3 style={{ fontSize: 15, fontWeight: 700, marginBottom: 12, color: 'var(--accent-secondary)' }}>
             Log Repository Commit
@@ -209,7 +209,7 @@ export default function NotesPage() {
         {/* Left Column: Notes */}
         <div>
           <h2 style={{ fontSize: 16, fontWeight: 700, marginBottom: 14, display: 'flex', alignItems: 'center', gap: 8 }}>
-            <span>📝</span> My Learnings
+            My Learnings
           </h2>
 
           {/* Tags filter */}
@@ -284,7 +284,7 @@ export default function NotesPage() {
         {/* Right Column: Commits */}
         <div>
           <h2 style={{ fontSize: 16, fontWeight: 700, marginBottom: 14, display: 'flex', alignItems: 'center', gap: 8 }}>
-            <span>🔗</span> Git Commit Tracker
+            Git Commit Tracker
           </h2>
 
           <div className="card" style={{ padding: 16, background: 'var(--bg-secondary)' }}>
@@ -320,7 +320,7 @@ export default function NotesPage() {
                       {commit.message}
                     </p>
                     <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 10, color: 'var(--text-muted)', marginTop: 8 }}>
-                      <span>📂 {commit.repo}</span>
+                      <span>{commit.repo}</span>
                       <span>{new Date(commit.date).toLocaleDateString()}</span>
                     </div>
                   </div>

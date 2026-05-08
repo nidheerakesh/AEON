@@ -100,19 +100,18 @@ export default function AnalyticsPage() {
     <div>
       <div className="fade-in" style={{ marginBottom: 28 }}>
         <h1 style={{ fontSize: 28, fontWeight: 800 }}>
-          <span className="glow-text">Analytics</span> 📊
+          <span className="glow-text">Analytics</span> 
         </h1>
         <p style={{ color: 'var(--text-secondary)', marginTop: 6, fontSize: 14 }}>
           Track your learning journey with detailed insights
         </p>
       </div>
 
-      {/* Overview Stats */}
       <div className="fade-in" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16, marginBottom: 32 }}>
-        <MiniStat label="Total Tasks" value={`${totalCompleted}/${totalTasks}`} accent="var(--accent-primary)" icon="✅" />
-        <MiniStat label="Total XP" value={totalXP.toLocaleString()} accent="var(--text-primary)" icon="⚡" />
-        <MiniStat label="Progress" value={`${overallPct}%`} accent="var(--accent-secondary)" icon="📈" />
-        <MiniStat label="Boss Victories" value={`${state.boss_fights.filter(b => b.status === 'completed').length}/12`} accent="var(--accent-primary)" icon="⚔️" />
+        <MiniStat label="Total Tasks" value={`${totalCompleted}/${totalTasks}`} accent="var(--accent-primary)" icon="" />
+        <MiniStat label="Total XP" value={totalXP.toLocaleString()} accent="var(--text-primary)" icon="" />
+        <MiniStat label="Progress" value={`${overallPct}%`} accent="var(--accent-secondary)" icon="" />
+        <MiniStat label="Boss Victories" value={`${state.boss_fights.filter(b => b.status === 'completed').length}/12`} accent="var(--accent-primary)" icon="" />
       </div>
 
       <div className="card fade-in fade-in-delay-1" style={{ marginBottom: 24, padding: '32px 40px' }}>
@@ -165,7 +164,7 @@ export default function AnalyticsPage() {
                     {cat.label}
                   </span>
                   <span style={{ fontSize: 12, fontFamily: 'var(--font-mono)', color: cat.color }}>
-                    {s.completed}/{s.total} · {pct}%
+                    {s.completed}/{s.total}  {pct}%
                   </span>
                 </div>
                 <div style={{ width: '100%', height: 6, background: 'var(--bg-hover)', borderRadius: 3, overflow: 'hidden' }}>
@@ -186,7 +185,7 @@ export default function AnalyticsPage() {
             const s = difficultyStats[diff];
             const pct = s.total ? Math.round((s.done / s.total) * 100) : 0;
             const colors = { easy: '#55efc4', medium: '#fdcb6e', hard: '#ff6b6b' };
-            const icons = { easy: '🟢', medium: '🟡', hard: '🔴' };
+            const icons = { easy: '', medium: '', hard: '' };
             return (
               <div key={diff} style={{ marginBottom: 14 }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
@@ -194,7 +193,7 @@ export default function AnalyticsPage() {
                     {diff.charAt(0).toUpperCase() + diff.slice(1)}
                   </span>
                   <span style={{ fontSize: 12, fontFamily: 'var(--font-mono)', color: colors[diff] }}>
-                    {s.done}/{s.total} · {pct}%
+                    {s.done}/{s.total}  {pct}%
                   </span>
                 </div>
                 <div style={{ width: '100%', height: 6, background: 'var(--bg-hover)', borderRadius: 3, overflow: 'hidden' }}>

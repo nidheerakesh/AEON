@@ -24,17 +24,17 @@ const statusColors: Record<TopicStatus, string> = {
 };
 
 const statusIcons: Record<TopicStatus, string> = {
-  locked: '🔒',
-  available: '📖',
-  in_progress: '⏳',
-  completed: '✅',
+  locked: '',
+  available: '',
+  in_progress: '',
+  completed: '',
 };
 
 const treeTabs = [
-  { key: 'ai_ml', label: 'Machine Learning', icon: '🧠', color: 'var(--cat-ml)' },
-  { key: 'backend', label: 'Backend', icon: '⚙️', color: 'var(--cat-backend)' },
-  { key: 'mlops', label: 'MLOps', icon: '⚙️', color: 'var(--cat-ml)' },
-  { key: 'dsa', label: 'DSA', icon: '🧩', color: 'var(--cat-dsa)' },
+  { key: 'ai_ml', label: 'Machine Learning', icon: '', color: 'var(--cat-ml)' },
+  { key: 'backend', label: 'Backend', icon: '', color: 'var(--cat-backend)' },
+  { key: 'mlops', label: 'MLOps', icon: '', color: 'var(--cat-ml)' },
+  { key: 'dsa', label: 'DSA', icon: '', color: 'var(--cat-dsa)' },
 ] as const;
 
 function buildDynamicTree(category: 'ai_ml' | 'backend' | 'mlops' | 'dsa'): TopicNodeType {
@@ -70,7 +70,7 @@ function buildDynamicTree(category: 'ai_ml' | 'backend' | 'mlops' | 'dsa'): Topi
       
       weekNode.children!.push({
         id: `node_${t.id}`,
-        label: `Day ${d.day_id} — ${t.title}`,
+        label: `Day ${d.day_id}  ${t.title}`,
         status: 'available',
         linked_tasks: [t.id]
       });
@@ -108,10 +108,10 @@ export default function RoadmapPage() {
     <div>
       <div className="fade-in" style={{ marginBottom: 28 }}>
         <h1 style={{ fontSize: 28, fontWeight: 800 }}>
-          <span className="glow-text">Roadmap</span> 🗺️
+          <span className="glow-text">Roadmap</span> 
         </h1>
         <p style={{ color: 'var(--text-secondary)', marginTop: 6, fontSize: 14 }}>
-          Your learning path — expand topics to explore
+          Your learning path  expand topics to explore
         </p>
       </div>
 
@@ -221,7 +221,7 @@ function TreeNodeComponent({ node, depth, completedTopics, getRealDate, toggleSu
             width: 16,
             textAlign: 'center',
           }}>
-            ▶
+            
           </span>
         )}
         {!(hasChildren || hasTasks) && <span style={{ width: 16 }} />}
@@ -326,7 +326,7 @@ function TreeNodeComponent({ node, depth, completedTopics, getRealDate, toggleSu
                             background: 'var(--bg-card)', padding: '4px 8px', borderRadius: 4,
                             color: 'var(--accent-primary)', textDecoration: 'none', border: '1px solid var(--border)'
                           }}>
-                            🔗 Resource {idx + 1}
+                             Resource {idx + 1}
                           </a>
                         ))}
                       </div>

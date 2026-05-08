@@ -52,7 +52,7 @@ export default function Sidebar() {
           fontSize: 20, color: 'var(--text-primary)',
         }}
       >
-        {mobileOpen ? '✕' : '☰'}
+        {mobileOpen ? '' : ''}
       </button>
 
       {/* Mobile overlay */}
@@ -100,7 +100,7 @@ export default function Sidebar() {
         <div style={{ padding: '16px 20px', borderBottom: '1px solid var(--border)' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
             <span style={{ fontSize: 13, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 6 }}>
-              <span>{mounted ? xpInfo.current.badge_emoji : '🌱'}</span>
+              <span>{mounted ? xpInfo.current.badge_emoji : ''}</span>
               <span>{mounted ? xpInfo.current.name : 'Loading...'}</span>
             </span>
             <span style={{ fontSize: 12, fontFamily: 'var(--font-mono)', color: 'var(--accent-warning)' }}>
@@ -127,7 +127,7 @@ export default function Sidebar() {
           </div>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 4 }}>
             <span style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>
-              {mounted ? `${state.xp} XP` : '—'}
+              {mounted ? `${state.xp} XP` : ''}
             </span>
             {mounted && xpInfo.next && (
               <span style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>
@@ -148,7 +148,7 @@ export default function Sidebar() {
             border: mounted && state.streak_count > 0 ? '1px solid rgba(253,203,110,0.2)' : '1px solid var(--border)',
           }}>
             <span className={mounted && state.streak_count > 0 ? 'flame' : ''} style={{ fontSize: 18 }}>
-              {mounted && state.streak_count > 0 ? '🔥' : '❄️'}
+              {mounted && state.streak_count > 0 ? '' : ''}
             </span>
             <div>
               <div style={{ fontSize: 13, fontWeight: 700, fontFamily: 'var(--font-mono)', color: mounted && state.streak_count > 0 ? 'var(--accent-warning)' : 'var(--text-muted)' }}>
@@ -171,7 +171,7 @@ export default function Sidebar() {
               textDecoration: 'none', color: 'var(--text-secondary)',
               transition: 'all 0.15s ease',
             }}>
-              <span style={{ fontSize: 14 }}>🏆</span>
+              <span style={{ fontSize: 14 }}></span>
               <span style={{ fontSize: 11, fontFamily: 'var(--font-mono)' }}>
                 {achievementCount}/{ACHIEVEMENTS.length} achievements
               </span>
@@ -230,7 +230,7 @@ export default function Sidebar() {
           {mounted ? (
             <>
               <div style={{ fontWeight: 600, color: 'var(--text-secondary)' }}>
-                Week {state.current_week} · Day {state.current_day}
+                Week {state.current_week}  Day {state.current_day}
               </div>
               <div style={{ marginTop: 4 }}>
                 {Math.round(((state.current_week - 1) * 6 + state.current_day) / 72 * 100)}% journey complete

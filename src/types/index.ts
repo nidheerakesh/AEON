@@ -1,5 +1,5 @@
 // ============================================================
-// AEON — Type Definitions
+// AEON  Type Definitions
 // ============================================================
 
 // --- Roadmap Data Types ---
@@ -168,7 +168,7 @@ export interface UserSettings {
   daily_goal_tasks: number;
   notifications: boolean;
   sound_effects: boolean;
-  start_date: string; // ISO date — when the 12-week journey started
+  start_date: string; // ISO date  when the 12-week journey started
   gemini_api_key?: string;
 }
 
@@ -233,9 +233,9 @@ export interface CategoryMeta {
 }
 
 export const CATEGORIES: CategoryMeta[] = [
-  { key: 'ai_ml', label: 'AI / ML', color: '#a29bfe', icon: '🧠', bgColor: 'rgba(162,155,254,0.15)' },
-  { key: 'backend', label: 'Backend', color: '#55efc4', icon: '⚙️', bgColor: 'rgba(85,239,196,0.15)' },
-  { key: 'build', label: 'Build', color: '#fd79a8', icon: '🔨', bgColor: 'rgba(253,121,168,0.15)' },
-  { key: 'dsa', label: 'DSA', color: '#fab1a0', icon: '🧩', bgColor: 'rgba(250,177,160,0.15)' },
-  { key: 'college', label: 'College', color: '#74b9ff', icon: '🎓', bgColor: 'rgba(116,185,255,0.15)' },
+  { key: 'ai_ml', label: 'AI / ML', color: '#a29bfe', icon: '', bgColor: 'rgba(162,155,254,0.15)' },
+  { key: 'backend', label: 'Backend', color: '#55efc4', icon: '', bgColor: 'rgba(85,239,196,0.15)' },
+  { key: 'build', label: 'Build', color: '#fd79a8', icon: '', bgColor: 'rgba(253,121,168,0.15)' },
+  { key: 'dsa', label: 'DSA', color: '#fab1a0', icon: '', bgColor: 'rgba(250,177,160,0.15)' },
+  { key: 'college', label: 'College', color: '#74b9ff', icon: '', bgColor: 'rgba(116,185,255,0.15)' },
 ];

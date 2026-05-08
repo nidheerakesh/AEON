@@ -132,7 +132,7 @@ export default function Dashboard() {
 
       {/* Stats Row */}
       <div className="fade-in fade-in-delay-1" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 24, marginBottom: 40 }}>
-        <StatCard icon="" label="Level" value={`${xpInfo.current.level} — ${xpInfo.current.name}`} accent="var(--accent-primary)" />
+        <StatCard icon="" label="Level" value={`${xpInfo.current.level}  ${xpInfo.current.name}`} accent="var(--accent-primary)" />
         <StatCard icon="" label="Total XP" value={state.xp.toLocaleString()} accent="var(--text-primary)" />
         <StatCard icon="" label="Tasks Done" value={`${totalCompleted}`} accent="var(--accent-secondary)" />
         <StatCard icon="" label="Streak" value={`${state.streak_count} days`} accent="var(--accent-primary)" />
@@ -143,7 +143,7 @@ export default function Dashboard() {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
           <span style={{ fontSize: 14, fontWeight: 800, textTransform: 'uppercase' }}>Overall Roadmap Progress</span>
           <span style={{ fontSize: 14, fontFamily: 'var(--font-mono)', fontWeight: 800, color: 'var(--accent-primary)' }}>
-            {totalCompleted}/{totalTasks} · {overallPct}%
+            {totalCompleted}/{totalTasks}  {overallPct}%
           </span>
         </div>
         <div style={{ width: '100%', height: 12, background: 'var(--bg-primary)', border: '1px solid var(--border)', borderRadius: 6, overflow: 'hidden' }}>
@@ -209,7 +209,6 @@ export default function Dashboard() {
 
           {plan.length === 0 ? (
             <div className="card" style={{ textAlign: 'center', padding: 40 }}>
-              <div style={{ fontSize: 48, marginBottom: 12 }}>🎉</div>
               <h3 style={{ fontSize: 18, fontWeight: 700 }}>All done for today!</h3>
               <p style={{ color: 'var(--text-secondary)', marginTop: 8 }}>
                 You&apos;ve completed all tasks. Time to relax or push ahead!
@@ -255,7 +254,7 @@ export default function Dashboard() {
                         color: 'white',
                       }}
                     >
-                      {isCompleted && '✓'}
+                      {isCompleted && ''}
                     </button>
 
                     {/* Task info */}
@@ -272,7 +271,7 @@ export default function Dashboard() {
                         </span>
                       </div>
                       <div style={{ fontSize: 11, color: 'var(--text-muted)', marginTop: 2 }}>
-                        {task.reason} · ~{task.time_min}min
+                        {task.reason}  ~{task.time_min}min
                       </div>
                     </div>
 
@@ -291,7 +290,7 @@ export default function Dashboard() {
                           className="btn-ghost"
                           style={{ padding: '4px 8px', fontSize: 11, textDecoration: 'none' }}
                         >
-                          🎯
+                          Focus
                         </Link>
                       )}
                     </div>
@@ -308,7 +307,6 @@ export default function Dashboard() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
             <Link href="/focus" style={{ textDecoration: 'none' }}>
               <div className="card-flat" style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer' }}>
-                <span style={{ fontSize: 20 }}>🎯</span>
                 <div>
                   <div style={{ fontSize: 13, fontWeight: 600 }}>Enter Focus Mode</div>
                   <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>Deep work with Pomodoro timer</div>
@@ -317,7 +315,6 @@ export default function Dashboard() {
             </Link>
             <Link href="/analytics" style={{ textDecoration: 'none' }}>
               <div className="card-flat" style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer' }}>
-                <span style={{ fontSize: 20 }}>📊</span>
                 <div>
                   <div style={{ fontSize: 13, fontWeight: 600 }}>View Analytics</div>
                   <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>Track your progress over time</div>
@@ -326,7 +323,6 @@ export default function Dashboard() {
             </Link>
             <Link href="/achievements" style={{ textDecoration: 'none' }}>
               <div className="card-flat" style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer' }}>
-                <span style={{ fontSize: 20 }}>🏆</span>
                 <div>
                   <div style={{ fontSize: 13, fontWeight: 600 }}>Achievements</div>
                   <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>
@@ -340,7 +336,6 @@ export default function Dashboard() {
                 display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer',
                 border: '1px solid rgba(255,107,107,0.2)',
               }}>
-                <span style={{ fontSize: 20 }}>⚔️</span>
                 <div>
                   <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--accent-danger)' }}>Boss Fight</div>
                   <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>Week {state.current_week} challenge</div>
@@ -356,7 +351,6 @@ export default function Dashboard() {
                 background: 'linear-gradient(135deg, rgba(255,107,107,0.05), rgba(255,107,107,0.02))',
               }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                  <span style={{ fontSize: 24 }}>⚔️</span>
                   <div style={{ flex: 1 }}>
                     <div style={{ fontSize: 10, color: 'var(--accent-danger)', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: 600 }}>
                       Week {state.current_week} Boss
@@ -403,18 +397,17 @@ function LevelUpModal() {
         border: '3px solid var(--accent-primary)',
         boxShadow: 'var(--shadow-md)',
       }} onClick={e => e.stopPropagation()}>
-        <div style={{ fontSize: 64, marginBottom: 16 }}>{xpInfo.current.badge_emoji}</div>
         <h2 style={{ fontSize: 28, fontWeight: 900 }}>
           <span className="glow-text">LEVEL UP!</span>
         </h2>
         <p style={{ fontSize: 24, fontWeight: 700, marginTop: 8 }}>
-          Level {xpInfo.current.level} — {xpInfo.current.name}
+          Level {xpInfo.current.level}  {xpInfo.current.name}
         </p>
         <p style={{ color: 'var(--text-secondary)', marginTop: 12 }}>
           You&apos;re evolving. Keep pushing forward!
         </p>
         <button className="btn-primary" style={{ marginTop: 24, padding: '12px 32px' }} onClick={dismissLevelUp}>
-          Continue Journey →
+          Continue Journey 
         </button>
       </div>
     </div>
