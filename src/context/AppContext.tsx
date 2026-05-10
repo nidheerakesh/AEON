@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useReducer, useEffect, useCallback } from 'react';
 import { AppState, TaskProgress, UserNote, XPLog, BossFightProgress, CustomTask } from '@/types';
-import { awardXP } from '@/lib/xp-engine';
+import { awardXP, unawardXP } from '@/lib/xp-engine';
 import { updateStreak, getCurrentWeekAndDay } from '@/lib/streak-manager';
 
 // --- Initial State ---
@@ -58,6 +58,7 @@ type Action =
   | { type: 'TOGGLE_SUBTASK'; taskId: string; subtaskId: string }
   | { type: 'RESCHEDULE_TASK'; taskId: string; newDate: string }
   | { type: 'ROLLOVER_INCOMPLETE_TASKS'; taskIds: string[] }
+  | { type: 'UNCOMPLETE_TASK'; taskId: string }
   | { type: 'HYDRATE'; state: AppState };
 
 function reducer(state: AppState, action: Action): AppState {
@@ -90,6 +91,23 @@ function reducer(state: AppState, action: Action): AppState {
       };
       const streakUpdate = updateStreak(newState);
       return { ...newState, ...streakUpdate };
+    }
+    
+    case 'UNCOMPLETE_TASK': {
+      const progress = state.task_progress[action.taskId];
+      if (!progress || progress.status !== 'completed') return state;
+      
+      const { newXP, newLevel } = unawardXP(state, progress.xp_earned || 0);
+      const newProgress = { ...state.task_progress };
+      delete newProgress[action.taskId];
+      
+      return {
+        ...state,
+        task_progress: newProgress,
+        xp: newXP,
+        level: newLevel,
+        xp_logs: state.xp_logs.filter(log => log.source_id !== action.taskId)
+      };
     }
 
     case 'SKIP_TASK': {
@@ -246,6 +264,7 @@ interface AppContextValue {
   toggleSubtask: (taskId: string, subtaskId: string) => void;
   rescheduleTask: (taskId: string, newDate: string) => void;
   rolloverTasks: (taskIds: string[]) => void;
+  uncompleteTask: (taskId: string) => void;
 }
 
 const AppContext = createContext<AppContextValue | null>(null);
@@ -334,11 +353,16 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     dispatch({ type: 'ROLLOVER_INCOMPLETE_TASKS', taskIds });
   }, []);
 
+  const uncompleteTask = useCallback((taskId: string) => {
+    dispatch({ type: 'UNCOMPLETE_TASK', taskId });
+  }, []);
+
   return (
     <AppContext.Provider value={{
       state, dispatch, completeTask, skipTask, startTask,
       setFocusTask, addNote, completeBossFight, dismissLevelUp,
-      addCustomTask, deleteCustomTask, toggleSubtask, rescheduleTask, rolloverTasks
+      addCustomTask, deleteCustomTask, toggleSubtask, rescheduleTask, rolloverTasks,
+      uncompleteTask
     }}>
       {children}
     </AppContext.Provider>

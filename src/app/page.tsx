@@ -16,7 +16,7 @@ const catBadgeClass: Record<string, string> = {
 };
 
 export default function Dashboard() {
-  const { state, completeTask, setFocusTask } = useApp();
+  const { state, completeTask, uncompleteTask, setFocusTask } = useApp();
   const [mounted, setMounted] = useState(false);
   const [xpPopups, setXpPopups] = useState<{ id: number; xp: number; x: number; y: number }[]>([]);
   const [toasts, setToasts] = useState<{ id: string; title: string; icon: string; tier: string }[]>([]);
@@ -78,12 +78,16 @@ export default function Dashboard() {
   }
   const overallPct = totalTasks ? Math.round((totalCompleted / totalTasks) * 100) : 0;
 
-  const handleComplete = (taskId: string, xp: number, e: React.MouseEvent) => {
-    const rect = (e.target as HTMLElement).getBoundingClientRect();
-    completeTask(taskId, xp);
-    const popup = { id: Date.now(), xp, x: rect.left, y: rect.top };
-    setXpPopups(prev => [...prev, popup]);
-    setTimeout(() => setXpPopups(prev => prev.filter(p => p.id !== popup.id)), 1500);
+  const handleToggleTask = (taskId: string, xp: number, isCompleted: boolean, e: React.MouseEvent) => {
+    if (isCompleted) {
+      uncompleteTask(taskId);
+    } else {
+      const rect = (e.target as HTMLElement).getBoundingClientRect();
+      completeTask(taskId, xp);
+      const popup = { id: Date.now(), xp, x: rect.left, y: rect.top };
+      setXpPopups(prev => [...prev, popup]);
+      setTimeout(() => setXpPopups(prev => prev.filter(p => p.id !== popup.id)), 1500);
+    }
   };
 
   return (
@@ -236,8 +240,7 @@ export default function Dashboard() {
                   >
                     {/* Checkbox */}
                     <button
-                      onClick={(e) => !isCompleted && handleComplete(task.id, task.xp, e)}
-                      disabled={isCompleted}
+                      onClick={(e) => handleToggleTask(task.id, task.xp, isCompleted, e)}
                       style={{
                         width: 28, height: 28, borderRadius: 8,
                         border: isCompleted

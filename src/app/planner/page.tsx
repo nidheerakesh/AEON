@@ -6,7 +6,15 @@ import { generateDailyPlan, suggestEasiestTask } from '@/lib/ai-planner';
 import { CATEGORIES } from '@/types';
 
 export default function PlannerPage() {
-  const { state, completeTask, setFocusTask, toggleSubtask } = useApp();
+  const { state, completeTask, uncompleteTask, setFocusTask, toggleSubtask } = useApp();
+  
+  const handleToggleTask = (taskId: string, xp: number, isCompleted: boolean) => {
+    if (isCompleted) {
+      uncompleteTask(taskId);
+    } else {
+      completeTask(taskId, xp);
+    }
+  };
   const [energy, setEnergy] = useState<'low' | 'medium' | 'high'>('medium');
   const [expandedTasks, setExpandedTasks] = useState<string[]>([]);
   const [mounted, setMounted] = useState(false);
@@ -157,8 +165,7 @@ export default function PlannerPage() {
                   }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                       <button
-                        onClick={() => isCompleted ? null : completeTask(task.id, task.xp)}
-                        disabled={isCompleted}
+                        onClick={() => handleToggleTask(task.id, task.xp, isCompleted)}
                         style={{
                           width: 24, height: 24, borderRadius: 6,
                           border: isCompleted ? 'none' : `2px solid ${cat.color}`,

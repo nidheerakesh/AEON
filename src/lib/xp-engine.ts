@@ -27,14 +27,14 @@ export function getXPProgress(xp: number): { current: XPLevel; next: XPLevel | n
   return { current, next, progress: Math.min(100, (earned / range) * 100) };
 }
 
-export function calculateStreakMultiplier(streakCount: number): number {
+export function calculateStreakBonus(streakCount: number): number {
   const bonuses = xpSystem.streak_bonus as Record<string, number>;
-  let multiplier = 1.0;
+  let bonus = 0;
   const thresholds = Object.keys(bonuses).map(Number).sort((a, b) => a - b);
   for (const t of thresholds) {
-    if (streakCount >= t) multiplier = bonuses[String(t)];
+    if (streakCount >= t) bonus = bonuses[String(t)];
   }
-  return multiplier;
+  return bonus;
 }
 
 export function awardXP(
@@ -42,8 +42,18 @@ export function awardXP(
   taskId: string,
   baseXP: number
 ): { newXP: number; newLevel: number; leveledUp: boolean; xpGained: number } {
-  const multiplier = calculateStreakMultiplier(state.streak_count);
-  const xpGained = Math.round(baseXP * multiplier);
+  // Check if it's a multiplier or flat bonus (based on roadmap data)
+  const bonusValue = calculateStreakBonus(state.streak_count);
+  let xpGained = baseXP;
+  
+  if (bonusValue > 0 && bonusValue < 5) {
+    // It's a multiplier (e.g., 1.2)
+    xpGained = Math.round(baseXP * bonusValue);
+  } else {
+    // It's a flat bonus (e.g., 50)
+    xpGained = baseXP + bonusValue;
+  }
+
   const newXP = state.xp + xpGained;
   const oldLevel = getLevelForXP(state.xp);
   const newLevelObj = getLevelForXP(newXP);
@@ -52,6 +62,18 @@ export function awardXP(
     newLevel: newLevelObj.level,
     leveledUp: newLevelObj.level > oldLevel.level,
     xpGained,
+  };
+}
+
+export function unawardXP(
+  state: AppState,
+  xpToDeduct: number
+): { newXP: number; newLevel: number } {
+  const newXP = Math.max(0, state.xp - xpToDeduct);
+  const newLevelObj = getLevelForXP(newXP);
+  return {
+    newXP,
+    newLevel: newLevelObj.level,
   };
 }
 
