@@ -141,11 +141,14 @@ function getMissedTasks(state: AppState, currentWeek: number, currentDay: number
       for (const cat of categories) {
         const tasks = (day.tasks as any)[cat] as Task[] || [];
         for (const task of tasks) {
-          if (isIncomplete(state, task.id)) {
+          const progress = state.task_progress[task.id];
+          const isCompletedToday = progress?.status === 'completed' && progress.completed_at?.split('T')[0] === new Date().toISOString().split('T')[0];
+          
+          if (isIncomplete(state, task.id) || isCompletedToday) {
             missed.push({
               ...task,
               category: cat,
-              reason: `🔴 LATE: From Week ${week.week_id}, Day ${day.day_id}`,
+              reason: `LATE: From Week ${week.week_id}, Day ${day.day_id}`,
               priority: 10,
               carriedFrom: `Week ${week.week_id}, Day ${day.day_id}`,
             });
@@ -168,8 +171,10 @@ function getMissedTasks(state: AppState, currentWeek: number, currentDay: number
   }
 
   for (const task of state.custom_tasks || []) {
-    const isBeforeToday = task.week_id < currentWeek || (task.week_id === currentWeek && task.day_id < currentDay);
-    if (isBeforeToday && isIncomplete(state, task.id)) {
+    const progress = state.task_progress[task.id];
+    const isCompletedToday = progress?.status === 'completed' && progress.completed_at?.split('T')[0] === new Date().toISOString().split('T')[0];
+    
+    if (isBeforeToday && (isIncomplete(state, task.id) || isCompletedToday)) {
       missed.push({
         ...task,
         reason: `Missed from Week ${task.week_id}, Day ${task.day_id}`,

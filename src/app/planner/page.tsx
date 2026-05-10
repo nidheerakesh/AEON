@@ -173,12 +173,12 @@ export default function PlannerPage() {
                         <div style={{ fontSize: 14, fontWeight: 600, textDecoration: isCompleted ? 'line-through' : 'none', color: isCompleted ? 'var(--text-muted)' : 'var(--text-primary)' }}>
                           {task.title}
                         </div>
-                        <div style={{ fontSize: 12, color: 'var(--text-muted)' }}>
+                        <div style={{ fontSize: 12, color: 'var(--text-muted)', textDecoration: isCompleted ? 'line-through' : 'none' }}>
                           ~{task.time_min}min  {task.subtasks?.length || 0} subtasks
                         </div>
                       </div>
                       
-                      <span style={{ fontSize: 12, fontFamily: 'var(--font-mono)', color: 'var(--accent-warning)', fontWeight: 600 }}>
+                      <span style={{ fontSize: 12, fontFamily: 'var(--font-mono)', color: 'var(--accent-warning)', fontWeight: 600, textDecoration: isCompleted ? 'line-through' : 'none' }}>
                         {task.xp} XP
                       </span>
                       

@@ -270,7 +270,7 @@ export default function Dashboard() {
                           {cat?.icon} {cat?.label}
                         </span>
                       </div>
-                      <div style={{ fontSize: 11, color: 'var(--text-muted)', marginTop: 2 }}>
+                      <div style={{ fontSize: 11, color: 'var(--text-muted)', marginTop: 2, textDecoration: isCompleted ? 'line-through' : 'none' }}>
                         {task.reason}  ~{task.time_min}min
                       </div>
                     </div>
@@ -280,6 +280,7 @@ export default function Dashboard() {
                       <span style={{
                         fontSize: 12, fontFamily: 'var(--font-mono)', fontWeight: 700,
                         color: isCompleted ? 'var(--text-muted)' : 'var(--accent-warning)',
+                        textDecoration: isCompleted ? 'line-through' : 'none',
                       }}>
                         {isCompleted ? `+${progress?.xp_earned || task.xp}` : task.xp} XP
                       </span>
