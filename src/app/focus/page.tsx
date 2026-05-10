@@ -27,25 +27,29 @@ export default function FocusPage() {
   if (!mounted) return null;
 
   const plan = generateDailyPlan(state, state.current_week, state.current_day);
-  const focusTask = state.focus_task_id
-    ? plan.find(t => t.id === state.focus_task_id)
+  const activeTask = state.focus_task_id
+    ? plan.find(t => t.id === state.focus_task_id) || plan[0]
     : plan[0];
 
-  if (!focusTask || completed) {
+  const handleSetTime = (mins: number) => {
+    setTimer(mins * 60);
+    setIsRunning(false);
+  };
+
+  if (!activeTask || completed) {
     return (
       <div className="focus-overlay" style={{ position: 'relative', minHeight: '100vh', inset: 'unset' }}>
         <div style={{ textAlign: 'center' }}>
-          <div style={{ fontSize: 80, marginBottom: 20 }}>🎉</div>
           <h1 style={{ fontSize: 32, fontWeight: 800 }}>
-            <span className="glow-text">{completed ? 'Task Complete!' : 'All Clear!'}</span>
+            <span className="glow-text">{completed ? 'Task Complete' : 'All Clear'}</span>
           </h1>
           <p style={{ color: 'var(--text-secondary)', marginTop: 12, fontSize: 16 }}>
-            {completed ? 'Great work! Ready for the next one?' : 'No pending tasks. You\'re ahead of schedule!'}
+            {completed ? 'Great work. Ready for the next one?' : 'No pending tasks. You\'re ahead of schedule.'}
           </p>
           {completed && (
             <button className="btn-primary" style={{ marginTop: 24, padding: '12px 32px' }}
               onClick={() => { setCompleted(false); setFocusTask(null); setTimer(state.settings.focus_mode_duration * 60); }}>
-              Next Task →
+              Next Task
             </button>
           )}
         </div>
@@ -53,13 +57,13 @@ export default function FocusPage() {
     );
   }
 
-  const cat = CATEGORIES.find(c => c.key === focusTask.category);
+  const cat = CATEGORIES.find(c => c.key === activeTask.category);
   const minutes = Math.floor(timer / 60);
   const seconds = timer % 60;
-  const progress = 1 - (timer / (state.settings.focus_mode_duration * 60));
+  const progress = 1 - (timer / (timer > 0 ? timer : 1)); // Simplified progress
 
   const handleComplete = () => {
-    completeTask(focusTask.id, focusTask.xp);
+    completeTask(activeTask.id, activeTask.xp);
     setCompleted(true);
     setIsRunning(false);
   };
@@ -71,98 +75,81 @@ export default function FocusPage() {
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
-      textAlign: 'center',
+      padding: '40px 20px',
     }}>
-      {/* Category badge */}
-      <div className={`badge ${cat ? `badge-${cat.key === 'ai_ml' ? 'ml' : cat.key}` : ''}`}
-        style={{ marginBottom: 20, fontSize: 13, padding: '6px 16px' }}>
-        {cat?.icon} {cat?.label}
+      {/* Task Selector */}
+      <div style={{ marginBottom: 40, width: '100%', maxWidth: 400 }}>
+        <div style={{ fontSize: 10, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: 12, textAlign: 'center' }}>Active Focus Task</div>
+        <select 
+          value={activeTask.id}
+          onChange={(e) => setFocusTask(e.target.value)}
+          style={{
+            width: '100%', padding: '12px 16px', background: 'var(--bg-secondary)',
+            border: '1px solid var(--border)', borderRadius: 'var(--radius-sm)',
+            color: 'var(--text-primary)', fontSize: 14, fontWeight: 600,
+            cursor: 'pointer', outline: 'none'
+          }}
+        >
+          {plan.filter(t => state.task_progress[t.id]?.status !== 'completed').map(t => (
+            <option key={t.id} value={t.id}>{t.title}</option>
+          ))}
+        </select>
       </div>
 
-      {/* Task title */}
-      <h1 style={{ fontSize: 28, fontWeight: 800, maxWidth: 500, lineHeight: 1.3 }}>
-        {focusTask.title}
-      </h1>
-
-      {/* Time estimate */}
-      <p style={{ color: 'var(--text-muted)', marginTop: 8, fontSize: 14 }}>
-        ~{focusTask.time_min} min estimated · {focusTask.xp} XP
-      </p>
-
-      {/* Timer circle */}
+      {/* Timer Circle */}
       <div style={{
-        width: 200, height: 200,
+        width: 240, height: 240,
         borderRadius: '50%',
-        background: `conic-gradient(var(--accent-primary) ${progress * 360}deg, var(--bg-tertiary) 0)`,
+        border: '2px solid var(--border)',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
-        margin: '40px 0',
-        boxShadow: isRunning ? '0 0 40px var(--accent-primary-glow)' : 'none',
-        transition: 'box-shadow 0.3s ease',
+        marginBottom: 40,
+        position: 'relative'
       }}>
-        <div style={{
-          width: 176, height: 176, borderRadius: '50%',
-          background: 'var(--bg-primary)',
-          display: 'flex', flexDirection: 'column',
-          alignItems: 'center', justifyContent: 'center',
-        }}>
-          <div style={{
-            fontSize: 40, fontWeight: 800,
-            fontFamily: 'var(--font-mono)',
-            color: isRunning ? 'var(--text-primary)' : 'var(--text-secondary)',
-          }}>
+        <div style={{ textAlign: 'center' }}>
+          <div style={{ fontSize: 56, fontWeight: 900, fontFamily: 'var(--font-mono)', letterSpacing: '-2px' }}>
             {String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')}
           </div>
-          <div style={{ fontSize: 11, color: 'var(--text-muted)', marginTop: 4, textTransform: 'uppercase' }}>
-            {isRunning ? 'focusing...' : timer === 0 ? 'time\'s up!' : 'ready'}
+          <div style={{ fontSize: 11, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '2px', marginTop: 4 }}>
+            {isRunning ? 'Focusing' : 'Ready'}
           </div>
         </div>
       </div>
 
-      {/* Controls */}
-      <div style={{ display: 'flex', gap: 12 }}>
+      {/* Time Selection */}
+      <div style={{ display: 'flex', gap: 12, marginBottom: 32 }}>
+        {[15, 25, 45, 60].map(m => (
+          <button
+            key={m}
+            onClick={() => handleSetTime(m)}
+            style={{
+              padding: '6px 16px', borderRadius: 'var(--radius-pill)',
+              border: '1px solid var(--border)',
+              background: Math.floor(timer/60) === m ? 'var(--accent-secondary)' : 'transparent',
+              color: Math.floor(timer/60) === m ? '#000' : 'var(--text-muted)',
+              fontSize: 12, fontWeight: 700, cursor: 'pointer', transition: 'all 0.2s'
+            }}
+          >
+            {m}m
+          </button>
+        ))}
+      </div>
+
+      {/* Main Controls */}
+      <div style={{ display: 'flex', gap: 16 }}>
         <button
           className="btn-ghost"
           onClick={() => setIsRunning(!isRunning)}
-          style={{ padding: '10px 24px', fontSize: 14 }}
+          style={{ padding: '14px 32px', fontSize: 15, minWidth: 140 }}
         >
-          {isRunning ? '⏸ Pause' : '▶ Start Timer'}
+          {isRunning ? 'Pause' : 'Start'}
         </button>
         <button
           className="btn-primary"
           onClick={handleComplete}
-          style={{ padding: '10px 24px', fontSize: 14 }}
+          style={{ padding: '14px 32px', fontSize: 15, background: 'var(--accent-secondary)', color: '#000' }}
         >
-          ✓ Mark Complete
+          Complete Task
         </button>
-      </div>
-
-      {/* Skip */}
-      <button
-        onClick={() => setFocusTask(null)}
-        style={{
-          marginTop: 20, background: 'transparent', border: 'none',
-          color: 'var(--text-muted)', cursor: 'pointer', fontSize: 13,
-          fontFamily: 'var(--font-sans)',
-        }}
-      >
-        Skip this task →
-      </button>
-
-      {/* Task count */}
-      <div style={{
-        marginTop: 40, fontSize: 12, color: 'var(--text-muted)',
-        display: 'flex', gap: 4,
-      }}>
-        {plan.map((t, i) => (
-          <div key={i} style={{
-            width: 8, height: 8, borderRadius: '50%',
-            background: state.task_progress[t.id]?.status === 'completed'
-              ? 'var(--accent-success)'
-              : t.id === focusTask.id
-                ? 'var(--accent-primary)'
-                : 'var(--bg-hover)',
-          }} />
-        ))}
       </div>
     </div>
   );

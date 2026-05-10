@@ -69,20 +69,30 @@ export function generateDailyPlan(
     return a.time_min - b.time_min;
   });
 
-  // If low energy, reduce load
-  if (energyLevel === 'low') {
-    const maxTime = 90;
-    let total = 0;
-    return planned.filter(t => {
-      if (total + t.time_min <= maxTime) {
-        total += t.time_min;
-        return true;
-      }
-      return false;
-    });
-  }
+  // Sort by priority (higher = first), then by time estimate
+  planned.sort((a, b) => {
+    if (b.priority !== a.priority) return b.priority - a.priority;
+    return a.time_min - b.time_min;
+  });
 
-  return planned;
+  // Energy-based scaling
+  let maxTime = 180; // Default Medium: 3 hours
+  if (energyLevel === 'low') maxTime = 90; // Low: 1.5 hours
+  if (energyLevel === 'high') maxTime = 300; // High: 5 hours
+
+  let total = 0;
+  return planned.filter(t => {
+    // Always include the first task if it's high priority, regardless of time
+    if (total === 0 && t.priority >= 9) {
+      total += t.time_min;
+      return true;
+    }
+    if (total + t.time_min <= maxTime) {
+      total += t.time_min;
+      return true;
+    }
+    return false;
+  });
 }
 
 function getTaskReason(cat: TaskCategory): string {
