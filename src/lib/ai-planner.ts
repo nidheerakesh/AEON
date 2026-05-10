@@ -80,17 +80,25 @@ export function generateDailyPlan(
   if (energyLevel === 'low') maxTime = 90; // Low: 1.5 hours
   if (energyLevel === 'high') maxTime = 300; // High: 5 hours
 
+  const todayStr = new Date().toLocaleDateString('en-CA'); // YYYY-MM-DD in local time
+
   let incompleteTime = 0;
   return planned.filter(t => {
     const progress = state.task_progress[t.id];
     const isCompleted = progress?.status === 'completed';
-    const isCompletedToday = isCompleted && progress.completed_at?.split('T')[0] === new Date().toISOString().split('T')[0];
+    const isCompletedToday = isCompleted && progress.completed_at?.split('T')[0] === todayStr;
 
-    // Always show tasks completed today (struck off)
+    // 1. If it's a task specifically for TODAY (roadmap or custom), always show it
+    const isScheduledForToday = t.week_id === weekId && t.day_id === dayId;
+    if (isScheduledForToday) return true;
+
+    // 2. If it's a MISSED task completed today, keep showing it
     if (isCompletedToday) return true;
-    if (isCompleted) return false; // Hide tasks completed on other days
+    
+    // 3. If it's already completed on a previous day, hide it
+    if (isCompleted) return false; 
 
-    // Only count incomplete tasks toward the rolling energy budget
+    // 4. For other incomplete tasks (like missed ones), apply the energy budget
     if (incompleteTime + t.time_min <= maxTime) {
       incompleteTime += t.time_min;
       return true;

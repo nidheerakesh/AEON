@@ -95,3 +95,36 @@ export function getDayCompletionRate(state: AppState, weekId: number, dayId: num
   }
   return total === 0 ? 0 : (completed / total) * 100;
 }
+export function getTotalHoursInvested(state: AppState): string {
+  let totalMin = 0;
+  
+  // 1. Roadmap tasks
+  for (const week of roadmapData.weeks) {
+    for (const day of week.days) {
+      for (const tasks of Object.values(day.tasks) as any[][]) {
+        for (const t of tasks) {
+          if (state.task_progress[t.id]?.status === 'completed') totalMin += t.time_min;
+        }
+      }
+    }
+  }
+
+  // 2. Custom tasks
+  for (const task of state.custom_tasks) {
+    if (state.task_progress[task.id]?.status === 'completed') totalMin += task.time_min;
+  }
+
+  // 3. Boss fight tasks
+  for (let w = 1; w <= 12; w++) {
+    for (let d = 1; d <= 7; d++) {
+      const id = `boss_w${w}_d${d}`;
+      if (state.task_progress[id]?.status === 'completed') {
+        totalMin += (d === 6 ? 120 : 45);
+      }
+    }
+  }
+
+  const h = Math.floor(totalMin / 60);
+  const m = totalMin % 60;
+  return h > 0 ? `${h}h ${m}m` : `${m}m`;
+}

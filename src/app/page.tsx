@@ -1,7 +1,7 @@
 'use client';
 
 import { useApp } from '@/context/AppContext';
-import { getXPProgress, getTotalTasksCompleted, getDayCompletionRate } from '@/lib/xp-engine';
+import { getXPProgress, getTotalTasksCompleted, getDayCompletionRate, getTotalHoursInvested } from '@/lib/xp-engine';
 import { generateDailyPlan, getMotivationalMessage } from '@/lib/ai-planner';
 import { CATEGORIES } from '@/types';
 import { getUnlockedAchievements, ACHIEVEMENTS, getTierColor } from '@/lib/achievements';
@@ -133,13 +133,13 @@ export default function Dashboard() {
           {motivation}
         </p>
       </div>
-
       {/* Stats Row */}
-      <div className="fade-in fade-in-delay-1" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 24, marginBottom: 40 }}>
+      <div className="fade-in fade-in-delay-1" style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 16, marginBottom: 40 }}>
         <StatCard icon="" label="Level" value={`${xpInfo.current.level}  ${xpInfo.current.name}`} accent="var(--accent-primary)" />
         <StatCard icon="" label="Total XP" value={state.xp.toLocaleString()} accent="var(--text-primary)" />
-        <StatCard icon="" label="Tasks Done" value={`${totalCompleted}`} accent="var(--accent-secondary)" />
-        <StatCard icon="" label="Streak" value={`${state.streak_count} days`} accent="var(--accent-primary)" />
+        <StatCard icon="" label="Hours Spent" value={getTotalHoursInvested(state)} accent="var(--accent-secondary)" />
+        <StatCard icon="" label="Tasks Done" value={`${totalCompleted}`} accent="var(--accent-primary)" />
+        <StatCard icon="" label="Streak" value={`${state.streak_count} days`} accent="var(--accent-warning)" />
       </div>
 
       {/* Overall Progress */}

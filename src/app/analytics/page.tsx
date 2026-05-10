@@ -4,6 +4,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { useApp } from '@/context/AppContext';
 import { CATEGORIES } from '@/types';
 import roadmapData from '@/data/roadmap.json';
+import { getTotalHoursInvested } from '@/lib/xp-engine';
 
 export default function AnalyticsPage() {
   const { state } = useApp();
@@ -210,19 +211,7 @@ export default function AnalyticsPage() {
           <div style={{ marginTop: 24, padding: '32px 40px', background: 'var(--accent-secondary)', border: '1px solid var(--border)', borderRadius: 'var(--radius-md)', boxShadow: 'var(--shadow-hard)' }}>
             <div style={{ fontSize: 13, color: '#000000', textTransform: 'uppercase', letterSpacing: '2px', fontWeight: 900 }}>Estimated Time Invested</div>
             <div style={{ fontSize: 32, fontWeight: 900, color: '#000000', marginTop: 16 }}>
-              {(() => {
-                let total = 0;
-                for (const week of roadmapData.weeks) {
-                  for (const day of week.days) {
-                    for (const tasks of Object.values(day.tasks) as any[][]) {
-                      for (const t of tasks) {
-                        if (state.task_progress[t.id]?.status === 'completed') total += t.time_min;
-                      }
-                    }
-                  }
-                }
-                return `${Math.floor(total / 60)}h ${total % 60}m`;
-              })()}
+              {getTotalHoursInvested(state)}
             </div>
           </div>
         </div>
