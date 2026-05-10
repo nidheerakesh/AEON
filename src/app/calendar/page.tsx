@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { useApp } from '@/context/AppContext';
 import { CustomTask, CATEGORIES } from '@/types';
 import roadmapData from '@/data/roadmap.json';
@@ -10,17 +11,104 @@ function generateId() {
 }
 
 export default function CalendarPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <CalendarContent />
+    </Suspense>
+  );
+}
+
+function CalendarContent() {
   const { state, addCustomTask } = useApp();
+  const searchParams = useSearchParams();
   const [mounted, setMounted] = useState(false);
   const [expandedDays, setExpandedDays] = useState<string[]>([]);
   
-  // AI Modal state
-  const [isAiModalOpen, setIsAiModalOpen] = useState(false);
-  const [aiInput, setAiInput] = useState('');
-  const [isScheduling, setIsScheduling] = useState(false);
-  const [aiResult, setAiResult] = useState<any>(null);
+  // Modal state
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedDayContext, setSelectedDayContext] = useState<{ week: number; day: number } | null>(null);
+  
+  // Manual state
+  const [manualTitle, setManualTitle] = useState('');
+  const [manualCategory, setManualCategory] = useState<any>('build');
+  const [manualWeek, setManualWeek] = useState(1);
+  const [manualDay, setManualDay] = useState(1);
+  const [manualXP, setManualXP] = useState(25);
 
-  useEffect(() => { setMounted(true); }, []);
+  useEffect(() => { 
+    setMounted(true); 
+    setManualWeek(state.current_week);
+    setManualDay(state.current_day);
+    
+    if (searchParams.get('schedule') === 'true') {
+      openScheduleModal();
+    }
+  }, [state.current_week, state.current_day, searchParams]);
+
+  const openScheduleModal = (week?: number, day?: number) => {
+    if (week && day) {
+      setSelectedDayContext({ week, day });
+      setManualWeek(week);
+      setManualDay(day);
+    } else {
+      setSelectedDayContext(null);
+      setManualWeek(state.current_week);
+      setManualDay(state.current_day);
+    }
+    setIsModalOpen(true);
+  };
+
+  const handleManualSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!manualTitle.trim()) return;
+
+    const newTask: CustomTask = {
+      id: `custom_${generateId()}`,
+      title: manualTitle,
+      description: 'Manual task',
+      xp: manualXP,
+      time_min: 45,
+      difficulty: 'medium',
+      category: manualCategory,
+      week_id: manualWeek,
+      day_id: manualDay,
+      created_at: new Date().toISOString(),
+      source: 'user',
+      subtasks: [],
+      resources: []
+    };
+
+    addCustomTask(newTask);
+    setIsModalOpen(false);
+    setManualTitle('');
+    scrollToTask(newTask.week_id);
+  };
+
+  const scrollToTask = (weekId: number) => {
+    setTimeout(() => {
+      const weekEl = document.getElementById(`week-${weekId}`);
+      if (weekEl) {
+        weekEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 100);
+  };
+
+  const getRealDate = (weekId: number, dayId: number) => {
+    if (!state.settings?.start_date) return null;
+    try {
+      const startDate = new Date(state.settings.start_date);
+      const daysOffset = (weekId - 1) * 7 + (dayId - 1);
+      const date = new Date(startDate.getTime() + daysOffset * 24 * 60 * 60 * 1000);
+      return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    } catch {
+      return null;
+    }
+  };
+
+  const getCategoryColor = (catKey: string) => {
+    const cat = CATEGORIES.find(c => c.key === catKey);
+    return cat ? cat.color : '#fff';
+  };
 
   const calendarData = useMemo(() => {
     return roadmapData.weeks.map(week => {
@@ -52,95 +140,6 @@ export default function CalendarPage() {
     });
   }, [state.custom_tasks]);
 
-  const handleAiSchedule = async () => {
-    if (!aiInput.trim()) return;
-    setIsScheduling(true);
-    setAiResult(null);
-    
-    try {
-      const response = await fetch('/api/ai', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          action: 'schedule_task',
-          apiKey: state.settings.gemini_api_key,
-          context: {
-            userInput: aiInput,
-            currentWeek: state.current_week,
-            currentDay: state.current_day,
-            energyLevel: 'medium',
-            todayTaskCount: 0,
-            totalCompleted: Object.keys(state.task_progress).length
-          }
-        })
-      });
-      
-      const resData = await response.json();
-      
-      if (resData.fallback || resData.error) {
-        setAiResult({
-          error: resData.error || 'Failed to connect to Gemini AI.',
-          fallback: true
-        });
-      } else if (resData.success && resData.data) {
-        setAiResult(resData.data);
-      }
-    } catch (err) {
-      console.error(err);
-      setAiResult({ error: 'Network error. Please try again.' });
-    } finally {
-      setIsScheduling(false);
-    }
-  };
-
-  const acceptAiTask = () => {
-    if (!aiResult?.task) return;
-    
-    const newTask: CustomTask = {
-      id: `custom_${generateId()}`,
-      title: aiResult.task.title,
-      description: aiResult.task.description,
-      xp: aiResult.task.xp || 20,
-      time_min: aiResult.task.time_min || 30,
-      difficulty: aiResult.task.difficulty || 'medium',
-      category: aiResult.task.category || 'ai_ml',
-      week_id: aiResult.suggested_week || state.current_week,
-      day_id: aiResult.suggested_day || state.current_day,
-      created_at: new Date().toISOString(),
-      source: 'ai',
-      subtasks: [],
-      resources: []
-    };
-    
-    addCustomTask(newTask);
-    setIsAiModalOpen(false);
-    setAiInput('');
-    setAiResult(null);
-    
-    // Smooth scroll to the week
-    const weekEl = document.getElementById(`week-${newTask.week_id}`);
-    if (weekEl) {
-      weekEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  };
-
-  const getRealDate = (weekId: number, dayId: number) => {
-    if (!state.settings?.start_date) return null;
-    try {
-      const startDate = new Date(state.settings.start_date);
-      const daysOffset = (weekId - 1) * 7 + (dayId - 1);
-      const date = new Date(startDate.getTime() + daysOffset * 24 * 60 * 60 * 1000);
-      return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-    } catch {
-      return null;
-    }
-  };
-
-  const getCategoryColor = (catKey: string) => {
-    const cat = CATEGORIES.find(c => c.key === catKey);
-    return cat ? cat.color : '#fff';
-  };
-
   if (!mounted) {
     return (
       <div className="page-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
@@ -162,11 +161,11 @@ export default function CalendarPage() {
       }}>
         <div>
           <h1 className="page-title glow-text" style={{ fontSize: 36, marginBottom: 8 }}>Learning Calendar</h1>
-          <p className="page-subtitle">View your entire 12-week roadmap and schedule custom tasks with AI.</p>
+          <p className="page-subtitle">View your entire 12-week roadmap and schedule custom tasks.</p>
         </div>
         
         <button 
-          onClick={() => setIsAiModalOpen(true)}
+          onClick={() => openScheduleModal()}
           className="btn-primary"
           style={{
             display: 'flex',
@@ -184,7 +183,7 @@ export default function CalendarPage() {
             transition: 'all 0.2s ease'
           }}
         >
-          Schedule Extra Task
+          Schedule New Task
         </button>
       </div>
 
@@ -265,9 +264,13 @@ export default function CalendarPage() {
                         </h3>
                         {realDate && <div style={{ fontSize: 12, color: 'var(--text-muted)', marginTop: 2 }}>{realDate}</div>}
                       </div>
-                      <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-secondary)', background: 'var(--bg-primary)', padding: '4px 8px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border)' }}>
-                        {day.estimated_time_min} min
-                      </div>
+                      <button 
+                        onClick={(e) => { e.stopPropagation(); openScheduleModal(week.week_id, day.day_id); }}
+                        style={{ background: 'none', border: 'none', color: 'var(--accent-primary)', cursor: 'pointer', fontSize: 18 }}
+                        title="Add task to this day"
+                      >
+                        +
+                      </button>
                     </div>
 
                     <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
@@ -301,7 +304,7 @@ export default function CalendarPage() {
                         {[...day.standardTasks, ...day.customTasks].map((t: any) => (
                           <div key={t.id} style={{ background: 'var(--bg-primary)', padding: 12, borderRadius: 8, border: '1px solid var(--border)' }}>
                             <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
-                              <div style={{ width: 8, height: 8, borderRadius: '50%', background: getCategoryColor(t.category || t.id.split('_')[1]) || 'var(--accent-primary)' }} />
+                              <div style={{ width: 8, height: 8, borderRadius: '50%', background: getCategoryColor(t.category || (t.id && t.id.split('_')[1])) || 'var(--accent-primary)' }} />
                               <div style={{ fontWeight: 600, fontSize: 14, color: 'var(--text-primary)' }}>{t.title}</div>
                             </div>
                             <div style={{ fontSize: 12, color: 'var(--text-muted)', marginBottom: 8 }}>~{t.time_min} mins · {t.xp} XP</div>
@@ -335,8 +338,8 @@ export default function CalendarPage() {
         ))}
       </div>
 
-      {/* AI Schedule Modal */}
-      {isAiModalOpen && (
+      {/* Scheduler Modal */}
+      {isModalOpen && (
         <div style={{
           position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.8)', backdropFilter: 'blur(4px)',
           display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 100, padding: 20
@@ -347,89 +350,79 @@ export default function CalendarPage() {
             position: 'relative'
           }}>
             <button 
-              onClick={() => setIsAiModalOpen(false)}
+              onClick={() => setIsModalOpen(false)}
               style={{ position: 'absolute', top: 16, right: 16, background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', fontSize: 20 }}
             >
               ✕
             </button>
             
-            <h2 style={{ fontSize: 24, fontWeight: 700, marginBottom: 8, display: 'flex', alignItems: 'center', gap: 8 }}>
-              <span className="glow-text">AI Scheduler</span>
+            <h2 style={{ fontSize: 24, fontWeight: 700, marginBottom: 20, display: 'flex', alignItems: 'center', gap: 8 }}>
+              <span className="glow-text">Schedule New Task</span>
             </h2>
-            <p style={{ color: 'var(--text-secondary)', fontSize: 14, marginBottom: 20 }}>
-              Tell AEON what you want to learn or practice. It will break it down into a task, estimate time/XP, and schedule it optimally.
-            </p>
-            
-            <textarea
-              value={aiInput}
-              onChange={(e) => setAiInput(e.target.value)}
-              placeholder="e.g. I want to build a small Docker container for my Node.js app..."
-              style={{
-                width: '100%', height: 100, background: 'var(--bg-primary)', border: '1px solid var(--border)',
-                borderRadius: 'var(--radius-sm)', padding: 12, color: 'var(--text-primary)', fontFamily: 'var(--font-sans)',
-                fontSize: 14, resize: 'none', marginBottom: 16
-              }}
-            />
-            
-            {!aiResult && !isScheduling && (
+
+            <form onSubmit={handleManualSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+              <div>
+                <label style={{ display: 'block', fontSize: 12, color: 'var(--text-muted)', marginBottom: 6, fontWeight: 700 }}>TASK TITLE</label>
+                <input 
+                  type="text" 
+                  value={manualTitle}
+                  onChange={e => setManualTitle(e.target.value)}
+                  placeholder="e.g., Build Docker Container"
+                  required
+                  style={{ width: '100%', padding: '12px', background: 'var(--bg-primary)', border: '1px solid var(--border)', borderRadius: 8, color: 'var(--text-primary)' }}
+                />
+              </div>
+              
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+                <div>
+                  <label style={{ display: 'block', fontSize: 12, color: 'var(--text-muted)', marginBottom: 6, fontWeight: 700 }}>WEEK</label>
+                  <select 
+                    value={manualWeek}
+                    onChange={e => setManualWeek(parseInt(e.target.value))}
+                    style={{ width: '100%', padding: '12px', background: 'var(--bg-primary)', border: '1px solid var(--border)', borderRadius: 8, color: 'var(--text-primary)' }}
+                  >
+                    {[...Array(12)].map((_, i) => <option key={i+1} value={i+1}>Week {i+1}</option>)}
+                  </select>
+                </div>
+                <div>
+                  <label style={{ display: 'block', fontSize: 12, color: 'var(--text-muted)', marginBottom: 6, fontWeight: 700 }}>DAY</label>
+                  <select 
+                    value={manualDay}
+                    onChange={e => setManualDay(parseInt(e.target.value))}
+                    style={{ width: '100%', padding: '12px', background: 'var(--bg-primary)', border: '1px solid var(--border)', borderRadius: 8, color: 'var(--text-primary)' }}
+                  >
+                    {[...Array(6)].map((_, i) => <option key={i+1} value={i+1}>Day {i+1}</option>)}
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label style={{ display: 'block', fontSize: 12, color: 'var(--text-muted)', marginBottom: 6, fontWeight: 700 }}>CATEGORY & XP</label>
+                <div style={{ display: 'flex', gap: 8 }}>
+                  <select 
+                    value={manualCategory}
+                    onChange={e => setManualCategory(e.target.value)}
+                    style={{ flex: 2, padding: '12px', background: 'var(--bg-primary)', border: '1px solid var(--border)', borderRadius: 8, color: 'var(--text-primary)' }}
+                  >
+                    {CATEGORIES.map(c => <option key={c.key} value={c.key}>{c.label}</option>)}
+                  </select>
+                  <input 
+                    type="number" 
+                    value={manualXP}
+                    onChange={e => setManualXP(parseInt(e.target.value))}
+                    style={{ flex: 1, padding: '12px', background: 'var(--bg-primary)', border: '1px solid var(--border)', borderRadius: 8, color: 'var(--text-primary)' }}
+                  />
+                </div>
+              </div>
+
               <button 
-                onClick={handleAiSchedule}
-                disabled={!aiInput.trim()}
+                type="submit"
                 className="btn-primary"
-                style={{
-                  width: '100%', padding: 12, background: 'linear-gradient(135deg, var(--accent-primary), var(--accent-secondary))',
-                  color: '#fff', border: 'none', borderRadius: 'var(--radius-sm)', fontWeight: 600, cursor: aiInput.trim() ? 'pointer' : 'not-allowed',
-                  opacity: aiInput.trim() ? 1 : 0.5
-                }}
+                style={{ width: '100%', padding: 14, marginTop: 8, background: 'var(--accent-secondary)', color: '#000', borderRadius: 8, fontWeight: 800 }}
               >
-                Generate Task
+                Add Task to Schedule
               </button>
-            )}
-
-            {isScheduling && (
-              <div style={{ padding: 20, textAlign: 'center', color: 'var(--text-secondary)' }}>
-                <div className="spinner" style={{ width: 24, height: 24, border: '2px solid var(--border)', borderTopColor: 'var(--accent-primary)', borderRadius: '50%', animation: 'spin 1s linear infinite', margin: '0 auto 12px' }} />
-                AEON is analyzing your request...
-              </div>
-            )}
-
-            {aiResult && !aiResult.fallback && !aiResult.error && (
-              <div style={{ background: 'var(--bg-primary)', padding: 16, borderRadius: 'var(--radius-md)', border: '1px solid var(--accent-primary)40' }}>
-                <h3 style={{ fontSize: 16, fontWeight: 600, marginBottom: 8, color: 'var(--accent-primary)' }}>Suggested Task</h3>
-                <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 4 }}>{aiResult.task.title}</div>
-                <div style={{ fontSize: 13, color: 'var(--text-secondary)', marginBottom: 12 }}>{aiResult.task.description}</div>
-                
-                <div style={{ display: 'flex', gap: 12, marginBottom: 16, fontSize: 12 }}>
-                  <span style={{ background: 'var(--bg-tertiary)', padding: '4px 8px', borderRadius: 4 }}>Time: {aiResult.task.time_min} min</span>
-                  <span style={{ background: 'var(--bg-tertiary)', padding: '4px 8px', borderRadius: 4 }}>Reward: {aiResult.task.xp} XP</span>
-                  <span style={{ background: 'var(--bg-tertiary)', padding: '4px 8px', borderRadius: 4 }}>Plan: Week {aiResult.suggested_week}, Day {aiResult.suggested_day}</span>
-                </div>
-                
-                <div style={{ fontSize: 12, color: 'var(--text-muted)', fontStyle: 'italic', marginBottom: 16, paddingLeft: 8, borderLeft: '2px solid var(--border)' }}>
-                  &quot;{aiResult.reason}&quot;
-                </div>
-                
-                <div style={{ display: 'flex', gap: 12 }}>
-                  <button onClick={acceptAiTask} style={{ flex: 1, padding: 10, background: 'var(--accent-primary)', color: '#fff', border: 'none', borderRadius: 'var(--radius-sm)', fontWeight: 600, cursor: 'pointer' }}>
-                    Accept & Schedule
-                  </button>
-                  <button onClick={() => setAiResult(null)} style={{ flex: 1, padding: 10, background: 'var(--bg-tertiary)', color: 'var(--text-primary)', border: '1px solid var(--border)', borderRadius: 'var(--radius-sm)', fontWeight: 600, cursor: 'pointer' }}>
-                    Try Again
-                  </button>
-                </div>
-              </div>
-            )}
-
-            {aiResult?.error && (
-              <div style={{ padding: 16, background: 'rgba(255, 107, 107, 0.1)', border: '1px solid rgba(255, 107, 107, 0.3)', borderRadius: 'var(--radius-md)', color: '#ff6b6b', fontSize: 14 }}>
-                {aiResult.error}
-                <div style={{ marginTop: 12 }}>
-                  <button onClick={() => setAiResult(null)} style={{ padding: '6px 12px', background: 'transparent', border: '1px solid #ff6b6b', color: '#ff6b6b', borderRadius: 'var(--radius-sm)', cursor: 'pointer' }}>
-                    Try Again
-                  </button>
-                </div>
-              </div>
-            )}
+            </form>
           </div>
         </div>
       )}

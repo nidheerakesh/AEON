@@ -185,6 +185,7 @@ function getMissedTasks(state: AppState, currentWeek: number, currentDay: number
   }
 
   for (const task of state.custom_tasks || []) {
+    const isBeforeToday = task.week_id < currentWeek || (task.week_id === currentWeek && task.day_id < currentDay);
     const progress = state.task_progress[task.id];
     const isCompletedToday = progress?.status === 'completed' && progress.completed_at?.split('T')[0] === new Date().toISOString().split('T')[0];
     

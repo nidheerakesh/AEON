@@ -309,6 +309,14 @@ export default function Dashboard() {
         <div className="fade-in fade-in-delay-3">
           <h2 style={{ fontSize: 18, fontWeight: 700, marginBottom: 14 }}>Quick Actions</h2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+            <Link href="/calendar?schedule=true" style={{ textDecoration: 'none' }}>
+              <div className="card-flat" style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer', border: '1px solid var(--accent-secondary)' }}>
+                <div>
+                  <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--accent-secondary)' }}>Schedule New Task</div>
+                  <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>Add custom learning goals</div>
+                </div>
+              </div>
+            </Link>
             <Link href="/focus" style={{ textDecoration: 'none' }}>
               <div className="card-flat" style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer' }}>
                 <div>
