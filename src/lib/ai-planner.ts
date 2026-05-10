@@ -75,20 +75,24 @@ export function generateDailyPlan(
     return a.time_min - b.time_min;
   });
 
-  // Energy-based scaling
+  // Energy-based scaling (rolling budget)
   let maxTime = 180; // Default Medium: 3 hours
   if (energyLevel === 'low') maxTime = 90; // Low: 1.5 hours
   if (energyLevel === 'high') maxTime = 300; // High: 5 hours
 
-  let total = 0;
+  let incompleteTime = 0;
   return planned.filter(t => {
-    // Always include the first task if it's high priority, regardless of time
-    if (total === 0 && t.priority >= 9) {
-      total += t.time_min;
-      return true;
-    }
-    if (total + t.time_min <= maxTime) {
-      total += t.time_min;
+    const progress = state.task_progress[t.id];
+    const isCompleted = progress?.status === 'completed';
+    const isCompletedToday = isCompleted && progress.completed_at?.split('T')[0] === new Date().toISOString().split('T')[0];
+
+    // Always show tasks completed today (struck off)
+    if (isCompletedToday) return true;
+    if (isCompleted) return false; // Hide tasks completed on other days
+
+    // Only count incomplete tasks toward the rolling energy budget
+    if (incompleteTime + t.time_min <= maxTime) {
+      incompleteTime += t.time_min;
       return true;
     }
     return false;
