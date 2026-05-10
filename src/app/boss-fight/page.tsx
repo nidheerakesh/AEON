@@ -403,7 +403,7 @@ export default function BossFightPage() {
                 display: 'flex', alignItems: 'center', gap: 10, padding: '6px 0',
                 fontSize: 13, color: 'var(--text-secondary)',
               }}>
-                <span style={{ color: 'var(--accent-warning)' }}></span>
+                <span style={{ color: 'var(--accent-warning)', fontSize: 14 }}>▹</span>
                 {bd}
               </div>
             ))}

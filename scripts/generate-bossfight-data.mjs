@@ -102,9 +102,12 @@ const weeks = matches.map((match, index) => {
   const winSection = sectionBetween(block, '### Win Condition', /### Daily Sub-Tasks/);
   const dailySection = sectionBetween(block, '### Daily Sub-Tasks', /### ☠️/);
   const failSection = sectionBetween(block, '### ☠️ Instant Fail Conditions', /### 🎁/);
-  const dropSection = sectionBetween(block, '### 🎁', /---\n---|\n## Week|\n# /);
-  const bossDropsSection = dropSection.split('\n').map(line => stripMarkdown(line)).filter(l => l && !l.startsWith('('));
-  const bossDrops = bossDropsSection.length > 0 ? (collectMixedListItems(dropSection).length > 0 ? collectMixedListItems(dropSection) : bossDropsSection) : [];
+  const dropSection = sectionBetween(block, '### 🎁 Boss Drop (what you unlock)', /---\n---|\n## Week|\n# /).trim();
+  let bossDrops = collectMixedListItems(dropSection);
+  if (bossDrops.length === 0 && dropSection) {
+    // If not a list, split by sentences or just take the whole thing as one drop
+    bossDrops = dropSection.split(/\.\s+/).map(s => stripMarkdown(s)).filter(Boolean);
+  }
 
   const fullDifficulty = stripMarkdown(difficultyMatch?.[1] ?? '');
   const difficultyIcon = fullDifficulty.match(/([^\w\s]+)/)?.[1] || '⚔️';
@@ -122,7 +125,7 @@ const weeks = matches.map((match, index) => {
     lore: stripMarkdown(quoteMatch?.[1] ?? ''),
     winConditions: collectMixedListItems(winSection),
     failConditions: collectMixedListItems(failSection),
-    bossDrops: collectMixedListItems(dropSection),
+    bossDrops: bossDrops,
     xpReward: weekId === 12 ? 2000 : (weekId % 4 === 0 ? 1000 : 500 + (weekId * 20)),
     dailyTasks: parseDays(dailySection),
   };
